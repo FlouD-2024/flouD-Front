@@ -2,6 +2,6 @@ REPOSITORY=/home/ubuntu/deploy
 
 cd $REPOSITORY 
 
-sudo npm install
+npm install
 
-sudo npm deploy
+npm deploy
