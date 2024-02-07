@@ -4,6 +4,6 @@ cd $REPOSITORY
 
 sudo npm install
 
-sudo npm install next@13
+sudo npm install next
 
 sudo pm2 reload all
