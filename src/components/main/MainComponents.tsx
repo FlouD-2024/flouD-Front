@@ -4,6 +4,8 @@ import { useRecoilValue } from "recoil";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic.js";
 import FloudCalendar from "./FloudCalendar";
+import DdayCard from "./DdayCard";
+import Memo from "./Memo";
 
 const MainComponents = () => {
   //   const dayInfo = useRecoilValue(weeklyDayAtom);
@@ -34,6 +36,10 @@ const MainComponents = () => {
       <Countdown deadline={tomorrowDay} />
       <div>
         <FloudCalendar />
+      </div>
+      <div className="flex">
+        <DdayCard />
+        <Memo />
       </div>
     </div>
   );

@@ -1,0 +1,111 @@
+import { DdayProp, DdayTestData } from "@/store/testData";
+import dayjs from "dayjs";
+import React, { useEffect, useState } from "react";
+import tw, { css, styled } from "twin.macro";
+
+const DdayCard = () => {
+  const DdayTest: DdayProp[] | null = DdayTestData;
+  const [click, setClick] = useState(1);
+  const onClick = (clickNum: number) => {
+    setClick(clickNum);
+  };
+  const today = dayjs();
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const lastLength = DdayTest !== null ? DdayTest.length : null;
+      if (lastLength !== null && lastLength <= click) {
+        setClick(1);
+      } else {
+        setClick((click) => click + 1);
+      }
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [click]);
+  return (
+    <DdayCardWrapper cardId={click}>
+      {DdayTest !== null ? (
+        <>
+          <div className="text-[#014472] font-[900] text-[22.33px] leading-[23.34px] tracking-[-6%] h-6 w-full flex justify-center">
+            {DdayTest[click - 1].title}
+          </div>
+          {today.diff(DdayTest[click - 1].dday, "day") < 0 ? (
+            <DdayFont>D{today.diff(DdayTest[click - 1].dday, "day")}</DdayFont>
+          ) : (
+            <DdayFont>D+{today.diff(DdayTest[click - 1].dday, "day")}</DdayFont>
+          )}
+          <DotSlide>
+            {DdayTest.map((e) => {
+              return (
+                <Dot
+                  key={e.id}
+                  hasClick={click === e.id}
+                  onClick={() => onClick(e.id)}
+                />
+              );
+            })}
+          </DotSlide>
+        </>
+      ) : null}
+    </DdayCardWrapper>
+  );
+};
+
+export default DdayCard;
+
+const DdayCardWrapper = styled.div(({ cardId }: { cardId: number }) => [
+  css`
+    width: 466px;
+    height: 213px;
+    border-radius: 30.45px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  `,
+  cardId === 1
+    ? css`
+        background-color: rgba(131, 204, 207, 1);
+      `
+    : cardId === 2
+    ? css`
+        background-color: #b1c6e6;
+      `
+    : css`
+        background-color: #547fe7;
+      `,
+]);
+
+const DdayFont = styled.div`
+  font-weight: 900;
+  font-size: 100px;
+  color: white;
+  letter-spacing: -6%;
+  line-height: 100%;
+  height: 107px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const DotSlide = tw.div`
+    flex flex-col justify-around items-center w-[7px] h-[61px] absolute top-[35%] left-[95%]
+`;
+const Dot = styled.div(({ hasClick }: { hasClick: boolean }) => [
+  css`
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    cursor: pointer;
+  `,
+  hasClick
+    ? css`
+        background-color: rgba(39, 100, 152, 1);
+      `
+    : css`
+        background-color: rgba(39, 100, 152, 0.41);
+      `,
+]);
