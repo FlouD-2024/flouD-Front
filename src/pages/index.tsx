@@ -5,6 +5,8 @@ import { useState } from "react";
 import style from "../styles/style.module.scss";
 import Retro from "../components/Retro.tsx"
 import RetroDetail from "@/components/RetroDetail";
+import Community from "@/components/Community";
+import Mypage from "@/components/Mypage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +18,8 @@ export default function Home() {
     >
     <Retro/>
     <RetroDetail/>
+    <Community/>
+    <Mypage/>
     </main>
   );
 }
