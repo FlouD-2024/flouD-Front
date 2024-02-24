@@ -48,13 +48,17 @@ const FriendCardCompo = () => {
           </button>
         </DayButtonWrapper>
       </div>
-      <div>
+      <CardSortWrapper>
         {typeof data === "undefined"
           ? null
           : data.friendsCard.map((e) => {
               return (
                 <>
-                  <div className="flex flex-wrap">
+                  <div
+                    style={{
+                      order: e.isWrite ? "1" : "2",
+                    }}
+                  >
                     <FriendCard
                       key={e.friendId}
                       id={e.friendId}
@@ -65,12 +69,21 @@ const FriendCardCompo = () => {
                 </>
               );
             })}
-      </div>
+      </CardSortWrapper>
     </div>
   );
 };
 
 export default FriendCardCompo;
+
+const CardSortWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 35px;
+  row-gap: 48px;
+  width: 1100px;
+  height: 621px;
+`;
 
 const DayButtonWrapper = styled.div`
   width: 210px;
