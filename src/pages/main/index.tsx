@@ -11,7 +11,7 @@ const index = () => {
       className={`min-h-screen flex flex-col justify-center ${noto.className}`}
     >
       <ScreenBox>
-        <div>
+        <div className="flex gap-[53px] justify-center">
           <MainComponents />
         </div>
       </ScreenBox>

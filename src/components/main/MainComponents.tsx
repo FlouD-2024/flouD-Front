@@ -6,6 +6,7 @@ import dynamic from "next/dynamic.js";
 import FloudCalendar from "./FloudCalendar";
 import DdayCard from "./DdayCard";
 import Memo from "./Memo";
+import AlarmMainBoxWrapper from "./AlarmMainBoxWrapper";
 
 const MainComponents = () => {
   //   const dayInfo = useRecoilValue(weeklyDayAtom);
@@ -32,16 +33,17 @@ const MainComponents = () => {
   //   }, [dayInfo.dayDataFormat]);
   const Countdown = dynamic(() => import("./countdown"), { ssr: false });
   return (
-    <div>
-      <Countdown deadline={tomorrowDay} />
-      <div>
-        <FloudCalendar />
-      </div>
-      <div className="flex">
+    <>
+      <div className="flex flex-col gap-[35px]">
+        <Countdown deadline={tomorrowDay} />
         <DdayCard />
         <Memo />
       </div>
-    </div>
+      <div className="pt-[55px] flex flex-col gap-[40px]">
+        <FloudCalendar />
+        <AlarmMainBoxWrapper />
+      </div>
+    </>
   );
 };
 

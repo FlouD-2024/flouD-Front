@@ -3,7 +3,7 @@ export interface DdayProp {
   title: string;
   dday: Date;
 }
-
+// 디데이 관련 테스트데이터
 export const DdayTestData = [
   {
     id: 1,
@@ -34,6 +34,8 @@ export const DdayOtherData = [
     dday: new Date("2024-04-24"),
   },
 ];
+
+// 친구관련 테스트데이터
 
 export interface FriendCardProp {
   friendId: number;
@@ -147,3 +149,49 @@ export const OtherFriendsTestData = {
     },
   ],
 };
+
+export interface AlarmCardProp {
+  type: string;
+  nickname: string;
+  content: string;
+  id: number;
+  day: Date;
+}
+
+export const AlarmTestData = [
+  {
+    id: 1,
+    day: new Date("2024-02-25 12:08:31"),
+    type: "write",
+    nickname: "밍그리퐁",
+    content: "최근 회고를 작성했습니다.",
+  },
+  {
+    id: 2,
+    day: new Date("2024-02-25 12:07:31"),
+    type: "friend",
+    nickname: "쿠키쿠키",
+    content: "친구 신청이 왔습니다.",
+  },
+  {
+    id: 3,
+    day: new Date("2024-02-25 12:07:04"),
+    type: "write",
+    nickname: "성준 킹",
+    content: "최근 회고를 작성했습니다.",
+  },
+  {
+    id: 4,
+    day: new Date("2024-02-25 11:58:31"),
+    type: "friend",
+    nickname: "휘낭시에",
+    content: "친구 신청이 왔습니다.",
+  },
+  {
+    id: 5,
+    day: new Date("2024-02-25 12:43:31"),
+    type: "accept",
+    nickname: "nonananaon",
+    content: "친구 신청이 수락되었습니다.",
+  },
+];

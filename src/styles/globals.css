@@ -19,3 +19,9 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
 }
+
+@layer components {
+  .floud-letter {
+    @apply leading-[23.3px] tracking-[-6%];
+  }
+}
