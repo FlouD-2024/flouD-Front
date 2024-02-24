@@ -17,8 +17,8 @@ export default function Home() {
 
 export const ScreenBox = styled.div(() => [
   css`
-    width: 1440px;
-    height: 950px;
+    width: 1200px;
+    height: 850px;
     background-color: transparent;
     position: relative;
     border: 1px solid black;

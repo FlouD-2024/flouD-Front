@@ -1,8 +1,8 @@
 import React from "react";
 import { css, styled } from "twin.macro";
 import CheckBlue from "@/img/svg/lets-icons_check-fill.svg";
-import WrtieCloud from "@/img/svg/friendCloud.svg";
-import DoNotWrite from "@/img/svg/friendNotCloud.svg";
+import WrtieCloud from "@/img/svg/friends/friendCloud.svg";
+import DoNotWrite from "@/img/svg/friends/friendNotCloud.svg";
 
 type FriendCheck = {
   id: number;
