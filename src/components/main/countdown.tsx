@@ -40,6 +40,7 @@ const Countdown = ({ deadline }: { deadline: string }) => {
             position: "absolute",
             top: "0",
           }}
+          priority
         />
         <div className="flex items-center z-10 text-white gap-1">
           <div>오늘의 회고 작성하기</div>
