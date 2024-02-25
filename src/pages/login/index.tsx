@@ -22,7 +22,7 @@ const index = () => {
           <div className="text-[25px] font-semibold leading-[52.5px] mb-[70px] pl-[93px]">
             당신의 성장의 자취를 기록하는 회고 웹 서비스
           </div>
-          <Image src={logoFloud} alt="로그인 플라우디 로고" />
+          <Image src={logoFloud} alt="로그인 플라우디 로고" priority />
         </div>
         <div className="bg-white w-[558px] px-[67px] h-[782px] rounded-xl flex flex-col justify-center items-start">
           <p className="mb-3 text-[28px] leading-[136%] font-semibold">
@@ -48,6 +48,7 @@ const index = () => {
                 marginBottom: "58px",
                 cursor: "pointer",
               }}
+              priority
             />
             <Image src={loginInfo} alt="로그인 관련 사항" />
           </div>
