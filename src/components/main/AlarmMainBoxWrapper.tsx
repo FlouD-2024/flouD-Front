@@ -1,9 +1,10 @@
 import React from "react";
 import AlarmMainBox from "./AlarmMainBox";
-import { AlarmCardProp, AlarmTestData } from "@/store/testData";
+import { useRecoilValue } from "recoil";
+import { alarmAtom } from "@/store/atom";
 
 const AlarmMainBoxWrapper = () => {
-  const alarmData: Array<AlarmCardProp> = AlarmTestData.slice(0, 2);
+  const alarmData = useRecoilValue(alarmAtom).slice(0, 2);
   return (
     <div className="w-[547px]">
       <div className="flex justify-between items-center mb-9">
