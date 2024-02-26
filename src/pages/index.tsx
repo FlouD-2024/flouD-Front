@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import { useState } from "react";
 import style from "../styles/style.module.scss";
-import Retro from "../components/Retro.tsx";
+import Retro from "@/components/Retro";
 import RetroDetail from "@/components/RetroDetail";
 import Community from "@/components/Community";
 import Mypage from "@/components/Mypage";
