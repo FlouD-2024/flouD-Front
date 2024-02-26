@@ -7,6 +7,7 @@ import Retro from "../components/Retro.tsx"
 import RetroDetail from "@/components/RetroDetail";
 import Community from "@/components/Community";
 import Mypage from "@/components/Mypage";
+import Friends from "@/components/Friends";
 
 const inter = Inter({ subsets: ["latin"] });
 
