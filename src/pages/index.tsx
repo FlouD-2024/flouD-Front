@@ -1,13 +1,12 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import tw, { css, styled } from "twin.macro";
 import { useState } from "react";
 import style from "../styles/style.module.scss";
-import Retro from "../components/Retro.tsx"
+import Retro from "../components/Retro.tsx";
 import RetroDetail from "@/components/RetroDetail";
 import Community from "@/components/Community";
 import Mypage from "@/components/Mypage";
 import Friends from "@/components/Friends";
+import { css, styled } from "twin.macro";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,20 +14,23 @@ export default function Home() {
   const [color, setColor] = useState(false);
   return (
     <main
-      // className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+    // className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-    <Retro/>
-    <RetroDetail/>
-    <Community/>
-    <Mypage/>
+      <Retro />
+      <RetroDetail />
+      <Community />
+      <Mypage />
     </main>
   );
 }
 
-const ChangeButton = styled.button(({ hasTrue }: { hasTrue: boolean }) => [
-  tw`w-24 h-20`,
+export const ScreenBox = styled.div(() => [
   css`
-    border-radius: 20px;
+    width: 1200px;
+    height: 850px;
+    background-color: transparent;
+    position: relative;
+    border: 1px solid black;
+    margin: auto;
   `,
-  hasTrue ? tw`bg-red-400` : tw`bg-blue-400`,
 ]);
