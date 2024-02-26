@@ -1,8 +1,9 @@
 import React from "react";
 import { css, styled } from "twin.macro";
 import CheckBlue from "@/img/svg/lets-icons_check-fill.svg";
-import WrtieCloud from "@/img/svg/friends/friendCloud.svg";
+import friendCloud from "@/img/friends/friendCloud.png";
 import DoNotWrite from "@/img/svg/friends/friendNotCloud.svg";
+import Image from "next/image";
 
 type FriendCheck = {
   id: number;
@@ -19,7 +20,11 @@ const FriendCard = (prop: FriendCheck) => {
         isWrite={prop.isWrite ? true : false}
       >
         <div className="mb-[15px]">
-          {prop.isWrite ? <WrtieCloud /> : <DoNotWrite />}
+          {prop.isWrite ? (
+            <Image src={friendCloud} alt="활성화 구름" />
+          ) : (
+            <DoNotWrite />
+          )}
         </div>
         {prop.name}
       </Card>

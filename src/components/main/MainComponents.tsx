@@ -1,6 +1,6 @@
 import { alarmAtom, weeklyDayAtom } from "@/store/atom";
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic.js";
 import FloudCalendar from "./FloudCalendar";
@@ -14,14 +14,15 @@ const MainComponents = () => {
   const [tomorrowDay, setTomorrowDay] = useState(
     `${dayjs().add(1, "day").format("YYYY-MM-DD")} 06:00:00`
   );
-  const [data, setData] = useState([]);
-  const [alarmData, setAlarmData] = useRecoilState(alarmAtom);
   useEffect(() => {
     setTomorrowDay(
       dayjs().format("YYYY-MM-DD")
         ? `${dayjs().add(1, "day").format("YYYY-MM-DD")} 06:00:00`
         : `${dayjs().format("YYYY-MM-DD")} 06:00:00`
     );
+  }, []);
+  const setAlarmData = useSetRecoilState(alarmAtom);
+  useEffect(() => {
     setAlarmData(AlarmTestData);
   }, []);
   //   useEffect(() => {
