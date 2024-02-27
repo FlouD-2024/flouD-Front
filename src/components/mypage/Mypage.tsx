@@ -1,7 +1,7 @@
 import React from 'react'
 import Friends from './Friends'
 import MypageInfo from './MypageInfo'
-import Typography from './Typography'
+import Typography from '../Typography'
 
 type Props = {}
 

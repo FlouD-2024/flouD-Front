@@ -1,11 +1,11 @@
 import { Inter } from "next/font/google";
 import { useState } from "react";
 import style from "../styles/style.module.scss";
-import Retro from "@/components/Retro";
-import RetroDetail from "@/components/RetroDetail";
+import Retro from "@/components/Retro/Retro";
+import RetroDetail from "@/components/Retro/RetroDetail";
 import Community from "@/components/Community";
-import Mypage from "@/components/Mypage";
-import Friends from "@/components/Friends";
+import Mypage from "@/components/mypage/Mypage";
+import Friends from "@/components/mypage/Friends";
 import { css, styled } from "twin.macro";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,9 +16,6 @@ export default function Home() {
     <main
     // className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <Retro />
-      <RetroDetail />
-      <Community />
       <Mypage />
     </main>
   );
