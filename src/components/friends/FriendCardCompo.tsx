@@ -29,9 +29,9 @@ const FriendCardCompo = () => {
     }
   };
   useEffect(() => {
-    if (day.format("YYYY-MM-DD") === "2024-02-14") {
+    if (day.format("YYYY-MM-DD") === "2024-02-28") {
       setData(FriendsTestData);
-    } else if (day.format("YYYY-MM-DD") === "2024-02-13") {
+    } else if (day.format("YYYY-MM-DD") === "2024-02-26") {
       setData(OtherFriendsTestData);
     } else {
       setData(undefined);
@@ -92,6 +92,7 @@ const FriendCardCompo = () => {
                       id={e.friendId}
                       name={e.name}
                       isWrite={e.isWrite}
+                      date={day}
                     />
                   </div>
                 </>

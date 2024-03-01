@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { css, styled } from "twin.macro";
 import CheckBlue from "@/img/svg/lets-icons_check-fill.svg";
 import friendCloud from "@/img/friends/friendCloud.png";
 import DoNotWrite from "@/img/svg/friends/friendNotCloud.svg";
 import Image from "next/image";
+import dayjs from "dayjs";
+import ShowKPTModal from "../util/ShowKPTModal";
 
 type FriendCheck = {
   id: number;
   isWrite: boolean;
   name: string;
+  date: dayjs.Dayjs;
 };
 
 const FriendCard = (prop: FriendCheck) => {
+  const [open, setOpen] = useState(false);
   return (
-    <CardWrapper>
+    <CardWrapper onClick={() => setOpen(!open)}>
       <Card
         className="photo"
         hasEven={prop.id % 2 == 0}
@@ -40,6 +44,15 @@ const FriendCard = (prop: FriendCheck) => {
           </>
         ) : null}
       </Card>
+      {open && prop.isWrite && (
+        <ShowKPTModal
+          open={open}
+          setOpen={setOpen}
+          id={prop.id}
+          date={prop.date.toDate()}
+          name={prop.name}
+        />
+      )}
     </CardWrapper>
   );
 };

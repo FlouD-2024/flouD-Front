@@ -133,7 +133,7 @@ export const SideBarWrapper = styled.div`
   height: 95vh;
   max-height: 902px;
   background-color: white;
-  z-index: 100;
+  /* z-index: 100; */
   border-radius: 20px;
   display: flex;
   flex-direction: column;
