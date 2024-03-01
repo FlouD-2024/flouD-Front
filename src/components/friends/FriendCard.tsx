@@ -6,6 +6,7 @@ import DoNotWrite from "@/img/svg/friends/friendNotCloud.svg";
 import Image from "next/image";
 import dayjs from "dayjs";
 import ShowKPTModal from "../util/ShowKPTModal";
+import FriendNotWrite from "./FriendNotWrite";
 
 type FriendCheck = {
   id: number;
@@ -16,8 +17,13 @@ type FriendCheck = {
 
 const FriendCard = (prop: FriendCheck) => {
   const [open, setOpen] = useState(false);
+  const [unOpen, setUnOpen] = useState(false);
+  const onClick = (isWrite: boolean) => {
+    if (isWrite) setOpen(!open);
+    else setUnOpen(!unOpen);
+  };
   return (
-    <CardWrapper onClick={() => setOpen(!open)}>
+    <CardWrapper onClick={() => onClick(prop.isWrite)}>
       <Card
         className="photo"
         hasEven={prop.id % 2 == 0}
@@ -52,6 +58,9 @@ const FriendCard = (prop: FriendCheck) => {
           date={prop.date.toDate()}
           name={prop.name}
         />
+      )}
+      {unOpen && (
+        <FriendNotWrite open={unOpen} setOpen={setUnOpen} name={prop.name} />
       )}
     </CardWrapper>
   );

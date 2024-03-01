@@ -111,6 +111,10 @@ export const ModalConfirmBtn = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  &.friend {
+    width: 106px;
+    height: 39px;
+  }
 `;
 
 const ModalTitleText = styled.div`
