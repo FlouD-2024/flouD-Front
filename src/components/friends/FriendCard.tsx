@@ -23,33 +23,35 @@ const FriendCard = (prop: FriendCheck) => {
     else setUnOpen(!unOpen);
   };
   return (
-    <CardWrapper onClick={() => onClick(prop.isWrite)}>
-      <Card
-        className="photo"
-        hasEven={prop.id % 2 == 0}
-        isWrite={prop.isWrite ? true : false}
-      >
-        <div className="mb-[15px]">
+    <>
+      <CardWrapper onClick={() => onClick(prop.isWrite)}>
+        <Card
+          className="photo"
+          hasEven={prop.id % 2 == 0}
+          isWrite={prop.isWrite ? true : false}
+        >
+          <div className="mb-[15px]">
+            {prop.isWrite ? (
+              <Image src={friendCloud} alt="활성화 구름" />
+            ) : (
+              <DoNotWrite />
+            )}
+          </div>
+          {prop.name}
+        </Card>
+        <Card
+          className="complete"
+          hasEven={prop.id % 2 == 0}
+          isWrite={prop.isWrite ? true : false}
+        >
+          {prop.isWrite ? "회고작성완료" : "회고 미작성"}
           {prop.isWrite ? (
-            <Image src={friendCloud} alt="활성화 구름" />
-          ) : (
-            <DoNotWrite />
-          )}
-        </div>
-        {prop.name}
-      </Card>
-      <Card
-        className="complete"
-        hasEven={prop.id % 2 == 0}
-        isWrite={prop.isWrite ? true : false}
-      >
-        {prop.isWrite ? "회고작성완료" : "회고 미작성"}
-        {prop.isWrite ? (
-          <>
-            <CheckBlue />
-          </>
-        ) : null}
-      </Card>
+            <>
+              <CheckBlue />
+            </>
+          ) : null}
+        </Card>
+      </CardWrapper>
       {open && prop.isWrite && (
         <ShowKPTModal
           open={open}
@@ -62,7 +64,7 @@ const FriendCard = (prop: FriendCheck) => {
       {unOpen && (
         <FriendNotWrite open={unOpen} setOpen={setUnOpen} name={prop.name} />
       )}
-    </CardWrapper>
+    </>
   );
 };
 
