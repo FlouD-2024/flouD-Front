@@ -11,6 +11,7 @@ import dayjs from "dayjs";
 import FriendCard from "./FriendCard";
 import ContentNav from "../util/ContentNav";
 import Search from "@/img/svg/friends/search.svg";
+import FollowModal from "./FollowModal";
 
 const FriendCardCompo = () => {
   // 여기서 그 신청창 팝업 만들고 그러면 될 듯?
@@ -19,12 +20,20 @@ const FriendCardCompo = () => {
   const [data, setData] = useState<TotalFriendCardProp>();
   const [day, setDay] = useState(dayjs());
   const [searchValue, setSearchValue] = useState<string>("");
+  const [open, setOpen] = useState(false);
+  const [check, setCheck] = useState("");
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      alert(searchValue);
+  const handleKeyUp = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && open === false) {
+      if (searchValue === "아리" || searchValue === "dkfl") {
+        setOpen(!open);
+        setCheck("Found");
+      } else {
+        setOpen(!open);
+        setCheck("notFound");
+      }
       setSearchValue("");
     }
   };
@@ -47,7 +56,7 @@ const FriendCardCompo = () => {
             type="text"
             value={searchValue}
             onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
           />
         </div>
         <ContentNav />
@@ -99,6 +108,14 @@ const FriendCardCompo = () => {
               );
             })}
       </CardSortWrapper>
+      {open && (
+        <FollowModal
+          open={open}
+          setOpen={setOpen}
+          check={check}
+          setCheck={setCheck}
+        />
+      )}
     </div>
   );
 };

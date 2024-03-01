@@ -110,6 +110,7 @@ export const ModalConfirmBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
   cursor: pointer;
   &.friend {
     width: 106px;
