@@ -1,7 +1,11 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { ModalLayout } from "../main/AlarmSideBar";
 import { styled } from "twin.macro";
 import X from "@/img/svg/x-box.svg";
+import friendCloud from "@/img/friends/friendCloud.png";
+import notFound from "@/img/friends/notFound.png";
+import Image from "next/image";
+import Plus from "@/img/svg/friends/plus.svg";
 
 type prop = {
   open: boolean;
@@ -15,34 +19,64 @@ const FollowModal = (prop: prop) => {
     prop.setOpen(!prop.open);
     prop.setCheck("");
   };
+
+  const ArticleStyle = ({ children }: { children: ReactNode }) => {
+    return (
+      <article className="w-full h-full relative flex flex-col justify-center items-center">
+        {children}
+      </article>
+    );
+  };
   return (
     <ModalLayout>
       {prop.check === "notFound" ? (
         <>
           <Modal className="nofriend">
-            <article className="w-full h-full relative">
+            <ArticleStyle>
               <p
                 className="absolute top-3 right-3 cursor-pointer"
                 onClick={() => onClose()}
               >
                 <X />
               </p>
-              <div>없는 것 </div>
-            </article>
+              <Image src={notFound} alt="친구가 없을 경우" />
+              <div className="font-bold text-[19px] tracking-[-6%] mt-4 mb-10">
+                검색결과가 없습니다
+              </div>
+              <FollowModalBtn onClick={() => onClose()}>
+                다시 검색하기
+              </FollowModalBtn>
+            </ArticleStyle>
           </Modal>
         </>
       ) : (
         <>
           <Modal>
-            <article className="w-full h-full relative">
+            <ArticleStyle>
               <p
                 className="absolute top-5 right-5 cursor-pointer"
                 onClick={() => onClose()}
               >
                 <X />
               </p>
-              <div>있는 것</div>
-            </article>
+              <Image
+                src={friendCloud}
+                width={146}
+                height={115}
+                alt="팔로우신청창"
+              />
+              <div className="text-[40px] leading-[20.4px] font-extrabold tracking-[-6%] mt-7 mb-4">
+                이름 있는 곳
+              </div>
+              <div className="mb-8 text-[#828282] text-base tracking-[-6%]">
+                어쩌구 저쩌구 쏼라쏼라... <br />
+                user ID : 유저아이디
+              </div>
+              <FollowModalBtn className="success">
+                <Plus />
+                팔로우 신청하기
+              </FollowModalBtn>
+            </ArticleStyle>
           </Modal>
         </>
       )}
@@ -69,5 +103,27 @@ const Modal = styled.div`
     width: 342.5px;
     height: 284px;
     border-radius: 13.43px;
+  }
+`;
+
+const FollowModalBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 149px;
+  height: 38px;
+  font-size: 15.76px;
+  letter-spacing: -6%;
+  line-height: 21.4px;
+  background-color: #4c6fff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  &.success {
+    width: 219px;
+    height: 56px;
+    gap: 16px;
+    line-height: 31.5px;
+    font-size: 23.18px;
   }
 `;
