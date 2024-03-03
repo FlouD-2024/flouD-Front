@@ -40,3 +40,8 @@ export const userInfoState = atom<IUserInfo>({
   default: { accessToken: "", refreshToken: "" },
   effects_UNSTABLE: [persistAtom],
 });
+
+export const pageNumAtom = atom<number>({
+  key: "nextPageatom",
+  default: 1,
+});

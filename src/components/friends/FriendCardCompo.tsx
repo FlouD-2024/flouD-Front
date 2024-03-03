@@ -12,6 +12,9 @@ import FriendCard from "./FriendCard";
 import ContentNav from "../util/ContentNav";
 import Search from "@/img/svg/friends/search.svg";
 import FollowModal from "./FollowModal";
+import MoveNext from "../util/MoveNext";
+import { useRecoilValue } from "recoil";
+import { pageNumAtom } from "@/store/atom";
 
 const FriendCardCompo = () => {
   // 여기서 그 신청창 팝업 만들고 그러면 될 듯?
@@ -25,6 +28,7 @@ const FriendCardCompo = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
+  const page = useRecoilValue(pageNumAtom);
   const handleKeyUp = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && open === false) {
       if (searchValue === "아리" || searchValue === "dkfl") {
@@ -116,6 +120,9 @@ const FriendCardCompo = () => {
           setCheck={setCheck}
         />
       )}
+      <div className="w-full flex justify-end">
+        <MoveNext totalPage={2} currentPage={page} />
+      </div>
     </div>
   );
 };
