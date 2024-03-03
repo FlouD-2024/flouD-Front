@@ -54,7 +54,9 @@ export default function MypageInfo({ }: Props) {
                             })
                         }
                     </div>
-                    <button className='bg-[#4C6FFF] text-white px-[30px] py-[5px] rounded-[10px] my-[30px] mx-[auto]'>변경완료</button>
+                    <div className='flex'>
+                        <button className='bg-black text-white px-[30px] py-[5px] rounded-[10px] my-[30px] mx-[auto]'>변경하기</button>
+                    </div>
                 </div>
             </div>
         </>

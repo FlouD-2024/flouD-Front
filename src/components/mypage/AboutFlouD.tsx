@@ -1,4 +1,5 @@
 import React from 'react'
+import Typography from '../Typography'
 import FlouDs from './FlouDs'
 
 type Props = {
@@ -32,10 +33,12 @@ export default function dd({ }: Props) {
         }
     ]
     return (
-        <>
-            <div>About FlouD</div>
-            <div>플라우디는 ~을 취지로 만들어지게 되었습니다.</div>
-            <div>개발자들은 아래와 같습니다.</div>
+        <div className="text-center">
+            <Typography title="About FlouD" type="bold30"/>
+            <div className='w-[100px] h-[1px] border-[1px] border-black mx-[auto] my-[50px]'></div>
+            <Typography title="플라우디는 ~을 취지로" type="bold40-blue"/>
+            <Typography title="만들어지게 되었습니다." type="bold40-blue"/>
+            <div className='mt-[50px] mb-[70px]'>개발자들은 아래와 같습니다.</div>
             <div className='grid grid-rows-3 grid-cols-3'>
                 {
                     members.map((member) => {
@@ -45,6 +48,6 @@ export default function dd({ }: Props) {
                     })
                 }
             </div>
-        </>
+        </div>
     )
 }

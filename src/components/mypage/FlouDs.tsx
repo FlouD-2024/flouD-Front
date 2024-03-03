@@ -14,7 +14,7 @@ export default function FlouDs({ part, name }: Props) {
             <div className='w-[223px]'>
                 <Image src={Profile} className='rounded-[500px]'></Image>
             </div>
-            <Typography title={part} type={"bold30"} mt={5}/>
+            <Typography title={part} type={"bold30"} mt={0}/>
             <Typography title={name} type={"bold30"} />
         </div>
     )
