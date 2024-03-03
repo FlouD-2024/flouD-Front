@@ -48,7 +48,7 @@ const FriendCardCompo = () => {
   }, [day]);
   return (
     <div>
-      <div className="flex w-full h-[60px] justify-between items-center">
+      <div className="flex w-full h-[60px] justify-between items-center mb-10">
         <div className="w-[413px] h-[51px] rounded-[17.54px] bg-white py-2.5 px-[15px] flex gap-[20px]">
           <Search />
           <IDSearchFriendInput
@@ -61,7 +61,7 @@ const FriendCardCompo = () => {
         </div>
         <ContentNav />
       </div>
-      <div className="flex justify-between items-center w-full ">
+      <div className="flex pl-[31px] items-center w-full mb-14">
         <div className="font-bold tracking-[-6%] text-[40px]">
           Friend({data?.friendsCard.length})
         </div>
@@ -124,6 +124,7 @@ export default FriendCardCompo;
 
 const CardSortWrapper = styled.div`
   display: flex;
+  padding-left: 60px;
   flex-wrap: wrap;
   column-gap: 35px;
   row-gap: 48px;
@@ -134,10 +135,12 @@ const CardSortWrapper = styled.div`
 const DayButtonWrapper = styled.div`
   width: 210px;
   height: 46.6px;
+  position: relative;
+  left: 30%;
   border-radius: 17.7px;
   background-color: #4c6fff;
   color: white;
-  box-shadow: 5.9px rgba(127, 179, 255, 0.29);
+  box-shadow: 0px 0px 0px 5.9px rgba(127, 179, 255, 0.29);
   display: flex;
   justify-content: center;
   align-items: center;
