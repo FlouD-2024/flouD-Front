@@ -2,6 +2,8 @@ import React from 'react'
 import Typography from '../Typography'
 import Dday from './Dday'
 import DdayAdd from './DdayAdd'
+import Image from "next/image";
+import Blue from "@/img/Mypage/BlueEllipse.png"
 
 type Props = {}
 
@@ -20,7 +22,12 @@ export default function MypageInfo({ }: Props) {
     return (
         <>
             <div className='bg-[white] py-[40px] px-[50px]'>
-                <Typography title={'반가워요, FlouD 입니다.'} type={'bold40-blue'} />
+                <div className='mb-[30px] flex'>
+                    <div>
+                        <Image src={Blue} className='object-contain' />
+                    </div>
+                    <Typography title={'반가워요, FlouD 입니다.'} type={'bold40-blue'} />
+                </div>
                 <div className='mb-[30px] flex justify-start gap-[10px]'>
                     <Typography title={'닉네임'} type={'bold20'} />
                     <input className='bg-[#4C6FFF]/10 h-[35px] rounded-[10px]'></input>
@@ -37,17 +44,17 @@ export default function MypageInfo({ }: Props) {
                     </div>
                     <div className='flex justify-between'>
                         {
-                            dDayData.map((item)=>{
-                                return (<Dday title={item.title} date={item.date}/>)
+                            dDayData.map((item) => {
+                                return (<Dday title={item.title} date={item.date} />)
                             })
                         }
                         {
-                            Array.from({length:3-dDayData.length}).map(()=>{
-                                return (<DdayAdd/>)
+                            Array.from({ length: 3 - dDayData.length }).map(() => {
+                                return (<DdayAdd />)
                             })
                         }
                     </div>
-                    <button className='bg-[#4C6FFF] text-white px-[30px] py-[5px] rounded-[10px] my-[30px]'>변경완료</button>
+                    <button className='bg-[#4C6FFF] text-white px-[30px] py-[5px] rounded-[10px] my-[30px] mx-[auto]'>변경완료</button>
                 </div>
             </div>
         </>

@@ -7,10 +7,11 @@ type Props = {}
 
 export default function Friends({}: Props) {
   return (
-    <div className='relative'>
+    <div 
+    className='relative'
+    >
         <FriendsAdd/>
         <FriendList/>
-        <UnFriend/>
     </div>
   )
 }

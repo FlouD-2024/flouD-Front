@@ -37,7 +37,7 @@ export default function FriendList({}: Props) {
   ]
   return (
     <>
-        <Typography title={`Friends (${friends.length})`} type={'bold30'} />
+        <Typography title={`Friends (${friends.length})`} type={'bold30'} mt={30}/>
         <div className='flex justify-start flex-wrap gap-[2.5%] m-[10px]'>
         {
           friends.map((item)=>{
