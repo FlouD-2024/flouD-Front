@@ -49,7 +49,7 @@ export interface TotalFriendCardProp {
 }
 
 export const FriendsTestData = {
-  day: new Date("2024-02-14"),
+  day: new Date("2024-02-28"),
   friendsCard: [
     {
       friendId: 1,
@@ -100,7 +100,7 @@ export const FriendsTestData = {
 };
 
 export const OtherFriendsTestData = {
-  day: new Date("2024-02-13"),
+  day: new Date("2024-02-26"),
   friendsCard: [
     {
       friendId: 1,

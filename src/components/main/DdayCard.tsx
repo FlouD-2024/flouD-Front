@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import tw, { css, styled } from "twin.macro";
 
 const DdayCard = () => {
-  const DdayTest: DdayProp[] | null = DdayTestData;
+  const DdayTest: DdayProp[] = DdayTestData;
+  // const DdayTest: DdayProp[] = [];
   const [click, setClick] = useState(1);
   const onClick = (clickNum: number) => {
     setClick(clickNum);
@@ -13,9 +14,11 @@ const DdayCard = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const lastLength = DdayTest !== null ? DdayTest.length : null;
-      if (lastLength !== null && lastLength <= click) {
+      const lastLength = DdayTest.length !== 0 ? DdayTest.length : 0;
+      if (lastLength !== 0 && lastLength <= click) {
         setClick(1);
+      } else if (lastLength === 0) {
+        return;
       } else {
         setClick((click) => click + 1);
       }
@@ -24,7 +27,7 @@ const DdayCard = () => {
   }, [click]);
   return (
     <DdayCardWrapper cardId={click}>
-      {DdayTest !== null ? (
+      {DdayTest.length !== 0 ? (
         <>
           <div className="text-[#014472] font-[900] text-[22.33px] leading-[23.34px] tracking-[-6%] h-6 w-full flex justify-center">
             {DdayTest[click - 1].title}
@@ -46,7 +49,20 @@ const DdayCard = () => {
             })}
           </DotSlide>
         </>
-      ) : null}
+      ) : (
+        <>
+          <BlankCardWrppaer>
+            <div className="absolute top-[25px] left-8 font-black floud-letter text-[22.33px]">
+              D-DAY
+            </div>
+            <div className="text-center floud-letter text-[22.33px] text-[#909090]">
+              마이페이지에서
+              <br />
+              설정해주세요.
+            </div>
+          </BlankCardWrppaer>
+        </>
+      )}
     </DdayCardWrapper>
   );
 };
@@ -77,6 +93,19 @@ const DdayCardWrapper = styled.div(({ cardId }: { cardId: number }) => [
         background-color: #547fe7;
       `,
 ]);
+
+const BlankCardWrppaer = styled.div`
+  width: 466px;
+  height: 213px;
+  border-radius: 30.45px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: white;
+`;
 
 const DdayFont = styled.div`
   font-weight: 900;

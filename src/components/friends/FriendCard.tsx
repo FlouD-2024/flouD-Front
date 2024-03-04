@@ -1,46 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import { css, styled } from "twin.macro";
 import CheckBlue from "@/img/svg/lets-icons_check-fill.svg";
 import friendCloud from "@/img/friends/friendCloud.png";
 import DoNotWrite from "@/img/svg/friends/friendNotCloud.svg";
 import Image from "next/image";
+import dayjs from "dayjs";
+import ShowKPTModal from "../util/ShowKPTModal";
+import FriendNotWrite from "./FriendNotWrite";
 
 type FriendCheck = {
   id: number;
   isWrite: boolean;
   name: string;
+  date: dayjs.Dayjs;
 };
 
 const FriendCard = (prop: FriendCheck) => {
+  const [open, setOpen] = useState(false);
+  const [unOpen, setUnOpen] = useState(false);
+  const onClick = (isWrite: boolean) => {
+    if (isWrite) setOpen(!open);
+    else setUnOpen(!unOpen);
+  };
   return (
-    <CardWrapper>
-      <Card
-        className="photo"
-        hasEven={prop.id % 2 == 0}
-        isWrite={prop.isWrite ? true : false}
-      >
-        <div className="mb-[15px]">
+    <>
+      <CardWrapper onClick={() => onClick(prop.isWrite)}>
+        <Card
+          className="photo"
+          hasEven={prop.id % 2 == 0}
+          isWrite={prop.isWrite ? true : false}
+        >
+          <div className="mb-[15px]">
+            {prop.isWrite ? (
+              <Image src={friendCloud} alt="활성화 구름" />
+            ) : (
+              <DoNotWrite />
+            )}
+          </div>
+          {prop.name}
+        </Card>
+        <Card
+          className="complete"
+          hasEven={prop.id % 2 == 0}
+          isWrite={prop.isWrite ? true : false}
+        >
+          {prop.isWrite ? "회고작성완료" : "회고 미작성"}
           {prop.isWrite ? (
-            <Image src={friendCloud} alt="활성화 구름" />
-          ) : (
-            <DoNotWrite />
-          )}
-        </div>
-        {prop.name}
-      </Card>
-      <Card
-        className="complete"
-        hasEven={prop.id % 2 == 0}
-        isWrite={prop.isWrite ? true : false}
-      >
-        {prop.isWrite ? "회고작성완료" : "회고 미작성"}
-        {prop.isWrite ? (
-          <>
-            <CheckBlue />
-          </>
-        ) : null}
-      </Card>
-    </CardWrapper>
+            <>
+              <CheckBlue />
+            </>
+          ) : null}
+        </Card>
+      </CardWrapper>
+      {open && prop.isWrite && (
+        <ShowKPTModal
+          open={open}
+          setOpen={setOpen}
+          id={prop.id}
+          date={prop.date.toDate()}
+          name={prop.name}
+        />
+      )}
+      {unOpen && (
+        <FriendNotWrite open={unOpen} setOpen={setUnOpen} name={prop.name} />
+      )}
+    </>
   );
 };
 

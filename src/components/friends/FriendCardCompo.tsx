@@ -11,6 +11,10 @@ import dayjs from "dayjs";
 import FriendCard from "./FriendCard";
 import ContentNav from "../util/ContentNav";
 import Search from "@/img/svg/friends/search.svg";
+import FollowModal from "./FollowModal";
+import MoveNext from "../util/MoveNext";
+import { useRecoilValue } from "recoil";
+import { pageNumAtom } from "@/store/atom";
 
 const FriendCardCompo = () => {
   // 여기서 그 신청창 팝업 만들고 그러면 될 듯?
@@ -19,19 +23,28 @@ const FriendCardCompo = () => {
   const [data, setData] = useState<TotalFriendCardProp>();
   const [day, setDay] = useState(dayjs());
   const [searchValue, setSearchValue] = useState<string>("");
+  const [open, setOpen] = useState(false);
+  const [check, setCheck] = useState("");
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      alert(searchValue);
+  const page = useRecoilValue(pageNumAtom);
+  const handleKeyUp = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && open === false) {
+      if (searchValue === "아리" || searchValue === "dkfl") {
+        setOpen(!open);
+        setCheck("Found");
+      } else {
+        setOpen(!open);
+        setCheck("notFound");
+      }
       setSearchValue("");
     }
   };
   useEffect(() => {
-    if (day.format("YYYY-MM-DD") === "2024-02-14") {
+    if (day.format("YYYY-MM-DD") === "2024-02-28") {
       setData(FriendsTestData);
-    } else if (day.format("YYYY-MM-DD") === "2024-02-13") {
+    } else if (day.format("YYYY-MM-DD") === "2024-02-26") {
       setData(OtherFriendsTestData);
     } else {
       setData(undefined);
@@ -39,7 +52,7 @@ const FriendCardCompo = () => {
   }, [day]);
   return (
     <div>
-      <div className="flex w-full h-[60px] justify-between items-center">
+      <div className="flex w-full h-[60px] justify-between items-center mb-10">
         <div className="w-[413px] h-[51px] rounded-[17.54px] bg-white py-2.5 px-[15px] flex gap-[20px]">
           <Search />
           <IDSearchFriendInput
@@ -47,12 +60,12 @@ const FriendCardCompo = () => {
             type="text"
             value={searchValue}
             onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
           />
         </div>
         <ContentNav />
       </div>
-      <div className="flex justify-between items-center w-full ">
+      <div className="flex pl-[31px] items-center w-full mb-14">
         <div className="font-bold tracking-[-6%] text-[40px]">
           Friend({data?.friendsCard.length})
         </div>
@@ -92,12 +105,24 @@ const FriendCardCompo = () => {
                       id={e.friendId}
                       name={e.name}
                       isWrite={e.isWrite}
+                      date={day}
                     />
                   </div>
                 </>
               );
             })}
       </CardSortWrapper>
+      {open && (
+        <FollowModal
+          open={open}
+          setOpen={setOpen}
+          check={check}
+          setCheck={setCheck}
+        />
+      )}
+      <div className="w-full flex justify-end">
+        <MoveNext totalPage={2} currentPage={page} />
+      </div>
     </div>
   );
 };
@@ -106,6 +131,7 @@ export default FriendCardCompo;
 
 const CardSortWrapper = styled.div`
   display: flex;
+  padding-left: 60px;
   flex-wrap: wrap;
   column-gap: 35px;
   row-gap: 48px;
@@ -116,10 +142,12 @@ const CardSortWrapper = styled.div`
 const DayButtonWrapper = styled.div`
   width: 210px;
   height: 46.6px;
+  position: relative;
+  left: 30%;
   border-radius: 17.7px;
   background-color: #4c6fff;
   color: white;
-  box-shadow: 5.9px rgba(127, 179, 255, 0.29);
+  box-shadow: 0px 0px 0px 5.9px rgba(127, 179, 255, 0.29);
   display: flex;
   justify-content: center;
   align-items: center;
