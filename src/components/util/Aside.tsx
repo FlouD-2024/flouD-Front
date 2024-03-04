@@ -21,9 +21,6 @@ import mainCloud from "@/img/aside/목록 - 플라우ᄃ
 const Aside = () => {
   const router = useRouter();
   const [mypageInfo, setMypageInfo] = useState("info");
-  const onClick = (str: string) => {
-    setMypageInfo(str);
-  };
   return (
     <SideBarWrapper>
       <div className="mt-[42px] mb-[33.3px]">
@@ -53,7 +50,7 @@ const Aside = () => {
           router.push("/retro");
         }}
       >
-        {router.pathname === "/" ? <KPT /> : <KPTUnclick />}
+        {router.pathname === "/retro" ? <KPT /> : <KPTUnclick />}
         <div>회고</div>
       </SideBarDiv>
       <SideBarDiv
@@ -69,26 +66,29 @@ const Aside = () => {
         )}
         <div>커뮤니티</div>
       </SideBarDiv>
-      {/* 여기 이름도 바뀔예정 */}
       <SideBarDiv
-        routerInfo={router.pathname === "/mypage"}
+        routerInfo={router.pathname.includes("/mypage")}
         onClick={() => {
-          router.push("/mypage");
+          router.push("/mypage/mypageInfo");
         }}
       >
-        {/* 바뀌어야 되는데 안 바뀌어서 여기서 테스트 */}
-        {router.pathname === "/" ? <MypageSvg /> : <MypageUnClick />}
+        {router.pathname.includes("/mypage") ? (
+          <MypageSvg />
+        ) : (
+          <MypageUnClick />
+        )}
         <div>마이페이지</div>
         <div className=" absolute left-[85%]">
-          {router.pathname === "/" ? <MypageToggle /> : null}
+          {router.pathname.includes("/mypage") ? <MypageToggle /> : null}
         </div>
       </SideBarDiv>
-      {router.pathname === "/" ? (
+      {router.pathname.includes("/mypage") ? (
         <MypageDiv>
           <MypageText
-            name={mypageInfo === "mypageInfo"}
+            name={mypageInfo === "info"}
             onClick={() => {
               router.push("/mypage/mypageInfo");
+              setMypageInfo("info");
             }}
           >
             내 정보 수정
@@ -97,6 +97,7 @@ const Aside = () => {
             name={mypageInfo === "story"}
             onClick={() => {
               router.push("/mypage/story");
+              setMypageInfo("story");
             }}
           >
             작성글 확인
@@ -105,6 +106,7 @@ const Aside = () => {
             name={mypageInfo === "friends"}
             onClick={() => {
               router.push("/mypage/friends");
+              setMypageInfo("friends");
             }}
           >
             친구 관리
@@ -113,6 +115,7 @@ const Aside = () => {
             name={mypageInfo === "contact"}
             onClick={() => {
               router.push("/mypage/contact");
+              setMypageInfo("contact");
             }}
           >
             문의하기
