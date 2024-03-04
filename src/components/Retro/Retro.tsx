@@ -27,6 +27,7 @@ export default function Retro({ }: Props) {
                 </div>
                 <button className="bg-[#4c6fff] text-white rounded-[10px] px-[20px] py-[5px]">+ New</button>
             </div>
+            <RetroDetail/>
             <RetroList/>
         </>
     )

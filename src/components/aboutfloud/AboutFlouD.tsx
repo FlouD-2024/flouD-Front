@@ -1,6 +1,6 @@
 import React from 'react'
 import Typography from '../Typography'
-import FlouDs from './FlouDs'
+import FlouDs from '../aboutfloud/FlouDs'
 
 type Props = {
 
