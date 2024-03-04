@@ -16,6 +16,7 @@ import CommunityUnclick from "@/img/svg/aside/CommunityUnclick.svg";
 import AboutClick from "@/img/svg/aside/AboutClick.svg";
 import MypageUnClick from "@/img/svg/aside/MypageUnclick.svg";
 import MypageToggle from "@/img/svg/aside/MypageToggle.svg";
+import mainCloud from "@/img/aside/목록 - 플라우디로고.png";
 
 const Aside = () => {
   const router = useRouter();
@@ -119,6 +120,17 @@ const Aside = () => {
         {router.pathname === "/about" ? <AboutClick /> : <AboutSvg />}
         <div>About FlouD</div>
       </SideBarDiv>
+      <Image
+        src={mainCloud}
+        alt="사이드바 구름"
+        style={{
+          position: "absolute",
+          bottom: "0",
+          left: "0",
+          overflow: "hidden",
+          borderRadius: "10px",
+        }}
+      />
     </SideBarWrapper>
   );
 };
@@ -130,8 +142,7 @@ export const SideBarWrapper = styled.div`
   top: 21px;
   left: 30px;
   width: 209px;
-  height: 95vh;
-  max-height: 902px;
+  height: 902px;
   background-color: white;
   /* z-index: 100; */
   border-radius: 20px;
