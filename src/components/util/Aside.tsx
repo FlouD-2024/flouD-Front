@@ -48,9 +48,9 @@ const Aside = () => {
         <div>친구</div>
       </SideBarDiv>
       <SideBarDiv
-        routerInfo={router.pathname === "/"}
+        routerInfo={router.pathname === "/retro"}
         onClick={() => {
-          router.push("/");
+          router.push("/retro");
         }}
       >
         {router.pathname === "/" ? <KPT /> : <KPTUnclick />}
@@ -71,7 +71,7 @@ const Aside = () => {
       </SideBarDiv>
       {/* 여기 이름도 바뀔예정 */}
       <SideBarDiv
-        routerInfo={router.pathname === "/"}
+        routerInfo={router.pathname === "/mypage"}
         onClick={() => {
           router.push("/mypage");
         }}
@@ -86,26 +86,34 @@ const Aside = () => {
       {router.pathname === "/" ? (
         <MypageDiv>
           <MypageText
-            name={mypageInfo === "info"}
-            onClick={() => onClick("info")}
+            name={mypageInfo === "mypageInfo"}
+            onClick={() => {
+              router.push("/mypage/mypageInfo");
+            }}
           >
             내 정보 수정
           </MypageText>
           <MypageText
-            name={mypageInfo === "confirm"}
-            onClick={() => onClick("confirm")}
+            name={mypageInfo === "story"}
+            onClick={() => {
+              router.push("/mypage/story");
+            }}
           >
             작성글 확인
           </MypageText>
           <MypageText
-            name={mypageInfo === "friend"}
-            onClick={() => onClick("friend")}
+            name={mypageInfo === "friends"}
+            onClick={() => {
+              router.push("/mypage/friends");
+            }}
           >
             친구 관리
           </MypageText>
           <MypageText
-            name={mypageInfo === "talk"}
-            onClick={() => onClick("talk")}
+            name={mypageInfo === "contact"}
+            onClick={() => {
+              router.push("/mypage/contact");
+            }}
           >
             문의하기
           </MypageText>
@@ -114,7 +122,7 @@ const Aside = () => {
       <SideBarDiv
         routerInfo={router.pathname === "/about"}
         onClick={() => {
-          router.push("/");
+          router.push("/about");
         }}
       >
         {router.pathname === "/about" ? <AboutClick /> : <AboutSvg />}

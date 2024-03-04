@@ -4,7 +4,6 @@ import MypageInfo from './MypageInfo'
 import Typography from '../Typography'
 import StoryList from './StoryList'
 import Contact from './Contact'
-import AboutFlouD from './AboutFlouD'
 import UnFriend from './UnFriend'
 import MypageInfoEdit from './MypageInfoEdit'
 
@@ -15,10 +14,6 @@ export default function Mypage({ }: Props) {
         <div className='relative'>
             <div className="text-[40px] font-bold mb-3">My Page</div>
             <MypageInfoEdit/>
-            <Friends/>
-            <StoryList/>
-            <Contact/>
-            <AboutFlouD/>
             {/* <UnFriend/> */}
         </div>
     )
