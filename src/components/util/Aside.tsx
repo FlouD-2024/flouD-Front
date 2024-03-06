@@ -20,7 +20,6 @@ import mainCloud from "@/img/aside/목록 - 플라우ᄃ
 
 const Aside = () => {
   const router = useRouter();
-  const [mypageInfo, setMypageInfo] = useState("info");
   return (
     <SideBarWrapper>
       <div className="mt-[42px] mb-[33.3px]">
@@ -45,21 +44,21 @@ const Aside = () => {
         <div>친구</div>
       </SideBarDiv>
       <SideBarDiv
-        routerInfo={router.pathname === "/retro"}
+        routerInfo={router.pathname.includes("/retro")}
         onClick={() => {
           router.push("/retro");
         }}
       >
-        {router.pathname === "/retro" ? <KPT /> : <KPTUnclick />}
+        {router.pathname.includes("/retro") ? <KPT /> : <KPTUnclick />}
         <div>회고</div>
       </SideBarDiv>
       <SideBarDiv
-        routerInfo={router.pathname === "/community"}
+        routerInfo={router.pathname.includes("/community")}
         onClick={() => {
           router.push("/community");
         }}
       >
-        {router.pathname === "/community" ? (
+        {router.pathname.includes("/community") ? (
           <Community />
         ) : (
           <CommunityUnclick />
@@ -85,37 +84,33 @@ const Aside = () => {
       {router.pathname.includes("/mypage") ? (
         <MypageDiv>
           <MypageText
-            name={mypageInfo === "info"}
+            name={router.pathname.includes("mypageInfo")}
             onClick={() => {
               router.push("/mypage/mypageInfo");
-              setMypageInfo("info");
             }}
           >
             내 정보 수정
           </MypageText>
           <MypageText
-            name={mypageInfo === "story"}
+            name={router.pathname.includes("story")}
             onClick={() => {
               router.push("/mypage/story");
-              setMypageInfo("story");
             }}
           >
             작성글 확인
           </MypageText>
           <MypageText
-            name={mypageInfo === "friends"}
+            name={router.pathname === "/mypage/friends"}
             onClick={() => {
               router.push("/mypage/friends");
-              setMypageInfo("friends");
             }}
           >
             친구 관리
           </MypageText>
           <MypageText
-            name={mypageInfo === "contact"}
+            name={router.pathname.includes("contact")}
             onClick={() => {
               router.push("/mypage/contact");
-              setMypageInfo("contact");
             }}
           >
             문의하기

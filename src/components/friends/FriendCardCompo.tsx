@@ -31,7 +31,7 @@ const FriendCardCompo = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
-  const page = useRecoilValue(pageNumAtom);
+  const [page, setPage] = useState(1);
   const handleKeyUp = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && open === false) {
       if (searchValue === "아리" || searchValue === "dkfl") {
@@ -127,7 +127,7 @@ const FriendCardCompo = () => {
         />
       )}
       <div className="w-full flex justify-end">
-        <MoveNext totalPage={2} currentPage={page} />
+        <MoveNext totalPage={3} currentPage={page} setCurrentPage={setPage} />
       </div>
     </div>
   );
