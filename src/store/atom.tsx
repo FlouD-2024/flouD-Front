@@ -27,11 +27,11 @@ const { persistAtom } = recoilPersist();
 //   key: "userInfoLocal", //로컬스토리지에 저장되는 키값
 //   storage: localStorage,
 // });
-export const userInfoState = atom<IUserInfo>({
-  key: "userInfo",
-  default: { accessToken: "", refreshToken: "" },
-  effects_UNSTABLE: [persistAtom],
-});
+// export const userInfoState = atom<IUserInfo>({
+//   key: "userInfo",
+//   default: { accessToken: "", refreshToken: "" },
+//   effects_UNSTABLE: [persistAtom],
+// });
 
 export const pageNumAtom = atom<number>({
   key: "nextPageatom",

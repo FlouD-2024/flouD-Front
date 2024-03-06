@@ -8,7 +8,7 @@ interface IRequest<T, P> {
   params?: P;
 }
 
-interface IResponse<R> {
+export interface IResponse<R> {
   code: number;
   success: boolean;
   message: string;
