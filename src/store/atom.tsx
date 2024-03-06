@@ -45,3 +45,33 @@ export const pageNumAtom = atom<number>({
   key: "nextPageatom",
   default: 1,
 });
+
+export const friendModalOpenAtom = atom<boolean>({
+  key: "friendModalOpenAtom",
+  default: false,
+});
+
+export const friendModalFriendNameAtom = atom<string>({
+  key: "friendModalFriendNameAtom",
+  default: "",
+});
+
+export const retroDetailDateAtom = atom<string>({
+  key: "retroDetailDateAtom",
+  default: "",
+});
+
+export const retroDetailOpenAtom = atom<boolean>({
+  key: "retroDetailOpenAtom",
+  default: false,
+});
+
+export const retroTodayOpenAtom = atom<boolean>({
+  key: "retroTodayOpenAtom",
+  default: false,
+});
+
+export const retroCompleteModalOpenAtom = atom<boolean>({
+  key: "retroCompleteModalOpenAtom",
+  default: false,
+});

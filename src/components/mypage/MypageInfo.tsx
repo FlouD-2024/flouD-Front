@@ -5,9 +5,11 @@ import DdayAdd from './DdayAdd'
 import Image from "next/image";
 import Blue from "@/img/Mypage/BlueEllipse.png"
 
-type Props = {}
+type Props = {
+    setIsEdit : React.Dispatch<React.SetStateAction<boolean>>
+}
 
-export default function MypageInfo({ }: Props) {
+export default function MypageInfo({setIsEdit}: Props) {
     const dDayData = [
         {
             title: "지긋지긋한 토익시험",
@@ -30,32 +32,27 @@ export default function MypageInfo({ }: Props) {
                 </div>
                 <div className='mb-[30px] flex justify-start gap-[10px]'>
                     <Typography title={'닉네임'} type={'bold20'} />
-                    <input className='bg-[#4C6FFF]/10 h-[35px] rounded-[10px]'></input>
-                    <button className='bg-[#4C6FFF] text-white px-[10px] py-[5px] rounded-[10px]'>중복확인</button>
+                    <input className='bg-[#b5b5bd]/10 h-[35px] rounded-[10px]'></input>
                 </div>
                 <div className='mb-[30px]'>
                     <Typography title={'자기소개'} type={'bold20'} />
-                    <textarea className='bg-[#4C6FFF]/10 w-[100%] rounded-[10px]'></textarea>
+                    <textarea className='bg-[#b5b5bd]/10 w-[100%] rounded-[10px]'></textarea>
                 </div>
                 <div>
                     <div className='flex justify-start'>
                         <Typography title={'D-DAY 설정'} type={'bold20'} />
                         <div className='text-[12px] text-[#ACACAC] mt-[7px]'>최대 3개까지 설정 가능합니다. </div>
                     </div>
-                    <div className='flex justify-between'>
+                    <div className='flex justify-start gap-[20px]'>
                         {
                             dDayData.map((item) => {
-                                return (<Dday title={item.title} date={item.date} />)
+                                return (<Dday title={item.title} date={item.date} isEdit={false}/>)
                             })
                         }
-                        {
-                            Array.from({ length: 3 - dDayData.length }).map(() => {
-                                return (<DdayAdd />)
-                            })
-                        }
+                        
                     </div>
                     <div className='flex'>
-                        <button className='bg-black text-white px-[30px] py-[5px] rounded-[10px] my-[30px] mx-[auto]'>변경하기</button>
+                        <button className='bg-black text-white px-[30px] py-[5px] rounded-[10px] my-[30px] mx-[auto]' onClick={()=>setIsEdit(true)}>변경하기</button>
                     </div>
                 </div>
             </div>

@@ -7,13 +7,15 @@ import Blue from "@/img/Mypage/BlueEllipse.png"
 import { type } from 'os';
 import DdayEdit from './DdayEdit';
 
-type Props = {}
+type Props = {
+    setIsEdit : React.Dispatch<React.SetStateAction<boolean>>
+}
 type DDayDataType = {
     title: string,
-    date: string
+    date: string,
 }
 
-export default function MypageInfoEdit({ }: Props) {
+export default function MypageInfoEdit({ setIsEdit }: Props) {
     const [dDayData,setDDayData] = useState<DDayDataType[]>([
         {
             title: "지긋지긋한 토익시험",
@@ -71,7 +73,7 @@ export default function MypageInfoEdit({ }: Props) {
                     <div className='flex justify-start gap-[20px]'>
                         {
                             dDayData.map((item, i) => {
-                                return (<Dday title={item.title} date={item.date} onDeleteClick={() => onDDayDeleteClick(i)}/>)
+                                return (<Dday title={item.title} date={item.date} isEdit={true} onDeleteClick={() => onDDayDeleteClick(i)}/>)
                             })
                         }
                         {
@@ -86,14 +88,14 @@ export default function MypageInfoEdit({ }: Props) {
                         }
                         {
                             dDayData.length + addedDDay.length < 3 ?
-                            (<DdayAdd onDDayAddClick={() => setAddedDDay(org => [...org, {title: '', date: ''}])}/>)
+                            (<DdayAdd isEdit={true} onDDayAddClick={() => setAddedDDay(org => [...org, {title: '', date: ''}])}/>)
                             :
                             <></>
                             
                         }
                     </div>
                     <div className='flex'>
-                        <button className='bg-[#4C6FFF] text-white px-[30px] py-[5px] rounded-[10px] my-[30px] mx-[auto]'>변경완료</button>
+                        <button className='bg-[#4C6FFF] text-white px-[30px] py-[5px] rounded-[10px] my-[30px] mx-[auto]' onClick={()=>setIsEdit(false)}>변경완료</button>
                     </div>
                 </div>
             </div>

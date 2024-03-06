@@ -3,7 +3,8 @@ import FriendList from './FriendList'
 import FriendsAdd from './FriendsAdd'
 import UnFriend from './UnFriend'
 
-type Props = {}
+type Props = {
+}
 
 export default function Friends({}: Props) {
   return (

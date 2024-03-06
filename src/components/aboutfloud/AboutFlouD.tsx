@@ -39,7 +39,7 @@ export default function dd({ }: Props) {
             <Typography title="플라우디는 ~을 취지로" type="bold40-blue"/>
             <Typography title="만들어지게 되었습니다." type="bold40-blue"/>
             <div className='mt-[50px] mb-[70px]'>개발자들은 아래와 같습니다.</div>
-            <div className='grid grid-rows-3 grid-cols-3'>
+            <div className='grid grid-rows-3 grid-cols-3 px-[120px]'>
                 {
                     members.map((member) => {
                         return (
