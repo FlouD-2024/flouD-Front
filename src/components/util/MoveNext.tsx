@@ -1,22 +1,21 @@
-import { pageNumAtom } from "@/store/atom";
-import React, { useState } from "react";
-import { useSetRecoilState } from "recoil";
+import React from "react";
 import { styled } from "twin.macro";
 
 type prop = {
   totalPage: number;
   currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const MoveNext = (prop: prop) => {
   // 이건 상태이상으로 담아둬야겠다...
-  const setPage = useSetRecoilState(pageNumAtom);
   const onPrev = () => {
-    if (prop.currentPage !== 1) setPage(prop.currentPage - 1);
+    if (prop.currentPage !== 1) prop.setCurrentPage(prop.currentPage - 1);
     else if (prop.currentPage === 1) return;
   };
   const onNext = () => {
-    if (prop.currentPage !== prop.totalPage) setPage(prop.currentPage + 1);
+    if (prop.currentPage !== prop.totalPage)
+      prop.setCurrentPage(prop.currentPage + 1);
     else if (prop.currentPage === prop.totalPage) return;
   };
   return (
