@@ -15,6 +15,13 @@ interface IResponse<R> {
   data: R;
 }
 
+export interface IError {
+  code: number;
+  success: boolean;
+  message: string;
+  data: null;
+}
+
 /**
  *
  * @template T - request data type

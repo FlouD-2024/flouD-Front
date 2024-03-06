@@ -1,6 +1,7 @@
 import { BASE_URL } from "@/config";
 import axios, { AxiosError } from "axios";
 import refresh from "./refresh";
+import { IError } from "@/query/utils/request";
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -8,23 +9,25 @@ export const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    return res;
+  },
   async (error) => {
     const ErrorType = error as AxiosError;
-    const axiosError = ErrorType.response?.status;
+    const axiosError = ErrorType.response?.data as IError;
     const { config } = error;
-    if (axiosError !== 401) {
+    if (axiosError?.code !== 401) {
       return Promise.reject(error);
     }
     // 리프레시 토큰 만료인 경우
-    if (axiosError === 401) {
+    if (axiosError?.code === 401) {
       alert("리프레시 만료");
       localStorage.clear();
       window.location.href = "/";
       return Promise.reject(error);
     }
     //액세스 토큰 만료인 경우
-    if (axiosError === 402) {
+    if (axiosError?.code === 402) {
       const originRequest = config;
       const reissueToken = await refresh();
 
@@ -33,6 +36,7 @@ axiosInstance.interceptors.response.use(
 
       return axiosInstance(originRequest);
     }
+    return Promise.reject(error);
   }
 );
 
