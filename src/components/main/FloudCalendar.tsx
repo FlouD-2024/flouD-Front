@@ -1,22 +1,32 @@
 import dayjs from "dayjs";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import ShowKPTModal from "../util/ShowKPTModal";
+import { useSetRecoilState } from "recoil";
+import { mainDayAtom } from "@/store/atom";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
+export const dayList = [
+  "2024-02-01",
+  "2024-02-04",
+  "2024-02-05",
+  "2024-02-10",
+  "2024-02-14",
+];
+
 const FloudCalendar = () => {
   const [selectDate, setSelectDate] = useState(new Date());
   const [startDate, onChange] = useState<Value | null>(new Date());
-  const dayList = [
-    "2024-02-01",
-    "2024-02-04",
-    "2024-02-05",
-    "2024-02-10",
-    "2024-02-14",
-  ];
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (startDate instanceof Date) {
+      const dateString = startDate.toISOString();
+      setDayAtom(dayjs(dateString).format("YYYY-MM-DD"));
+    }
+  }, [startDate]);
+  const setDayAtom = useSetRecoilState(mainDayAtom);
   // 각 날짜 타일에 컨텐츠 추가
   const addContent = ({ date }: { date: Date }): ReactNode => {
     // 해당 날짜(하루)에 추가할 컨텐츠의 배열
@@ -25,11 +35,13 @@ const FloudCalendar = () => {
     // date(각 날짜)가  리스트의 날짜와 일치하면 해당 컨텐츠(이모티콘) 추가
     if (dayList.find((day) => day === dayjs(date).format("YYYY-MM-DD"))) {
       contents.push(
-        <>
+        <div
+          className="absolute top-0 left-0 w-full h-full bg-transparent"
+          onClick={() => {
+            setSelectDate(date);
+          }}
+        >
           <div
-            onClick={() => {
-              setSelectDate(date);
-            }}
             key={dayjs(date).format("YYYY-MM-DD")}
             className=" absolute top-[75%] left-[44%] bg-blue-400 w-2 h-2 rounded-full"
           ></div>
@@ -40,7 +52,7 @@ const FloudCalendar = () => {
                 height="26"
                 alt="today is..."
               /> */}
-        </>
+        </div>
       );
     }
     return (
