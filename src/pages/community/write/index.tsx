@@ -2,6 +2,7 @@ import React from "react";
 import { Noto_Sans_KR } from "next/font/google";
 import { ScreenBox } from "@/pages";
 import { CommunityText } from "..";
+import CommunityBox from "@/components/community/CommunityBox";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
@@ -11,8 +12,8 @@ const index = () => {
       className={`min-h-screen flex flex-col justify-center ${noto.className}`}
     >
       <ScreenBox>
-        <CommunityText />
-        <div>쓰는 곳!</div>
+        <CommunityText isMain={false} />
+        <CommunityBox isWrite />
       </ScreenBox>
     </main>
   );
