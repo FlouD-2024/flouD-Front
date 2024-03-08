@@ -8,6 +8,21 @@ import Aside from "@/components/util/Aside";
 import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
+  // 개발 서버로 api 호출하려면 아래 코드 제거
+  if (process.env.NODE_ENV === 'development') {
+    if (typeof window === 'undefined') {
+      (async () => {
+        const { server } = await import('../mocks/server');
+        server.listen();
+      })();
+    } else {
+      (async () => {
+        const { worker } = await import('../mocks/workers');
+        worker.start();
+      })();
+    }
+  }
+
   const router = useRouter();
   const queryClient = new QueryClient({
     defaultOptions: {
