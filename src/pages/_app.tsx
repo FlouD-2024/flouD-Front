@@ -13,7 +13,11 @@ export default function App({ Component, pageProps }: AppProps) {
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
-        staleTime: 60 * 1000,
+        //10분동안은 캐시된 결과를 사용
+        staleTime: 600 * 1000,
+        //실패 요청해도 비활성화
+        retry: 0,
+        // 쿼리 결과를 5분동안 기본으로 저장
       },
     },
   });
