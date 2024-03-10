@@ -20,6 +20,11 @@ export default function Home() {
       console.log(access);
     }
   }, []);
+
+  const handleClick = (social: string) => {
+    const loginUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/${social}/login`;
+    window.location.assign(loginUrl);
+  };
   return (
     <main
       className={`min-h-screen flex flex-col items-center justify-center ${inter.className}`}
@@ -50,6 +55,7 @@ export default function Home() {
                 cursor: "pointer",
               }}
               priority
+              onClick={() => handleClick("kakao")}
             />
             <Image
               src={googleBtn}
@@ -59,6 +65,7 @@ export default function Home() {
                 cursor: "pointer",
               }}
               priority
+              onClick={() => handleClick("google")}
             />
             <Image src={loginInfo} alt="로그인 관련 사항" />
           </div>
