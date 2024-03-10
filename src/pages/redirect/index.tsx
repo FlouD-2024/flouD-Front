@@ -1,19 +1,14 @@
-import { userInfoState } from "@/store/atom";
+import { setAccessAndRefresh } from "@/apis/auth/auth";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
 
 const AuthPage = () => {
   const router = useRouter();
-  const setUserToken = useSetRecoilState(userInfoState);
   useEffect(() => {
     const accessToken = router.query.accessToken as string;
     const refreshToken = router.query.refreshToken as string;
-    setUserToken({
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    });
-    router.replace("/");
+    setAccessAndRefresh(accessToken, refreshToken);
+    router.replace("/main");
   });
   return <div>Authenticating...</div>;
 };

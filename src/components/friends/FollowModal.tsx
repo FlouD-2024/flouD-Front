@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { ModalLayout } from "../main/AlarmSideBar";
 import { styled } from "twin.macro";
 import X from "@/img/svg/x-box.svg";
-import friendCloud from "@/img/friends/friendCloud.png";
+import friendCloud from "@/img/friends/플라우디 로고.png";
 import notFound from "@/img/friends/notFound.png";
 import Image from "next/image";
 import Plus from "@/img/svg/friends/plus.svg";

@@ -1,16 +1,30 @@
 import { Inter } from "next/font/google";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import logoFloud from "@/img/login/큰 플라우디 로고.png";
 import googleBtn from "@/img/login/구글로 시작하기.png";
 import kakaoBtn from "@/img/login/카카오톡으로 시작하기.png";
 import loginInfo from "@/img/login/로그인 관련 사항.png";
 import { css, styled } from "twin.macro";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const router = useRouter();
   const welcome: String = "Welcome!\nFirst FlouD..";
+  useEffect(() => {
+    const access = localStorage.getItem("access_token") as string;
+    if (access !== null && access !== "") {
+      router.replace("/main");
+      console.log(access);
+    }
+  }, []);
+
+  const handleClick = (social: string) => {
+    const loginUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/${social}/login`;
+    window.location.assign(loginUrl);
+  };
   return (
     <main
       className={`min-h-screen flex flex-col items-center justify-center ${inter.className}`}
@@ -41,6 +55,7 @@ export default function Home() {
                 cursor: "pointer",
               }}
               priority
+              onClick={() => handleClick("kakao")}
             />
             <Image
               src={googleBtn}
@@ -50,6 +65,7 @@ export default function Home() {
                 cursor: "pointer",
               }}
               priority
+              onClick={() => handleClick("google")}
             />
             <Image src={loginInfo} alt="로그인 관련 사항" />
           </div>

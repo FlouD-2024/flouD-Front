@@ -6,17 +6,17 @@ import CommunityBox from "@/components/community/CommunityBox";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
-const index = () => {
+const ViewPage = () => {
   return (
     <main
       className={`min-h-screen flex flex-col justify-center ${noto.className}`}
     >
       <ScreenBox>
         <CommunityText isMain={false} />
-        <CommunityBox isWrite />
+        <CommunityBox isWrite={false} />
       </ScreenBox>
     </main>
   );
 };
 
-export default index;
+export default ViewPage;

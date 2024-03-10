@@ -6,13 +6,21 @@ import CommunityCompoWrapper from "@/components/community/CommunityCompoWrapper"
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
-export const CommunityText = () => {
+export const CommunityText = ({ isMain }: { isMain: boolean }) => {
   return (
     <>
       <div className="flex w-full h-[60px] justify-end items-center mb-7">
         <ContentNav />
       </div>
-      <div className="font-bold tracking-[-6%] text-4xl mb-10">Community</div>
+      {isMain ? (
+        <div className="font-bold tracking-[-6%] text-4xl mb-10 px-5">
+          Community
+        </div>
+      ) : (
+        <div className="font-bold tracking-[-6%] text-4xl mb-10 px-14">
+          Community
+        </div>
+      )}
     </>
   );
 };
@@ -23,7 +31,7 @@ const index = () => {
       className={`min-h-screen flex flex-col justify-center ${noto.className}`}
     >
       <ScreenBox>
-        <CommunityText />
+        <CommunityText isMain />
         <CommunityCompoWrapper />
       </ScreenBox>
     </main>
