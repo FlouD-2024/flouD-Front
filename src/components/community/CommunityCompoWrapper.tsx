@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import { styled } from "twin.macro";
 import Story from "../mypage/Story";
 import MoveNext from "../util/MoveNext";
+import CommunityWrite from "./CommunityWrite";
 
 const CommunityCompoWrapper = () => {
   const [page, setPage] = useState(1);
+  const [commuDetailClick, setCommuDetailClick] = useState();
+  const [newDetailOpen, setNewDetailOpen] = useState(false);
+
+  const clickNewDetail = () => {
+    setNewDetailOpen(true)
+  }
+  
   const storyList = [
     {
       id: 1,
@@ -31,7 +39,10 @@ const CommunityCompoWrapper = () => {
         <div className="w-[182px] h-13 flex justify-center border-b-4 border-b-[#4C6FFF] text-[#4C6FFF] tracking-[-6%] font-bold text-xl pb-4 z-10">
           회고 친구 구해요
         </div>
-        <NewButton>
+        <NewButton onClick={()=>{
+          clickNewDetail
+        }}>
+          
           <div>+</div>
           <div>New</div>
         </NewButton>

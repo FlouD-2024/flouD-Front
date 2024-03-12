@@ -11,6 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const welcome: String = "Welcome!\nFirst FlouD..";
+  
   return (
     <main
       className={`min-h-screen flex flex-col items-center justify-center ${inter.className}`}

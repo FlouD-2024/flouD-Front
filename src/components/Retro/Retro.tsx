@@ -1,40 +1,43 @@
 import { retroCompleteModalOpenAtom, retroDetailOpenAtom, retroTodayOpenAtom } from '@/store/atom'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import RetroDetail from './RetroDetail'
 import RetroEmpty from './RetroEmpty'
 import RetroList from './RetroList'
 import RetroToday from './RetroToday'
 import RetroCompleteModal from './RetroCompleteModal'
+import { getRetroDetail, getRetroList, getTest } from '@/apis/retro/retro'
+import dayjs from 'dayjs'
 
 type Props = {}
 
 export default function Retro({ }: Props) {
-    const testData = [
-        {
-            "memoir_id": 3,
-            "title": "제목입니다3",
-            "created_at": "2024-03-03"
-        },
-        {
-            "memoir_id": 4,
-            "title": "제목입니다4",
-            "created_at": "2024-03-04"
-        },
-        {
-            "memoir_id": 5,
-            "title": "제목입니다5",
-            "created_at": "2024-03-05"
-        }
-    ]
+    const [retroList, setRetroList] = useState([]);
     const [retroDetailOpen, setRetroDetailOpend] = useRecoilState(retroDetailOpenAtom)
     const [retroTodayOpen, setRetroTodayOpend] = useRecoilState(retroTodayOpenAtom)
     const [retroCompleteModalOpen, setRetroCompleteModalOpen] = useRecoilState(retroCompleteModalOpenAtom)
     const onNewBtnClick = () =>{
         //조건 걸어야 댐 [회고 단일 조회 API 활용]
-        setRetroTodayOpend(true)
-        // setRetroCompleteModalOpen(true)
+        getRetroDetail(dayjs().format('YYYY-MM-DD'))
+            .then(data => {
+                if (data.data) {
+                    setRetroCompleteModalOpen(true)
+                } else {
+                    setRetroTodayOpend(true)
+                }
+            });
     }
+
+    useEffect(() => {
+        //start-date 오늘 날짜로 해둠 주차가 시작하는 날짜로 수정해야 함
+        setTimeout(() => {
+            getRetroList(dayjs().format('YYYY-MM-DD'))
+                .then(data => {
+                    setRetroList(data.data.memoirList);
+                })
+        }, 1000);
+    },[])
+
     return (
         <>
             {
@@ -67,7 +70,7 @@ export default function Retro({ }: Props) {
                             >+  New</button>
                         </div>
                         {
-                            testData.length == 0
+                            retroList.length == 0
                                 ?
                                 <RetroEmpty />
                                 :
@@ -77,7 +80,7 @@ export default function Retro({ }: Props) {
                                     }
                                     <div className='grid grid-cols-2 gap-[20px]'>
                                         {
-                                            testData.map((data) => {
+                                            retroList.map((data) => {
                                                 return (<RetroList memoirId={data.memoir_id} date={data.created_at} retro={data.title} />)
                                             })
                                         }
