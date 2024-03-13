@@ -21,7 +21,7 @@ axiosInstance.interceptors.response.use(
     }
     // 리프레시 토큰 만료인 경우
     if (axiosError?.code === 401) {
-      alert("리프레시 만료");
+      alert("로그인 시간이 만료되었습니다 다시 진행해주세요");
       localStorage.clear();
       window.location.href = "/";
       return Promise.reject(error);

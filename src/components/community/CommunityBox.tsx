@@ -72,7 +72,11 @@ const CommunityBox = ({ isWrite }: { isWrite: boolean }) => {
             </div>
           )}
         </Flex_END>
-        <CommunityTextArea value={data} onChange={onChange} />
+        <CommunityTextArea
+          value={data}
+          onChange={onChange}
+          disabled={!isWrite}
+        />
       </CommunityBoxWrapper>
       <CommunitySubmitBtn>{isWrite ? "게시하기" : "확인"}</CommunitySubmitBtn>
     </div>
