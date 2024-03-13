@@ -5,13 +5,14 @@ import More from "@/img/community/more.png"
 import Pencil from "@/img/community/pencil.png"
 import Trash from "@/img/community/trash.png"
 
-type Props = {}
+type Props = {
+    setIsWrite: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-export default function CommunityWrite({ }: Props) {
+export default function CommunityWrite({setIsWrite}: Props) {
     const [newClick, setNewClick] = useState(false);
     return (
         <>
-            <div className="text-[40px] font-bold mb-[30px]">Community</div>
             <div className='bg-[#ffffff] rounded-[15px] p-[30px]'>
                 <div className='flex justify-between'>
                     <Typography title={'어쩌고 저쩌고'} type={'bold20'} />
@@ -27,7 +28,12 @@ export default function CommunityWrite({ }: Props) {
                 <input className='bg-[#F6F7FB] w-[100%] h-[360px]' placeholder='회고 쓰는 거 힘들다...'></input>
             </div>
             <div className='flex'>
-                <button className='bg-black text-white px-[30px] py-[5px] rounded-[50px] my-[30px] mx-[auto]'>확인</button>
+                <button 
+                    className='bg-black text-white px-[30px] py-[5px] rounded-[50px] my-[30px] mx-[auto]'
+                    onClick={()=>{
+                        setIsWrite(false)
+                    }}
+                >확인</button>
             </div>
         </>
     )

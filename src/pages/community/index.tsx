@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Noto_Sans_KR } from "next/font/google";
 import { ScreenBox } from "..";
 import ContentNav from "@/components/util/ContentNav";
 import CommunityCompoWrapper from "@/components/community/CommunityCompoWrapper";
+import CommunityWrite from "@/components/community/CommunityWrite";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
@@ -18,13 +19,19 @@ export const CommunityText = () => {
 };
 
 const index = () => {
+  const [isWrite, setIsWrite] = useState(false);
   return (
     <main
       className={`min-h-screen flex flex-col justify-center ${noto.className}`}
     >
       <ScreenBox>
         <CommunityText />
-        <CommunityCompoWrapper />
+        {
+          isWrite ? 
+          <CommunityWrite setIsWrite={setIsWrite}/> 
+          :
+          <CommunityCompoWrapper setIsWrite={setIsWrite}/>
+        }
       </ScreenBox>
     </main>
   );

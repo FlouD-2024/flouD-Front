@@ -1,25 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Typography from '../Typography'
 import Dday from './Dday'
 import DdayAdd from './DdayAdd'
 import Image from "next/image";
 import Blue from "@/img/Mypage/BlueEllipse.png"
+import { getUserInfo } from '@/apis/mypage/mypage';
 
 type Props = {
     setIsEdit : React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export default function MypageInfo({setIsEdit}: Props) {
-    const dDayData = [
-        {
-            title: "지긋지긋한 토익시험",
-            date: "2024.03.04 (D-48)"
-        },
-        {
-            title: "상반기 공채 시작날짜 아마도 5월",
-            date: "2024.05.08 (D-89)"
-        }
-    ]
+    const [nickname, setNickname] = useState<string>("");
+    const [goallist, setGoallist] = useState([]);
+    const [introduction, setIntroduction] = useState<string>("");
+    useEffect(()=>{
+        getUserInfo().then(data=>{
+            setNickname(data.data.nickname);
+            setGoallist(data.data.goalList);
+            setIntroduction(data.data.introduction);
+        })
+    },[])
 
     return (
         <>
@@ -32,11 +33,11 @@ export default function MypageInfo({setIsEdit}: Props) {
                 </div>
                 <div className='mb-[30px] flex justify-start gap-[10px]'>
                     <Typography title={'닉네임'} type={'bold20'} />
-                    <input className='bg-[#b5b5bd]/10 h-[35px] rounded-[10px]'></input>
+                    <div className='bg-[#b5b5bd]/10 h-[35px] rounded-[10px]'>{nickname}</div>
                 </div>
                 <div className='mb-[30px]'>
                     <Typography title={'자기소개'} type={'bold20'} />
-                    <textarea className='bg-[#b5b5bd]/10 w-[100%] rounded-[10px]'></textarea>
+                    <div className='bg-[#b5b5bd]/10 w-[100%] rounded-[10px]'>{introduction}</div>
                 </div>
                 <div>
                     <div className='flex justify-start'>
@@ -45,8 +46,8 @@ export default function MypageInfo({setIsEdit}: Props) {
                     </div>
                     <div className='flex justify-start gap-[20px]'>
                         {
-                            dDayData.map((item) => {
-                                return (<Dday title={item.title} date={item.date} isEdit={false}/>)
+                            goallist.map((item) => {
+                                return (<Dday title={item.content} date={item.deadline} goalId={item.goal_id} isEdit={false}/>)
                             })
                         }
                         
