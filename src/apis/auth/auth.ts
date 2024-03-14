@@ -1,7 +1,7 @@
 import { BASE_URL } from "@/config";
 import axios, { AxiosError } from "axios";
 import refresh from "./refresh";
-import { IError } from "@/query/utils/request";
+import { IError } from "@/utils/request";
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
