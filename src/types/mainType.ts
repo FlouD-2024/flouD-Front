@@ -20,3 +20,9 @@ export interface alarmListType {
   message: string;
   created_at: Date;
 }
+
+export type userInfoType = {
+  users_id: number;
+  email: string;
+  sub: string;
+};
