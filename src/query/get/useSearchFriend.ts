@@ -9,7 +9,7 @@ interface friendParam {
 function useSearchFriend({ nickname }: { nickname: string }) {
   const fetchSearchFriend = async () => {
     const response = await request<null, friendSearchType, friendParam>({
-      uri: `/api/friend?nickname=${nickname}`,
+      uri: `/api/friend`,
       method: "get",
       params: {
         nickname,

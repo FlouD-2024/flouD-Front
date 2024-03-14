@@ -9,7 +9,7 @@ interface FriendParam {
 function useGetFriendList({ date }: { date: string }) {
   const fetchGetFriendList = async () => {
     const response = await request<null, IfriendList, FriendParam>({
-      uri: `/api/friend/my?date=${date}`,
+      uri: `/api/friend/my`,
       method: "get",
       params: {
         date,
