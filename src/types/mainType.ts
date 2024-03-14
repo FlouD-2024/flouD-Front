@@ -14,13 +14,9 @@ type goalListType = {
   deadline: string;
 };
 
-type alarmListType = {
+export interface alarmListType {
   nickname: string;
   alarmType: string;
   message: string;
   created_at: Date;
-};
-
-export interface IAlarmList {
-  alarmList: Array<alarmListType>;
 }

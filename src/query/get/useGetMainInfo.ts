@@ -1,0 +1,31 @@
+import { Maindata } from "@/types/mainType";
+import request from "@/utils/request";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import React from "react";
+
+interface MainParam {
+  date: string;
+}
+
+function useGetMainInfo({ date }: { date: string }) {
+  const fetchMainInfo = async () => {
+    const response = await request<null, Maindata, MainParam>({
+      uri: `/api/home?date=${date}`,
+      method: "get",
+      params: {
+        date,
+      },
+    });
+
+    return response.data;
+  };
+
+  const { data: mainData } = useSuspenseQuery({
+    queryKey: ["get-mainInfo", date],
+    queryFn: fetchMainInfo,
+  });
+
+  return { mainData };
+}
+
+export default useGetMainInfo;
