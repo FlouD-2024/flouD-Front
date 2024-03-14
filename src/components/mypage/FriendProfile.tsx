@@ -5,11 +5,11 @@ import FriendProfileImg from '@/img/mypage/FriendProfile.png'
 import { friendModalFriendNameAtom, friendModalOpenAtom } from '@/store/atom';
 
 type Props = {
-    name: string, 
-    introduce: string,
+    nickname: string, 
+    introduction: string,
 }
 
-export default function FriendProfile({name, introduce}: Props) {
+export default function FriendProfile({nickname, introduction}: Props) {
   const [isModalOpened, setIsModalOpened] = useRecoilState(friendModalOpenAtom);
   const [_, setName] = useRecoilState(friendModalFriendNameAtom);
   return (
@@ -19,14 +19,14 @@ export default function FriendProfile({name, introduce}: Props) {
               className='text-[10px] bg-[black] text-white w-[18px] h-[18px] rounded-[5px] ml-[88%]' 
               onClick={()=>{
                 setIsModalOpened(true);
-                setName(name);
+                setName(nickname);
               }}
             >
               X
             </button>
             <Image src={FriendProfileImg} className='ml-auto mr-auto mb-[10px]'/>
-            <div className='font-semibold'>{name}</div>
-            <div className='text-[#828282] text-[14px]'>{introduce}</div>
+            <div className='font-semibold'>{nickname}</div>
+            <div className='text-[#828282] text-[14px]'>{introduction}</div>
         </div>
     </>
   )

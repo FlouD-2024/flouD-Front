@@ -4,10 +4,11 @@ type Props = {
     title: string,
     date: string,
     onDeleteClick: () => void,
-    isEdit: boolean
+    isEdit: boolean,
+    goalId: number
 }
 
-export default function Dday({title, date, onDeleteClick, isEdit}: Props) {
+export default function Dday({title, date, onDeleteClick, goalId, isEdit}: Props) {
     return (
         <>
             <div className={`flex-col justify-between  bg-[${isEdit ? '#4C6FFF' : '#b5b5bd'}]/10 h-20px rounded-[10px] w-[32%] h-[124px] p-[15px]`}>

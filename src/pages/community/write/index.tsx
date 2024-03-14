@@ -1,8 +1,8 @@
 import React from "react";
 import { Noto_Sans_KR } from "next/font/google";
 import { ScreenBox } from "@/pages";
-import { CommunityText } from "..";
 import CommunityBox from "@/components/community/CommunityBox";
+import { CommunityText } from "..";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
