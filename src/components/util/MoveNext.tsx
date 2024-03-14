@@ -10,8 +10,8 @@ type prop = {
 const MoveNext = (prop: prop) => {
   // 이건 상태이상으로 담아둬야겠다...
   const onPrev = () => {
-    if (prop.currentPage !== 1) prop.setCurrentPage(prop.currentPage - 1);
-    else if (prop.currentPage === 1) return;
+    if (prop.currentPage !== 0) prop.setCurrentPage(prop.currentPage - 1);
+    else if (prop.currentPage === 0) return;
   };
   const onNext = () => {
     if (prop.currentPage !== prop.totalPage)

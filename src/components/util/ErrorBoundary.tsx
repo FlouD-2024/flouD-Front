@@ -18,12 +18,12 @@ class ErrorBoundary extends React.Component<
   }
 
   static getDerivedStateFromError(_: Error): ErrorBoundaryState {
-    // 에러가 발생하면 이 메서드를 사용해 state를 업데이트합니다.
+    // 에러가 발생하면 이 메서드를 사용해 state를 업데이트
     return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // 에러 로깅 서비스에 에러를 기록할 수 있습니다.
+    // 에러 로깅 서비스에 에러를 기록
     // 예: logErrorToMyService(error, errorInfo);
     console.error("ErrorBoundary caught an error", error, errorInfo);
   }
@@ -34,7 +34,7 @@ class ErrorBoundary extends React.Component<
       return <h1>서버에러가 났습니다.</h1>;
     }
 
-    // 에러가 없으면 자식 컴포넌트를 정상적으로 렌더링합니다.
+    // 에러가 없으면 자식 컴포넌트를 정상적으로 렌더링
     return this.props.children;
   }
 }

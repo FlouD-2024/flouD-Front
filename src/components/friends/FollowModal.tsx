@@ -6,6 +6,8 @@ import friendCloud from "@/img/friends/플라우디 로고.
 import notFound from "@/img/friends/notFound.png";
 import Image from "next/image";
 import Plus from "@/img/svg/friends/plus.svg";
+import { friendSearchType } from "@/types/friendType";
+import useSearchFriend from "@/query/get/useSearchFriend";
 
 type prop = {
   open: boolean;
@@ -19,6 +21,9 @@ const FollowModal = (prop: prop) => {
     prop.setOpen(!prop.open);
     prop.setCheck("");
   };
+  const { mainData } = useSearchFriend({
+    nickname: prop.check,
+  });
 
   const ArticleStyle = ({ children }: { children: ReactNode }) => {
     return (
@@ -29,7 +34,7 @@ const FollowModal = (prop: prop) => {
   };
   return (
     <ModalLayout>
-      {prop.check === "notFound" ? (
+      {mainData === null ? (
         <>
           <Modal className="nofriend">
             <ArticleStyle>
@@ -66,11 +71,11 @@ const FollowModal = (prop: prop) => {
                 alt="팔로우신청창"
               />
               <div className="text-[40px] leading-[20.4px] font-extrabold tracking-[-6%] mt-7 mb-4">
-                이름 있는 곳
+                {mainData.nickname}
               </div>
               <div className="mb-8 text-[#828282] text-base tracking-[-6%]">
-                어쩌구 저쩌구 쏼라쏼라... <br />
-                user ID : 유저아이디
+                {mainData.introduction} <br />
+                Email : {mainData.email}
               </div>
               <FollowModalBtn className="success">
                 <Plus />

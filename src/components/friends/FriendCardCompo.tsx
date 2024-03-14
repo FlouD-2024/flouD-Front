@@ -15,6 +15,8 @@ import FollowModal from "./FollowModal";
 import MoveNext from "../util/MoveNext";
 import { useRecoilValue } from "recoil";
 import { pageNumAtom } from "@/store/atom";
+import useGetFriendList from "@/query/get/useGetFriendList";
+import useSearchFriend from "@/query/get/useSearchFriend";
 
 const FriendCardCompo = () => {
   // 여기서 그 신청창 팝업 만들고 그러면 될 듯?
@@ -31,16 +33,14 @@ const FriendCardCompo = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
-  const [page, setPage] = useState(1);
+  const { friendData } = useGetFriendList({
+    date: day.format("YYYY-MM-DD"),
+  });
+  const [page, setPage] = useState(friendData.pageInfo.nowPage);
   const handleKeyUp = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && open === false) {
-      if (searchValue === "아리" || searchValue === "dkfl") {
-        setOpen(!open);
-        setCheck("Found");
-      } else {
-        setOpen(!open);
-        setCheck("notFound");
-      }
+      setOpen(!open);
+      setCheck(searchValue);
       setSearchValue("");
     }
   };
@@ -96,21 +96,21 @@ const FriendCardCompo = () => {
         </DayButtonWrapper>
       </div>
       <CardSortWrapper>
-        {typeof data === "undefined"
+        {friendData.friendshipList.length === 0
           ? null
-          : data.friendsCard.map((e) => {
+          : friendData.friendshipList.map((e, i) => {
               return (
                 <>
                   <div
                     style={{
-                      order: e.isWrite ? "1" : "2",
+                      order: e.memoir_status ? "1" : "2",
                     }}
                   >
                     <FriendCard
-                      key={e.friendId}
-                      id={e.friendId}
-                      name={e.name}
-                      isWrite={e.isWrite}
+                      key={e.memoir_id}
+                      id={e.memoir_id}
+                      name={e.friend_nickname}
+                      isWrite={e.memoir_status}
                       date={day}
                     />
                   </div>
@@ -127,7 +127,11 @@ const FriendCardCompo = () => {
         />
       )}
       <div className="w-full flex justify-end">
-        <MoveNext totalPage={3} currentPage={page} setCurrentPage={setPage} />
+        <MoveNext
+          totalPage={friendData.pageInfo.totalPages}
+          currentPage={page}
+          setCurrentPage={setPage}
+        />
       </div>
     </div>
   );
