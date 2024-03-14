@@ -11,7 +11,7 @@ axiosInstance.interceptors.request.use(async (config) => {
   if (!config.headers) {
     return config;
   }
-  const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem("access_token") as string;
   if (
     token !== null &&
     config.url !== "/api/auth/kako/login" &&

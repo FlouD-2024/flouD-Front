@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { ScreenBox } from "..";
 import MainComponents from "@/components/main/MainComponents";
 import { Noto_Sans_KR } from "next/font/google";
+import ErrorBoundary from "@/components/util/ErrorBoundary";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
@@ -12,7 +13,11 @@ const index = () => {
     >
       <ScreenBox>
         <div className="flex gap-[53px] justify-center">
-          <MainComponents />
+          <ErrorBoundary>
+            <Suspense fallback={<div>loading...</div>}>
+              <MainComponents />
+            </Suspense>
+          </ErrorBoundary>
         </div>
       </ScreenBox>
     </main>

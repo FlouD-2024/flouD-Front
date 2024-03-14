@@ -1,5 +1,5 @@
 import { alarmAtom, mainDayAtom } from "@/store/atom";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic.js";
@@ -13,13 +13,14 @@ import { CardStyle } from "./CardStyle";
 import useGetMainInfo from "@/query/get/useGetMainInfo";
 
 const MainComponents = () => {
+  const date = useMemo(() => dayjs().format("YYYY-MM-01"), []);
   //   const dayInfo = useRecoilValue(weeklyDayAtom);
   const [tomorrowDay, setTomorrowDay] = useState(
     `${dayjs().add(1, "day").format("YYYY-MM-DD")} 06:00:00`
   );
   const [dayAtom, setDayAtom] = useRecoilState(mainDayAtom);
   const { mainData } = useGetMainInfo({
-    date: dayjs().format("YYYY-MM-01"),
+    date: date,
   });
   useEffect(() => {
     setTomorrowDay(
