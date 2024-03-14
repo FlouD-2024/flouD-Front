@@ -5,7 +5,21 @@ import { IError } from "@/utils/request";
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
-  withCredentials: true,
+});
+
+axiosInstance.interceptors.request.use(async (config) => {
+  if (!config.headers) {
+    return config;
+  }
+  const token = localStorage.getItem("access_token");
+  if (
+    token !== null &&
+    config.url !== "/api/auth/kako/login" &&
+    config.url !== "/api/auth/google/login"
+  ) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 axiosInstance.interceptors.response.use(

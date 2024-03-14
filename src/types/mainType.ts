@@ -25,4 +25,5 @@ export type userInfoType = {
   users_id: number;
   email: string;
   sub: string;
+  nickname: string;
 };

@@ -10,7 +10,7 @@ interface MainParam {
 function useGetMainInfo({ date }: { date: string }) {
   const fetchMainInfo = async () => {
     const response = await request<null, Maindata, MainParam>({
-      uri: `/api/home?date=${date}`,
+      uri: `/api/home`,
       method: "get",
       params: {
         date,
