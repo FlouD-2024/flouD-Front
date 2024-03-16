@@ -8,6 +8,8 @@ export interface MyFriendList{
     introduction: string
 }
 
+
+
 export const getUserInfo = async () => {
     const response = await axios.get(`https://floud.online/api/mypage`, {
         headers: {

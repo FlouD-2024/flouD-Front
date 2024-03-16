@@ -20,7 +20,7 @@ export default function RetroList({memoirId, date, retro}: Props) {
                           setRetroDetailDate(date)
                           setRetroDetailOpend(true)
                         }}>
-            <div className="text-[30px] font-bold mb-3">1월 {date}일 회고</div>
+            <div className="text-[30px] font-bold mb-3">{date}  회고</div>
             <div className="text-[#7f7f7f] text-[18px] ">{retro}</div>
         </RetroListWrapper>
     </>

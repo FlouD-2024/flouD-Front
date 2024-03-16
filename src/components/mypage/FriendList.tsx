@@ -8,7 +8,7 @@ type Props = {
 }
 
 export default function FriendList({friends}: Props) {
-  
+
 
   return (
     <>
@@ -16,7 +16,7 @@ export default function FriendList({friends}: Props) {
         <div className='flex justify-start flex-wrap gap-[2.5%] m-[10px]'>
         {
           friends.map((item)=>{
-            return(<FriendProfile name={item.nickname} introduce={item.introduction}/>)
+            return(<FriendProfile nickname={item.nickname} introduction={item.introduction}/>)
           })
         }
         </div>

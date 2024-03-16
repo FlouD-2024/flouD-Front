@@ -9,17 +9,19 @@ type Props = {
 
 export default function Friends({}: Props) {
   const [friends, setFriends] = useState([]);
+  const [friendAdd, setFriendAdd] = useState([]);
 
   useEffect(()=>{
     getUserFriend(1).then(data=>{
       setFriends(data.data.myFriendList)
+      setFriendAdd(data.data.waitingList)
     })
   },[])
   return (
     <div 
     className='relative'
     >
-        <FriendsAdd/>
+        <FriendsAdd friends={friendAdd}/>
         <FriendList friends={friends}/>
     </div>
   )
