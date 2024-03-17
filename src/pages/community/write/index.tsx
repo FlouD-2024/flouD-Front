@@ -13,7 +13,7 @@ const index = () => {
     >
       <ScreenBox>
         <CommunityText isMain={false} />
-        <CommunityBox isWrite />
+        <CommunityBox />
       </ScreenBox>
     </main>
   );

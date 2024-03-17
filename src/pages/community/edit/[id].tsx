@@ -13,7 +13,7 @@ const EditPage = () => {
     >
       <ScreenBox>
         <CommunityText isMain={false} />
-        <CommunityBox isWrite />
+        <CommunityBox />
       </ScreenBox>
     </main>
   );
