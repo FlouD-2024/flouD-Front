@@ -1,15 +1,14 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import alarm from "@/img/friends/알림창.png";
 import friendCloud from "@/img/friends/friendCloud.png";
-import { useSetRecoilState } from "recoil";
-import { alarmAtom } from "@/store/atom";
-import { AlarmTestData } from "@/store/testData";
 import AlarmSideBar from "../main/AlarmSideBar";
+import useGetUserInfo from "@/query/get/useGetUserInfo";
 
 const ContentNav = () => {
   const [open, setOpen] = useState(false);
   // 이 부분은 나중에 react-query로 데려올 때 호출할 예정 , 이러면 서버한테 부담 없겠지...
+  const { userInfo } = useGetUserInfo();
   return (
     <div className="flex items-center gap-[18px]">
       <Image
@@ -33,7 +32,9 @@ const ContentNav = () => {
           }}
         />
         {/* 여기에 닉네임 있어야 됨 이거는 유저정보에서 가져올 예정 */}
-        <p className="text-[17px] font-medium tracking-[-6%]">정민지퐁퐁</p>
+        <p className="text-[17px] font-medium tracking-[-6%]">
+          {userInfo.nickname}
+        </p>
       </div>
     </div>
   );

@@ -1,6 +1,17 @@
 import { userInfoType } from "@/types/mainType";
 import request from "@/utils/request";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import {
+  useQuery,
+  useQueryClient,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
+
+const fallback = {
+  users_id: -1,
+  email: "",
+  nickname: "",
+  sub: "",
+};
 
 function useGetUserInfo() {
   const fetchUserInfo = async () => {
@@ -11,10 +22,11 @@ function useGetUserInfo() {
 
     return response.data;
   };
-
-  const { data: userInfo } = useSuspenseQuery({
+  const access_token = localStorage.getItem("access_token");
+  const { data: userInfo = fallback } = useQuery({
     queryKey: ["get-userInfo"],
     queryFn: fetchUserInfo,
+    enabled: !!access_token,
   });
 
   return { userInfo };

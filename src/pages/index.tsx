@@ -22,6 +22,7 @@ export default function Home() {
   }, []);
 
   const handleClick = (social: string) => {
+    localStorage.setItem("social_type", social);
     const loginUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/${social}/login`;
     window.location.assign(loginUrl);
   };

@@ -48,7 +48,7 @@ const MainComponents = () => {
         ) : (
           <CardStyle isWrite={false} />
         )}
-        <DdayCard />
+        <DdayCard DdayList={mainData.goalList} />
         <Memo />
       </div>
       <div className="pt-[55px] flex flex-col gap-[40px]">

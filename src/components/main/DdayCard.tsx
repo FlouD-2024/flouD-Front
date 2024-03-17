@@ -1,10 +1,10 @@
 import { DdayProp, DdayTestData } from "@/store/testData";
+import { goalListType } from "@/types/mainType";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import tw, { css, styled } from "twin.macro";
 
-const DdayCard = () => {
-  const DdayTest: DdayProp[] = DdayTestData;
+const DdayCard = ({ DdayList }: { DdayList: Array<goalListType> }) => {
   // const DdayTest: DdayProp[] = [];
   const [click, setClick] = useState(1);
   const onClick = (clickNum: number) => {
@@ -14,7 +14,7 @@ const DdayCard = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const lastLength = DdayTest.length !== 0 ? DdayTest.length : 0;
+      const lastLength = DdayList.length !== 0 ? DdayList.length : 0;
       if (lastLength !== 0 && lastLength <= click) {
         setClick(1);
       } else if (lastLength === 0) {
@@ -27,23 +27,27 @@ const DdayCard = () => {
   }, [click]);
   return (
     <DdayCardWrapper cardId={click}>
-      {DdayTest.length !== 0 ? (
+      {DdayList.length !== 0 ? (
         <>
           <div className="text-[#014472] font-[900] text-[22.33px] leading-[23.34px] tracking-[-6%] h-6 w-full flex justify-center">
-            {DdayTest[click - 1].title}
+            {DdayList[click - 1].goal}
           </div>
-          {today.diff(DdayTest[click - 1].dday, "day") < 0 ? (
-            <DdayFont>D{today.diff(DdayTest[click - 1].dday, "day")}</DdayFont>
+          {today.diff(DdayList[click - 1].deadline, "day") < 0 ? (
+            <DdayFont>
+              D{today.diff(DdayList[click - 1].deadline, "day")}
+            </DdayFont>
           ) : (
-            <DdayFont>D+{today.diff(DdayTest[click - 1].dday, "day")}</DdayFont>
+            <DdayFont>
+              D+{today.diff(DdayList[click - 1].deadline, "day")}
+            </DdayFont>
           )}
           <DotSlide>
-            {DdayTest.map((e) => {
+            {DdayList.map((e, i) => {
               return (
                 <Dot
-                  key={e.id}
-                  hasClick={click === e.id}
-                  onClick={() => onClick(e.id)}
+                  key={i}
+                  hasClick={click === i}
+                  onClick={() => onClick(i)}
                 />
               );
             })}
