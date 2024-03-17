@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { Noto_Sans_KR } from "next/font/google";
 import { ScreenBox } from "..";
 import ContentNav from "@/components/util/ContentNav";
 import CommunityCompoWrapper from "@/components/community/CommunityCompoWrapper";
-import CommunityWrite from "@/components/community/CommunityWrite";
+import ErrorBoundary from "@/components/util/ErrorBoundary";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
@@ -27,14 +27,17 @@ export const CommunityText = ({ isMain }: { isMain: boolean }) => {
 };
 
 const index = () => {
-  const [isWrite, setIsWrite] = useState(false);
   return (
     <main
       className={`min-h-screen flex flex-col justify-center ${noto.className}`}
     >
       <ScreenBox>
-        <CommunityText isMain />
-        <CommunityCompoWrapper />
+        <ErrorBoundary>
+          <Suspense fallback={<div>loading...</div>}>
+            <CommunityText isMain />
+            <CommunityCompoWrapper />
+          </Suspense>
+        </ErrorBoundary>
       </ScreenBox>
     </main>
   );
