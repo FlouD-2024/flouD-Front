@@ -16,13 +16,13 @@ const AlarmMainBox = (prop: prop) => {
   return (
     <AlarmBox>
       <div>
-        {prop.type === "friend" ? (
+        {prop.type === "FRIEND" ? (
           prop.id % 2 == 0 ? (
             <MainCloud2 />
           ) : (
             <MainCloud3 />
           )
-        ) : prop.type === "accept" ? (
+        ) : prop.type === "ACCEPT" ? (
           <MainCloud4 />
         ) : (
           <MainCloud1 />

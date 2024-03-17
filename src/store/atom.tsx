@@ -1,11 +1,12 @@
 import { atom } from "recoil";
 import { AlarmCardProp } from "./testData";
 import { recoilPersist } from "recoil-persist";
+import dayjs from "dayjs";
 
 //여기다가 메인에 필요한 날짜들은 다 담아둠
 export const mainDayAtom = atom({
   key: "weeklyDayAtom",
-  default: "",
+  default: dayjs().format("YYYY-MM-DD"),
 });
 
 //여기에 알림에 관한 테스트를 담는 상태관리

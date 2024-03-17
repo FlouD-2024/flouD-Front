@@ -1,53 +1,38 @@
-import router from "next/router";
-import React, { useState } from "react";
+import router, { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import { styled } from "twin.macro";
 import Story from "../mypage/Story";
 import MoveNext from "../util/MoveNext";
 import CommunityWrite from "./CommunityWrite";
+import useGetCommunity from "@/query/get/useGetCommunity";
 
 interface CommunityCompoWrapperProps {
-  setIsWrite: React.Dispatch<React.SetStateAction<boolean>>
+  setIsWrite: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CommunityCompoWrapper = ({setIsWrite}:CommunityCompoWrapperProps) => {
-  const [page, setPage] = useState(1);
-  const [commuDetailClick, setCommuDetailClick] = useState();
-  const [newDetailOpen, setNewDetailOpen] = useState(false);
-
-  const clickNewDetail = () => {
-    setNewDetailOpen(true)
-  }
-  
-  const storyList = [
-    {
-      id: 1,
-      title: "이번 주 1일 1커밋",
-      text: "일주일 간 하루도 빼놓지 않겠다... ",
-      time: "2024-01-24",
-    },
-    {
-      id: 2,
-      title: "매주 일요일 기술블로그 쓰기",
-      text: "더이상 물러날 곳이 없당. ",
-      time: "2024-01-22",
-    },
-    {
-      id: 3,
-      title: "일기쓰겠습니다.",
-      text: "올해는 정말로...",
-      time: "2024-01-11",
-    },
-  ];
+const CommunityCompoWrapper = () => {
+  const router = useRouter();
+  const [page, setPage] = useState(0);
+  const clickNewDetail = (community_id: number) => {
+    router.push(`/community/view/${community_id}`);
+  };
+  const { mainData } = useGetCommunity({
+    page: page,
+  });
+  useEffect(() => {
+    setPage(mainData.pageInfo.nowPage);
+  }, [page]);
   return (
     <>
       <SelectWrapper>
         <div className="w-[182px] h-13 flex justify-center border-b-4 border-b-[#4C6FFF] text-[#4C6FFF] tracking-[-6%] font-bold text-xl pb-4 z-10">
           회고 친구 구해요
         </div>
-        <NewButton onClick={() => {
-          setIsWrite(true)
-          //router.push("/community/write");
-        }}>
+        <NewButton
+          onClick={() => {
+            router.push("/community/write");
+          }}
+        >
           <div>+</div>
           <div>New</div>
         </NewButton>
@@ -56,15 +41,26 @@ const CommunityCompoWrapper = ({setIsWrite}:CommunityCompoWrapperProps) => {
       <div className="pt-[60px] px-3 mb-12">
         {/* 여기에 호버만 추가하면 될 듯! 이건 나중의 일! 이것도 8개!*/}
         <div className="flex-col flex gap-4">
-          {storyList.map((e) => {
-            return (
-              <Story key={e.id} title={e.title} text={e.text} time={e.time} />
-            );
-          })}
+          {mainData === null
+            ? null
+            : mainData.postList.map((e) => {
+                return (
+                  <div
+                    key={e.community_id}
+                    onClick={() => clickNewDetail(e.community_id)}
+                  >
+                    <Story title={e.title} text={e.content} />
+                  </div>
+                );
+              })}
         </div>
       </div>
       <div className="w-full flex justify-end">
-        <MoveNext totalPage={2} currentPage={page} setCurrentPage={setPage} />
+        <MoveNext
+          isLast={mainData.pageInfo.last}
+          currentPage={page}
+          setCurrentPage={setPage}
+        />
       </div>
     </>
   );

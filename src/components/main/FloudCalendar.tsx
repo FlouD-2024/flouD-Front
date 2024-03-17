@@ -8,15 +8,7 @@ import { mainDayAtom } from "@/store/atom";
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-export const dayList = [
-  "2024-02-01",
-  "2024-02-04",
-  "2024-02-05",
-  "2024-02-10",
-  "2024-02-14",
-];
-
-const FloudCalendar = () => {
+const FloudCalendar = ({ dayList }: { dayList: string[] }) => {
   const [selectDate, setSelectDate] = useState(new Date());
   const [startDate, onChange] = useState<Value | null>(new Date());
   const [open, setOpen] = useState(false);

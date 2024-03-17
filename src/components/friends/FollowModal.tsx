@@ -6,6 +6,8 @@ import friendCloud from "@/img/friends/플라우디 로고.
 import notFound from "@/img/friends/notFound.png";
 import Image from "next/image";
 import Plus from "@/img/svg/friends/plus.svg";
+import useSearchFriend from "@/query/get/useSearchFriend";
+import { postFriendRequest } from "@/apis/friend/friend";
 
 type prop = {
   open: boolean;
@@ -20,6 +22,10 @@ const FollowModal = (prop: prop) => {
     prop.setCheck("");
   };
 
+  const { mainData } = useSearchFriend({
+    nickname: prop.check,
+  });
+
   const ArticleStyle = ({ children }: { children: ReactNode }) => {
     return (
       <article className="w-full h-full relative flex flex-col justify-center items-center">
@@ -27,9 +33,20 @@ const FollowModal = (prop: prop) => {
       </article>
     );
   };
+
+  const onClick = async (nickname: string) => {
+    const data = await postFriendRequest(nickname);
+    if (data.success === true) {
+      alert("친구 신청이 되었어요!");
+      onClose();
+    } else {
+      alert("에러가 났습니다. 다시 시도해주세요");
+      onClose();
+    }
+  };
   return (
     <ModalLayout>
-      {prop.check === "notFound" ? (
+      {mainData === null ? (
         <>
           <Modal className="nofriend">
             <ArticleStyle>
@@ -66,13 +83,16 @@ const FollowModal = (prop: prop) => {
                 alt="팔로우신청창"
               />
               <div className="text-[40px] leading-[20.4px] font-extrabold tracking-[-6%] mt-7 mb-4">
-                이름 있는 곳
+                {mainData.nickname}
               </div>
               <div className="mb-8 text-[#828282] text-base tracking-[-6%]">
-                어쩌구 저쩌구 쏼라쏼라... <br />
-                user ID : 유저아이디
+                {mainData.introduction} <br />
+                Email : {mainData.email}
               </div>
-              <FollowModalBtn className="success">
+              <FollowModalBtn
+                className="success"
+                onClick={() => onClick(mainData.nickname)}
+              >
                 <Plus />
                 팔로우 신청하기
               </FollowModalBtn>

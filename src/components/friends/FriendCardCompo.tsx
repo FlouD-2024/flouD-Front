@@ -1,8 +1,3 @@
-import {
-  FriendsTestData,
-  OtherFriendsTestData,
-  TotalFriendCardProp,
-} from "@/store/testData";
 import React, { useEffect, useState } from "react";
 import { styled } from "twin.macro";
 import LeftBtn from "@/img/svg/chevron_left.svg";
@@ -13,17 +8,13 @@ import ContentNav from "../util/ContentNav";
 import Search from "@/img/svg/friends/search.svg";
 import FollowModal from "./FollowModal";
 import MoveNext from "../util/MoveNext";
-import { useRecoilValue } from "recoil";
-import { pageNumAtom } from "@/store/atom";
+import useGetFriendList from "@/query/get/useGetFriendList";
 
 const FriendCardCompo = () => {
   // 여기서 그 신청창 팝업 만들고 그러면 될 듯?
   // next는 일단 나중으로 생각해보고... 얘네 백엔드가 어떻게 오는지
   // 없는거 눌렀을 때는 없다는 팝업창만 일단 띄우자..!
-  const [data, setData] = useState<TotalFriendCardProp>({
-    day: dayjs().toDate(),
-    friendsCard: [],
-  });
+  const [page, setPage] = useState(0);
   const [day, setDay] = useState(dayjs());
   const [searchValue, setSearchValue] = useState<string>("");
   const [open, setOpen] = useState(false);
@@ -31,31 +22,20 @@ const FriendCardCompo = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
-  const [page, setPage] = useState(1);
+  const { friendData } = useGetFriendList({
+    date: day.format("YYYY-MM-DD"),
+    page: 0,
+  });
+  useEffect(() => {
+    setPage(friendData.pageInfo.nowPage);
+  }, [page]);
   const handleKeyUp = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && open === false) {
-      if (searchValue === "아리" || searchValue === "dkfl") {
-        setOpen(!open);
-        setCheck("Found");
-      } else {
-        setOpen(!open);
-        setCheck("notFound");
-      }
+      setOpen(!open);
+      setCheck(searchValue);
       setSearchValue("");
     }
   };
-  useEffect(() => {
-    if (day.format("YYYY-MM-DD") === "2024-02-28") {
-      setData(FriendsTestData);
-    } else if (day.format("YYYY-MM-DD") === "2024-02-26") {
-      setData(OtherFriendsTestData);
-    } else {
-      setData({
-        day: dayjs().toDate(),
-        friendsCard: [],
-      });
-    }
-  }, [day]);
   return (
     <div>
       <div className="flex w-full h-[60px] justify-between items-center mb-10">
@@ -73,7 +53,7 @@ const FriendCardCompo = () => {
       </div>
       <div className="flex pl-[31px] items-center w-full mb-14">
         <div className="font-bold tracking-[-6%] text-[40px]">
-          Friend({data?.friendsCard.length})
+          Friend({friendData.pageInfo.totalElements})
         </div>
         <DayButtonWrapper>
           <button
@@ -96,21 +76,21 @@ const FriendCardCompo = () => {
         </DayButtonWrapper>
       </div>
       <CardSortWrapper>
-        {typeof data === "undefined"
+        {friendData.friendshipList.length === 0
           ? null
-          : data.friendsCard.map((e) => {
+          : friendData.friendshipList.map((e, i) => {
               return (
                 <>
                   <div
                     style={{
-                      order: e.isWrite ? "1" : "2",
+                      order: e.memoir_status ? "1" : "2",
                     }}
                   >
                     <FriendCard
-                      key={e.friendId}
-                      id={e.friendId}
-                      name={e.name}
-                      isWrite={e.isWrite}
+                      key={e.memoir_id}
+                      id={e.memoir_id}
+                      name={e.friend_nickname}
+                      isWrite={e.memoir_status}
                       date={day}
                     />
                   </div>
@@ -127,7 +107,11 @@ const FriendCardCompo = () => {
         />
       )}
       <div className="w-full flex justify-end">
-        <MoveNext totalPage={3} currentPage={page} setCurrentPage={setPage} />
+        <MoveNext
+          isLast={friendData.pageInfo.last}
+          currentPage={page}
+          setCurrentPage={setPage}
+        />
       </div>
     </div>
   );

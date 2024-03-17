@@ -3,9 +3,9 @@ import AlarmMainBox from "./AlarmMainBox";
 import { useRecoilValue } from "recoil";
 import { alarmAtom } from "@/store/atom";
 import AlarmSideBar from "./AlarmSideBar";
+import { alarmListType } from "@/types/mainType";
 
-const AlarmMainBoxWrapper = () => {
-  const alarmData = useRecoilValue(alarmAtom).slice(0, 2);
+const AlarmMainBoxWrapper = ({ alarmList }: { alarmList: alarmListType[] }) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="w-[547px]">
@@ -21,15 +21,15 @@ const AlarmMainBoxWrapper = () => {
         </button>
         {open && <AlarmSideBar open={open} setOpen={setOpen} />}
       </div>
-      {alarmData.map((e) => {
+      {alarmList.map((e, i) => {
         return (
           <>
             <AlarmMainBox
-              key={e.id}
-              id={e.id}
+              key={i}
+              id={i}
               nickname={e.nickname}
-              content={e.content}
-              type={e.type}
+              content={e.message}
+              type={e.alarmType}
             />
           </>
         );
