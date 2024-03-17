@@ -62,10 +62,6 @@ export default function RetroToday({ }: Props) {
                             try_memoir: retroTry
                         }).then((data)=>{
                             setRetroTodayOpened(false)
-                            if(data.success === true){
-                            }else{
-
-                            }
                         })
                     }}
                 >회고 작성완료</button>

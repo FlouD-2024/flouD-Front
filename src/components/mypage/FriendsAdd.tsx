@@ -1,4 +1,4 @@
-import { MyFriendList } from '@/apis/mypage/mypage';
+import { MyFriendList } from '@/types/myPageType';
 import React from 'react'
 import Typography from '../Typography'
 import FriendsID from './FriendsID'

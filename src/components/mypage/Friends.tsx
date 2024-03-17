@@ -1,4 +1,5 @@
 import { getUserFriend } from '@/apis/mypage/mypage'
+import { MyFriendList } from '@/types/myPageType'
 import React, { useEffect, useState } from 'react'
 import FriendList from './FriendList'
 import FriendsAdd from './FriendsAdd'
@@ -8,13 +9,13 @@ type Props = {
 }
 
 export default function Friends({}: Props) {
-  const [friends, setFriends] = useState([]);
-  const [friendAdd, setFriendAdd] = useState([]);
+  const [friends, setFriends] = useState<MyFriendList[]>([]);
+  const [friendAdd, setFriendAdd] = useState<MyFriendList[]>([]);
 
   useEffect(()=>{
     getUserFriend(1).then(data=>{
-      setFriends(data.data.myFriendList)
-      setFriendAdd(data.data.waitingList)
+      setFriends(data.myFriendList)
+      setFriendAdd(data.waitingList)
     })
   },[])
   return (

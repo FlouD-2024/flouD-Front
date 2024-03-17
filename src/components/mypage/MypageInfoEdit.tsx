@@ -6,32 +6,30 @@ import Image from "next/image";
 import Blue from "@/img/Mypage/BlueEllipse.png"
 import { type } from 'os';
 import DdayEdit from './DdayEdit';
+import { GoalListItem } from '@/types/myPageType';
+import { getNameCheck, putUserInfo } from '@/apis/mypage/mypage';
 
 type Props = {
     setIsEdit : React.Dispatch<React.SetStateAction<boolean>>
+    nickname: string
+    goallist: GoalListItem[]
+    introduction: string
+    setNickname: React.Dispatch<React.SetStateAction<string>>
+    setGoallist: React.Dispatch<React.SetStateAction<GoalListItem[]>>
+    setIntroduction: React.Dispatch<React.SetStateAction<string>>
 }
 type DDayDataType = {
     title: string,
     date: string,
 }
 
-export default function MypageInfoEdit({ setIsEdit }: Props) {
-    const [dDayData,setDDayData] = useState<DDayDataType[]>([
-        {
-            title: "지긋지긋한 토익시험",
-            date: "2024.03.04 (D-48)"
-        },
-        {
-            title: "상반기 공채 시작날짜 아마도 5월",
-            date: "2024.05.08 (D-89)"
-        }
-    ]);
-    const [addedDDay, setAddedDDay] = useState<DDayDataType[]>([]);
+export default function MypageInfoEdit({nickname, goallist, introduction, setNickname, setGoallist, setIntroduction, setIsEdit }: Props) {
+    const [addedDDay, setAddedDDay] = useState<GoalListItem[]>([]);
+    const [isNickNameChanged, setIsNickNameChanged] = useState(false);
+    const [isNickNameCheck, setIsNickNameCheck] = useState<boolean>(false);
 
-    const [nickname, setNickname] = useState<string>("");
-    const [introduce, setIntroduce] = useState<string>("");
     const onDDayDeleteClick = (i: number) => {
-        setDDayData(dDayData.filter((_, index) => i != index))
+        setGoallist(goallist.filter((_, index) => i != index))
     }
 
     const onAddedDeleteClick = (i: number) => {
@@ -41,29 +39,51 @@ export default function MypageInfoEdit({ setIsEdit }: Props) {
     const onAddedDdayNameChange = (i: number, title:string) => {
         setAddedDDay(addedDDay.map((item, index) => {
             if(index === i) {
-                return {...item, title: title};
+                return {...item, content: title};
             } else {
                 return item;
             }
         }))
     }
+
+    const onAddedDdayDateChange = (i: number, date:string) => {
+        setAddedDDay(addedDDay.map((item, index) => {
+            if(index === i) {
+                return {...item, deadline: date};
+            } else {
+                return item;
+            }
+        }))
+    }
+
+    const onEditComplete = () => {
+        putUserInfo({nickname, introduction, goalList: goallist.concat(addedDDay)}).then(data => setIsEdit(false));
+    }
+
+    const onCheckNickName = () => {
+        getNameCheck(nickname).then(data => setIsNickNameCheck(!data.isDuplicated));
+    }
+
     return (
         <>
             <div className='bg-[white] py-[40px] px-[50px]'>
                 <div className='mb-[30px] flex'>
                     <div>
-                        <Image src={Blue} className='object-contain' />
+                        <Image alt="" src={Blue} className='object-contain' />
                     </div>
                     <Typography title={'반가워요, FlouD 입니다.'} type={'bold40-blue'} />
                 </div>
                 <div className='mb-[30px] flex justify-start gap-[10px]'>
                     <Typography title={'닉네임'} type={'bold20'} />
-                    <input className='bg-[#4C6FFF]/10 h-[35px] rounded-[10px]' value={nickname} onChange={(e)=>setNickname(e.target.value)}></input>
-                    <button className='bg-[#4C6FFF] text-white px-[10px] py-[5px] rounded-[10px]'>중복확인</button>
+                    <input className='bg-[#4C6FFF]/10 h-[35px] rounded-[10px]' value={nickname} onChange={(e)=> {
+                        setNickname(e.target.value)
+                        setIsNickNameChanged(true)
+                    }}></input>
+                    {isNickNameChanged && <button className='bg-[#4C6FFF] text-white px-[10px] py-[5px] rounded-[10px]' onClick={onCheckNickName}>중복확인</button>}
                 </div>
                 <div className='mb-[30px]'>
                     <Typography title={'자기소개'} type={'bold20'} />
-                    <textarea className='bg-[#4C6FFF]/10 w-[100%] rounded-[10px]' value={introduce} onChange={(e)=>setIntroduce(e.target.value)}></textarea>
+                    <textarea className='bg-[#4C6FFF]/10 w-[100%] rounded-[10px]' value={introduction} onChange={(e)=>setIntroduction(e.target.value)}></textarea>
                 </div>
                 <div>
                     <div className='flex justify-start'>
@@ -72,30 +92,32 @@ export default function MypageInfoEdit({ setIsEdit }: Props) {
                     </div>
                     <div className='flex justify-start gap-[20px]'>
                         {
-                            dDayData.map((item, i) => {
-                                return (<Dday title={item.title} date={item.date} isEdit={true} onDeleteClick={() => onDDayDeleteClick(i)}/>)
+                            goallist.map((item, i) => {
+                                return (<Dday title={item.content} date={item.deadline} goalId={item.goal_id} isEdit={true} onDeleteClick={() => onDDayDeleteClick(i)}/>)
                             })
                         }
                         {
                             addedDDay.map((item, i) => {
                                 return (
                                     <DdayEdit 
-                                        dDayName={item.title} 
+                                        date={item.deadline}
+                                        dDayName={item.content} 
                                         onDDayNameChange={(e) => onAddedDdayNameChange(i, e.target.value)} 
+                                        onDDayDateChange={(date) => onAddedDdayDateChange(i, date)} 
                                         onDeleteClick={() => onAddedDeleteClick(i)}/>
                                 )
                             })
                         }
                         {
-                            dDayData.length + addedDDay.length < 3 ?
-                            (<DdayAdd isEdit={true} onDDayAddClick={() => setAddedDDay(org => [...org, {title: '', date: ''}])}/>)
+                            goallist.length + addedDDay.length < 3 ?
+                            (<DdayAdd isEdit={true} onDDayAddClick={() => setAddedDDay(org => [...org, {content: '', deadline: ''}])}/>)
                             :
                             <></>
                             
                         }
                     </div>
                     <div className='flex'>
-                        <button className='bg-[#4C6FFF] text-white px-[30px] py-[5px] rounded-[10px] my-[30px] mx-[auto]' onClick={()=>setIsEdit(false)}>변경완료</button>
+                        <button disabled={isNickNameChanged && !isNickNameCheck} className='bg-[#9C9C9C] text-white px-[30px] py-[5px] rounded-[10px] my-[30px] mx-[auto]' onClick={onEditComplete}>변경완료</button>
                     </div>
                 </div>
             </div>

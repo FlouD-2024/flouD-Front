@@ -19,11 +19,11 @@ export default function RetroDetail({ }: Props) {
     useEffect(()=>{
         getRetroDetail(retroDetailDate)
             .then((data)=>{
-                setRetroTitle(data.data.title);
-                setRetroKeep(data.data.keep_memoir);
-                setRetroProblem(data.data.problem_memoir);
-                setRetroTry(data.data.try_memoir);
-                setRetroId(data.data.memoir_id);
+                setRetroTitle(data.title);
+                setRetroKeep(data.keep_memoir);
+                setRetroProblem(data.problem_memoir);
+                setRetroTry(data.try_memoir);
+                setRetroId(data.memoir_id);
             }) 
     },[])
     return (
@@ -48,7 +48,7 @@ export default function RetroDetail({ }: Props) {
                     onClick={()=>
                         {
                             setRetroDetailOpened(false);
-                            putRetroDetail(retroId, {title: retroTitle,retroKeep: retroKeep, retroProblem:retroProblem, retroTry:retroTry})
+                            putRetroDetail(retroId, {title: retroTitle,keep_memoir: retroKeep, problem_memoir:retroProblem, try_memoir:retroTry})
                         }
                     }
                 >수정하기</button>

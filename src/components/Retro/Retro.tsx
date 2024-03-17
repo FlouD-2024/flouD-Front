@@ -10,11 +10,12 @@ import { getRetroDetail, getRetroList, getTest } from '@/apis/retro/retro'
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
 import isoWeek from 'dayjs/plugin/isoWeek'
+import { RetroListItem } from '@/types/retroType'
 
 type Props = {}
 
 export default function Retro({ }: Props) {
-    const [retroList, setRetroList] = useState([]);
+    const [retroList, setRetroList] = useState<RetroListItem[]>([]);
     const [month, setMonth] = useState(dayjs().month());
     const [week, setWeek] = useState(Math.ceil((dayjs().diff(dayjs().month(month).startOf("month").startOf("week"), "day") + 1)/7));
     // const [month, setMonth] = useState(2);
@@ -28,10 +29,10 @@ export default function Retro({ }: Props) {
     const getFirstDayofFirstWeek = () => dayjs().month(month).startOf("month").startOf("week");
 
     const onNewBtnClick = () =>{
-        //조건 걸어야 댐 [회고 단일 조회 API 활용]
         getRetroDetail(dayjs().format('YYYY-MM-DD'))
             .then(data => {
-                if (data.data) {
+                console.warn("회고 데이터 : ", data);
+                if (data) {
                     setRetroCompleteModalOpen(true)
                 } else {
                     setRetroTodayOpend(true)
@@ -40,13 +41,13 @@ export default function Retro({ }: Props) {
     }
 
     useEffect(() => {
-        setTimeout(() => {
+        if (!retroTodayOpen) {
             getRetroList(getFirstDayofFirstWeek().add((week-1)*7, 'day').format('YYYY-MM-DD'))
                 .then(data => {
-                    setRetroList(data.data.memoirList);
+                    setRetroList(data.memoirList);
                 })
-        }, 1000);
-    },[month, week])
+        }
+    },[month, week, retroTodayOpen])
 
     useEffect(() => {
         console.log(Math.ceil((dayjs().diff(dayjs().month(month).startOf("month").startOf("week"), "day") + 1)/7));

@@ -5,29 +5,23 @@ import DdayAdd from './DdayAdd'
 import Image from "next/image";
 import Blue from "@/img/Mypage/BlueEllipse.png"
 import { getUserInfo } from '@/apis/mypage/mypage';
+import { GoalListItem } from '@/types/myPageType';
 
 type Props = {
     setIsEdit : React.Dispatch<React.SetStateAction<boolean>>
+    nickname: string
+    goallist: GoalListItem[]
+    introduction: string
 }
 
-export default function MypageInfo({setIsEdit}: Props) {
-    const [nickname, setNickname] = useState<string>("");
-    const [goallist, setGoallist] = useState([]);
-    const [introduction, setIntroduction] = useState<string>("");
-    useEffect(()=>{
-        getUserInfo().then(data=>{
-            setNickname(data.data.nickname);
-            setGoallist(data.data.goalList);
-            setIntroduction(data.data.introduction);
-        })
-    },[])
+export default function MypageInfo({nickname, goallist, introduction, setIsEdit}: Props) {
 
     return (
         <>
             <div className='bg-[white] py-[40px] px-[50px]'>
                 <div className='mb-[30px] flex'>
                     <div>
-                        <Image src={Blue} className='object-contain' />
+                        <Image alt="" src={Blue} className='object-contain' />
                     </div>
                     <Typography title={'반가워요, FlouD 입니다.'} type={'bold40-blue'} />
                 </div>

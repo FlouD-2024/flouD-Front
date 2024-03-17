@@ -1,12 +1,15 @@
 import React, { ChangeEventHandler, useState } from 'react';
+import DdayDate from './DdayDate';
 
 type Props = {
   dDayName?: string,
+  date: string,
   onDDayNameChange?: ChangeEventHandler<HTMLInputElement>,
+  onDDayDateChange: (date:string) => void,
   onDeleteClick?: () => void
 };
 
-export default function DdayEdit({dDayName, onDDayNameChange, onDeleteClick}: Props) {
+export default function DdayEdit({dDayName, date, onDDayNameChange, onDeleteClick, onDDayDateChange}: Props) {
 
   return (
     <>
@@ -15,6 +18,7 @@ export default function DdayEdit({dDayName, onDDayNameChange, onDeleteClick}: Pr
             <input className='text-[#B8C6FF] text-[20px] text-center' placeholder='D-DAY 이름을 작성해주세요' value={dDayName} onChange={onDDayNameChange}></input> 
             <button className='text-[10px] bg-[#4C6FFF] text-white w-[18px] h-[18px] rounded-[5px]' onClick={onDeleteClick}>X</button>
           </div>
+          <DdayDate date={date} onDDayDateChange={onDDayDateChange} />
       </div>
     </>
 

@@ -1,4 +1,5 @@
 import { getUserCommunity } from '@/apis/mypage/mypage';
+import { PostListItem } from '@/types/myPageType';
 import React, { useEffect, useState } from 'react'
 import Story from './Story'
 
@@ -6,11 +7,11 @@ type Props = {}
 
 export default function StoryList({ }: Props) {
     const [pageNumber, setPageNumber] = useState(1);
-    const [storylist, setStorylist] = useState([]);
+    const [storylist, setStorylist] = useState<PostListItem[]>([]);
 
     useEffect(()=>{
       getUserCommunity(pageNumber).then(data=>{
-        setStorylist(data.data.postList)
+        setStorylist(data.postList)
       })  
     },[])
     
@@ -21,7 +22,7 @@ export default function StoryList({ }: Props) {
                 {
                     storylist.map((e) => {
                         return (
-                            <Story title={e.title} text={e.text} time={e.time} />
+                            <Story title={e.title} text={e.content} time={e.time} />
                         )
                     })
                 }
