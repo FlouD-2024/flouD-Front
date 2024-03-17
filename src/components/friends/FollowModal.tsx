@@ -7,6 +7,7 @@ import notFound from "@/img/friends/notFound.png";
 import Image from "next/image";
 import Plus from "@/img/svg/friends/plus.svg";
 import useSearchFriend from "@/query/get/useSearchFriend";
+import { postFriendRequest } from "@/apis/friend/friend";
 
 type prop = {
   open: boolean;
@@ -31,6 +32,17 @@ const FollowModal = (prop: prop) => {
         {children}
       </article>
     );
+  };
+
+  const onClick = async (nickname: string) => {
+    const data = await postFriendRequest(nickname);
+    if (data.success === true) {
+      alert("친구 신청이 되었어요!");
+      onClose();
+    } else {
+      alert("에러가 났습니다. 다시 시도해주세요");
+      onClose();
+    }
   };
   return (
     <ModalLayout>
@@ -71,13 +83,16 @@ const FollowModal = (prop: prop) => {
                 alt="팔로우신청창"
               />
               <div className="text-[40px] leading-[20.4px] font-extrabold tracking-[-6%] mt-7 mb-4">
-                {/* {mainData} */}
+                {mainData.nickname}
               </div>
               <div className="mb-8 text-[#828282] text-base tracking-[-6%]">
-                {/* {mainData.introduction} <br />
-                Email : {mainData.email} */}
+                {mainData.introduction} <br />
+                Email : {mainData.email}
               </div>
-              <FollowModalBtn className="success">
+              <FollowModalBtn
+                className="success"
+                onClick={() => onClick(mainData.nickname)}
+              >
                 <Plus />
                 팔로우 신청하기
               </FollowModalBtn>
