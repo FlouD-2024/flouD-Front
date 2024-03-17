@@ -1,5 +1,5 @@
 import router, { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "twin.macro";
 import Story from "../mypage/Story";
 import MoveNext from "../util/MoveNext";
@@ -12,13 +12,16 @@ interface CommunityCompoWrapperProps {
 
 const CommunityCompoWrapper = () => {
   const router = useRouter();
+  const [page, setPage] = useState(0);
   const clickNewDetail = (community_id: number) => {
     router.push(`/community/view/${community_id}`);
   };
   const { mainData } = useGetCommunity({
-    page: 0,
+    page: page,
   });
-  const [page, setPage] = useState(mainData.pageInfo.nowPage);
+  useEffect(() => {
+    setPage(mainData.pageInfo.nowPage);
+  }, [page]);
   return (
     <>
       <SelectWrapper>
