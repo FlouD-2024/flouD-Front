@@ -10,10 +10,6 @@ import AlarmSideBar from "../main/AlarmSideBar";
 const ContentNav = () => {
   const [open, setOpen] = useState(false);
   // 이 부분은 나중에 react-query로 데려올 때 호출할 예정 , 이러면 서버한테 부담 없겠지...
-  const setAlarmData = useSetRecoilState(alarmAtom);
-  useEffect(() => {
-    setAlarmData(AlarmTestData);
-  }, []);
   return (
     <div className="flex items-center gap-[18px]">
       <Image

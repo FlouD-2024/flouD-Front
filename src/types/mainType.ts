@@ -9,17 +9,17 @@ export type Maindata = {
   alarmList: Array<alarmListType>;
 };
 
-type goalListType = {
+export type goalListType = {
   goal: string;
   deadline: string;
 };
 
-export interface alarmListType {
+export type alarmListType = {
   nickname: string;
   alarmType: string;
   message: string;
   created_at: Date;
-}
+};
 
 export type userInfoType = {
   users_id: number;

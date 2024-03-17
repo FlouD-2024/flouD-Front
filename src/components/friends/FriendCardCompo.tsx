@@ -16,7 +16,6 @@ import MoveNext from "../util/MoveNext";
 import { useRecoilValue } from "recoil";
 import { pageNumAtom } from "@/store/atom";
 import useGetFriendList from "@/query/get/useGetFriendList";
-import useSearchFriend from "@/query/get/useSearchFriend";
 
 const FriendCardCompo = () => {
   // 여기서 그 신청창 팝업 만들고 그러면 될 듯?

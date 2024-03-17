@@ -12,7 +12,7 @@ function useGetAlarm() {
     return response.data;
   };
 
-  const { data: alarmList } = useSuspenseQuery({
+  const { data: alarmList = [] } = useSuspenseQuery<alarmListType[]>({
     queryKey: ["get-alarm"],
     queryFn: fetchAlarm,
   });
