@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "twin.macro";
 
 type prop = {
-  totalPage: number;
+  isLast: boolean;
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
@@ -14,9 +14,8 @@ const MoveNext = (prop: prop) => {
     else if (prop.currentPage === 0) return;
   };
   const onNext = () => {
-    if (prop.currentPage !== prop.totalPage)
-      prop.setCurrentPage(prop.currentPage + 1);
-    else if (prop.currentPage === prop.totalPage) return;
+    if (prop.isLast === false) prop.setCurrentPage(prop.currentPage + 1);
+    else return;
   };
   return (
     <BtnWrapper>
@@ -24,7 +23,7 @@ const MoveNext = (prop: prop) => {
       <div
         onClick={() => onPrev()}
         style={{
-          color: prop.currentPage === 1 ? "#D9D9D9" : "black",
+          color: prop.currentPage === 0 ? "#D9D9D9" : "black",
         }}
       >
         {"<"}
@@ -32,7 +31,7 @@ const MoveNext = (prop: prop) => {
       <div
         onClick={() => onNext()}
         style={{
-          color: prop.currentPage === prop.totalPage ? "#D9D9D9" : "black",
+          color: prop.isLast ? "#D9D9D9" : "black",
         }}
       >
         {">"}

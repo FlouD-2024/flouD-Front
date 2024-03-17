@@ -73,7 +73,7 @@ const FriendCardCompo = () => {
       </div>
       <div className="flex pl-[31px] items-center w-full mb-14">
         <div className="font-bold tracking-[-6%] text-[40px]">
-          Friend({data?.friendsCard.length})
+          Friend({friendData.pageInfo.totalElements})
         </div>
         <DayButtonWrapper>
           <button
@@ -128,7 +128,7 @@ const FriendCardCompo = () => {
       )}
       <div className="w-full flex justify-end">
         <MoveNext
-          totalPage={friendData.pageInfo.totalPages}
+          isLast={friendData.pageInfo.last}
           currentPage={page}
           setCurrentPage={setPage}
         />

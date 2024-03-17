@@ -7,6 +7,7 @@ import Image from "next/image";
 import dayjs from "dayjs";
 import ShowKPTModal from "../util/ShowKPTModal";
 import FriendNotWrite from "./FriendNotWrite";
+import ShowKPTFriendModal from "../util/ShowKPTFriendModal";
 
 type FriendCheck = {
   id: number;
@@ -53,7 +54,7 @@ const FriendCard = (prop: FriendCheck) => {
         </Card>
       </CardWrapper>
       {open && prop.isWrite && (
-        <ShowKPTModal
+        <ShowKPTFriendModal
           open={open}
           setOpen={setOpen}
           id={prop.id}
