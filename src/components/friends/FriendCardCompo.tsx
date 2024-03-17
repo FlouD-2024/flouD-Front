@@ -34,6 +34,7 @@ const FriendCardCompo = () => {
   };
   const { friendData } = useGetFriendList({
     date: day.format("YYYY-MM-DD"),
+    page: 0,
   });
   const [page, setPage] = useState(friendData.pageInfo.nowPage);
   const handleKeyUp = (e: React.KeyboardEvent) => {
