@@ -18,7 +18,7 @@ const CommunityViewBox = () => {
   const { mutate } = useDeleteCommunity(parseInt(id));
   const deleteControl = (e: React.MouseEvent | React.TouchEvent) => {
     e.stopPropagation();
-    if (window.confirm(`해당 게시글의 좋아요를 취소하시겠습니까?`)) {
+    if (window.confirm(`해당 게시글을 삭제하시겠습니까?`)) {
       mutate();
       setOpen(!open);
       return;
@@ -65,6 +65,7 @@ const CommunityViewBox = () => {
                   <div
                     className="inner"
                     onClick={() => {
+                      router.push(`/community/edit/${mainData.community_id}`);
                       setOpen(false);
                     }}
                   >
