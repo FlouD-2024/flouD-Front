@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/apis/auth/auth";
+import axiosInstance from "@/apis/auth/auth";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 
 interface IRequest<T, P> {

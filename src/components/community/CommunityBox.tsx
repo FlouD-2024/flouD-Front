@@ -1,7 +1,7 @@
 import useGetCommunityDetail from "@/query/get/useGetCommunityDetail";
 import useGetUserInfo from "@/query/get/useGetUserInfo";
-import router, { useRouter } from "next/router";
-import React, { useState } from "react";
+import router from "next/router";
+import React from "react";
 import tw, { css, styled } from "twin.macro";
 import CommunityBoxCompo from "./CommunityBoxCompo";
 

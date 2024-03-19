@@ -1,13 +1,15 @@
 import React, { Suspense, useState } from "react";
 import { Noto_Sans_KR } from "next/font/google";
 import { ScreenBox } from "..";
-import ContentNav from "@/components/util/ContentNav";
-import CommunityCompoWrapper from "@/components/community/CommunityCompoWrapper";
 import ErrorBoundary from "@/components/util/ErrorBoundary";
+import dynamic from "next/dynamic";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
 export const CommunityText = ({ isMain }: { isMain: boolean }) => {
+  const ContentNav = dynamic(() => import("@/components/util/ContentNav"), {
+    ssr: false,
+  });
   return (
     <>
       <div className="flex w-full h-[60px] justify-end items-center mb-7">
@@ -27,6 +29,12 @@ export const CommunityText = ({ isMain }: { isMain: boolean }) => {
 };
 
 const index = () => {
+  const CommunityCompoWrapper = dynamic(
+    () => import("@/components/community/CommunityCompoWrapper"),
+    {
+      ssr: false,
+    }
+  );
   return (
     <main
       className={`min-h-screen flex flex-col justify-center ${noto.className}`}
