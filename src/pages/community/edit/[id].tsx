@@ -1,10 +1,18 @@
 import { ScreenBox } from "@/pages";
-import React from "react";
+import React, { Suspense } from "react";
 import { CommunityText } from "..";
-import CommunityBox from "@/components/community/CommunityBox";
 import { Noto_Sans_KR } from "next/font/google";
+import ErrorBoundary from "@/components/util/ErrorBoundary";
+import dynamic from "next/dynamic";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
+
+export const CommunityBox = dynamic(
+  () => import("@/components/community/CommunityBox"),
+  {
+    ssr: false,
+  }
+);
 
 const EditPage = () => {
   return (
@@ -12,8 +20,12 @@ const EditPage = () => {
       className={`min-h-screen flex flex-col justify-center ${noto.className}`}
     >
       <ScreenBox>
-        <CommunityText isMain={false} />
-        <CommunityBox />
+        <ErrorBoundary>
+          <Suspense fallback={<div>loading...</div>}>
+            <CommunityText isMain={false} />
+            <CommunityBox />
+          </Suspense>
+        </ErrorBoundary>
       </ScreenBox>
     </main>
   );

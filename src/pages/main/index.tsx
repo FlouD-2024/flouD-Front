@@ -1,12 +1,18 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { ScreenBox } from "..";
-import MainComponents from "@/components/main/MainComponents";
 import { Noto_Sans_KR } from "next/font/google";
 import ErrorBoundary from "@/components/util/ErrorBoundary";
+import dynamic from "next/dynamic";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
 const index = () => {
+  const MainComponents = dynamic(
+    () => import("@/components/main/MainComponents"),
+    {
+      ssr: false,
+    }
+  );
   return (
     <main
       className={`min-h-screen flex flex-col justify-center ${noto.className}`}

@@ -21,7 +21,7 @@ export interface IUserInfo {
   refreshToken: string;
 }
 
-const { persistAtom } = recoilPersist();
+// const { persistAtom } = recoilPersist();
 
 // const { persistAtom } = recoilPersist({
 //   //atom을 자동으로 로컬에 저장, 삭제해준다.

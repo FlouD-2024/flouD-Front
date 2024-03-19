@@ -1,64 +1,37 @@
+import useGetCommunityDetail from "@/query/get/useGetCommunityDetail";
 import useGetUserInfo from "@/query/get/useGetUserInfo";
-import { usePostCommunity } from "@/query/post/usePostCommunity";
-import React, { ReactNode, useCallback, useState } from "react";
+import router from "next/router";
+import React from "react";
 import tw, { css, styled } from "twin.macro";
+import CommunityBoxCompo from "./CommunityBoxCompo";
 
 const CommunityBox = () => {
-  const [data, setData] = useState<string>("");
-  const onChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setData(e.target.value);
-  }, []);
-  const [title, setTitle] = useState<string>("");
-  const onTitleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setTitle(e.target.value);
-    },
-    []
-  );
-  const { mutate } = usePostCommunity({
-    prop: {
-      title: title,
-      content: data,
-      postType: "FIND_FRIEND",
-    },
-  });
-  const onClick = (e: React.MouseEvent | React.TouchEvent) => {
-    e.stopPropagation();
-    mutate();
-  };
   const { userInfo } = useGetUserInfo();
-  const Flex_END = ({ children }: { children: ReactNode }) => {
+  const isEditPage = router.pathname.includes("edit");
+  const id = isEditPage ? (router.query.id as string) : "";
+  function EditComponent({ id }: { id: string }) {
+    const { mainData } = useGetCommunityDetail({
+      community_id: parseInt(id),
+    });
     return (
-      <div className="flex justify-between items-center mb-[18px]">
-        {children}
+      <div className=" w-full flex flex-col items-center tracking-[-6%]">
+        <CommunityBoxCompo
+          title={mainData.title}
+          data={mainData.content}
+          nickname={userInfo.nickname}
+        />
       </div>
     );
-  };
-  return (
-    <div className=" w-full flex flex-col items-center tracking-[-6%]">
-      <CommunityBoxWrapper>
-        <Flex_END>
-          <CommunityTitleInput
-            value={title}
-            onChange={onTitleChange}
-            type="text"
-            placeholder="제목을 입력하세요(30자 이내)"
-            maxLength={30}
-          />
-        </Flex_END>
-        <Flex_END>
-          <div className="pl-[13px] flex gap-2 items-center">
-            <div className="font-semibold text-xl">작성자</div>
-            <div className="h-9 rounded bg-[rgba(127,179,255,0.15)] px-4 py-1 text-lg">
-              {userInfo.nickname}
-            </div>
-          </div>
-        </Flex_END>
-        <CommunityTextArea value={data} onChange={onChange} />
-      </CommunityBoxWrapper>
-      <CommunitySubmitBtn onClick={onClick}>게시하기</CommunitySubmitBtn>
-    </div>
-  );
+  }
+  if (!router.pathname.includes("/edit")) {
+    return (
+      <div className=" w-full flex flex-col items-center tracking-[-6%]">
+        <CommunityBoxCompo title={""} data={""} nickname={userInfo.nickname} />
+      </div>
+    );
+  } else {
+    return <EditComponent id={id} />;
+  }
 };
 
 export default CommunityBox;
