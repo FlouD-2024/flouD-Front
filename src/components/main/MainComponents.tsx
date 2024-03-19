@@ -41,7 +41,7 @@ const MainComponents = () => {
       <div className="flex flex-col gap-[35px]">
         {(useCheckRetroTime(dayAtom) ||
           dayjs().format("YYYY-MM-DD") === dayAtom) &&
-        mainData.isTodayMemoir === false ? (
+        !mainData.dateList.includes(dayAtom) ? (
           <Countdown deadline={tomorrowDay} />
         ) : mainData.dateList.includes(dayAtom) ? (
           <CardStyle isWrite />

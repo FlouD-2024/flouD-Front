@@ -18,11 +18,10 @@ function useGetUserInfo() {
 
     return response.data;
   };
-  const access_token = localStorage.getItem("access_token") as string;
   const { data: userInfo = fallback } = useQuery({
     queryKey: ["get-userInfo"],
     queryFn: fetchUserInfo,
-    enabled: !!access_token,
+    // enabled: !!access_token,
   });
 
   return { userInfo };

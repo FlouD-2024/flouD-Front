@@ -6,10 +6,10 @@ import type { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 import Aside from "@/components/util/Aside";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
   // 개발 서버로 api 호출하려면 아래 코드 제거
-
   const router = useRouter();
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -23,6 +23,15 @@ export default function App({ Component, pageProps }: AppProps) {
       },
     },
   });
+  useEffect(() => {
+    if (typeof window !== undefined && router.pathname !== "/") {
+      const access = localStorage.getItem("access_token") as string;
+      if (access === null || access === "") {
+        alert("로그인을 진행해주세요");
+        router.replace("/");
+      }
+    }
+  }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
