@@ -27,11 +27,11 @@ export default function MypageInfo({nickname, goallist, introduction, setIsEdit}
                 </div>
                 <div className='mb-[30px] flex justify-start gap-[10px]'>
                     <Typography title={'닉네임'} type={'bold20'} />
-                    <div className='bg-[#b5b5bd]/10 h-[35px] rounded-[10px]'>{nickname}</div>
+                    <div className='bg-[#b5b5bd]/10 rounded-[10px] w-[300px] h-[40px] p-[5px] px-[15px]'>{nickname}</div>
                 </div>
                 <div className='mb-[30px]'>
                     <Typography title={'자기소개'} type={'bold20'} />
-                    <div className='bg-[#b5b5bd]/10 w-[100%] rounded-[10px]'>{introduction}</div>
+                    <div className='bg-[#b5b5bd]/10 w-[100%] rounded-[10px] p-[15px] px-[15px]'>{introduction}</div>
                 </div>
                 <div>
                     <div className='flex justify-start'>

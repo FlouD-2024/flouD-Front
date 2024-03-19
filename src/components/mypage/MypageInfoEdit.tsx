@@ -75,7 +75,7 @@ export default function MypageInfoEdit({nickname, goallist, introduction, setNic
                 </div>
                 <div className='mb-[30px] flex justify-start gap-[10px]'>
                     <Typography title={'닉네임'} type={'bold20'} />
-                    <input className='bg-[#4C6FFF]/10 h-[35px] rounded-[10px]' value={nickname} onChange={(e)=> {
+                    <input className='bg-[#4C6FFF]/10 rounded-[10px] w-[300px] h-[40px] p-[5px] px-[15px]' value={nickname} onChange={(e)=> {
                         setNickname(e.target.value)
                         setIsNickNameChanged(true)
                     }}></input>
@@ -83,7 +83,7 @@ export default function MypageInfoEdit({nickname, goallist, introduction, setNic
                 </div>
                 <div className='mb-[30px]'>
                     <Typography title={'자기소개'} type={'bold20'} />
-                    <textarea className='bg-[#4C6FFF]/10 w-[100%] rounded-[10px]' value={introduction} onChange={(e)=>setIntroduction(e.target.value)}></textarea>
+                    <textarea className='bg-[#4C6FFF]/10 w-[100%] rounded-[10px] p-[15px] px-[15px]' value={introduction} onChange={(e)=>setIntroduction(e.target.value)}></textarea>
                 </div>
                 <div>
                     <div className='flex justify-start'>

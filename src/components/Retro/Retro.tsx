@@ -17,18 +17,18 @@ type Props = {}
 export default function Retro({ }: Props) {
     const [retroList, setRetroList] = useState<RetroListItem[]>([]);
     const [month, setMonth] = useState(dayjs().month());
-    const [week, setWeek] = useState(Math.ceil((dayjs().diff(dayjs().month(month).startOf("month").startOf("week"), "day") + 1)/7));
+    const [week, setWeek] = useState(Math.ceil((dayjs().diff(dayjs().month(month).startOf("month").startOf("week"), "day") + 1) / 7));
     // const [month, setMonth] = useState(2);
 
     const [retroDetailOpen, setRetroDetailOpend] = useRecoilState(retroDetailOpenAtom)
     const [retroTodayOpen, setRetroTodayOpend] = useRecoilState(retroTodayOpenAtom)
     const [retroCompleteModalOpen, setRetroCompleteModalOpen] = useRecoilState(retroCompleteModalOpenAtom)
 
-    const getWeekCount = () => Math.ceil((dayjs().month(month).endOf("month").diff(dayjs().month(month).startOf("month").startOf("week"), "day") + 1)/7);
+    const getWeekCount = () => Math.ceil((dayjs().month(month).endOf("month").diff(dayjs().month(month).startOf("month").startOf("week"), "day") + 1) / 7);
 
     const getFirstDayofFirstWeek = () => dayjs().month(month).startOf("month").startOf("week");
 
-    const onNewBtnClick = () =>{
+    const onNewBtnClick = () => {
         getRetroDetail(dayjs().format('YYYY-MM-DD'))
             .then(data => {
                 console.warn("회고 데이터 : ", data);
@@ -42,15 +42,15 @@ export default function Retro({ }: Props) {
 
     useEffect(() => {
         if (!retroTodayOpen) {
-            getRetroList(getFirstDayofFirstWeek().add((week-1)*7, 'day').format('YYYY-MM-DD'))
+            getRetroList(getFirstDayofFirstWeek().add((week - 1) * 7, 'day').format('YYYY-MM-DD'))
                 .then(data => {
                     setRetroList(data.memoirList);
                 })
         }
-    },[month, week, retroTodayOpen])
+    }, [month, week, retroTodayOpen])
 
     useEffect(() => {
-        console.log(Math.ceil((dayjs().diff(dayjs().month(month).startOf("month").startOf("week"), "day") + 1)/7));
+        console.log(Math.ceil((dayjs().diff(dayjs().month(month).startOf("month").startOf("week"), "day") + 1) / 7));
     }, [])
 
     return (
@@ -67,22 +67,22 @@ export default function Retro({ }: Props) {
                             <div className='mb-[50px]'>
                                 <select className="px-[30px] py-[5px] mr-[20px] rounded-[10px]" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
                                     {
-                                        Array.from(Array(dayjs().month() + 1), (_, index) => index).map(month => 
-                                            <option value={month}>{month+1}월</option>
+                                        Array.from(Array(dayjs().month() + 1), (_, index) => index).map(month =>
+                                            <option value={month}>{month + 1}월</option>
                                         )
                                     }
                                 </select>
                                 <select className="px-[30px] py-[5px] mr-[20px] rounded-[10px]" value={week} onChange={(e) => setWeek(Number(e.target.value))}>
                                     {
-                                        Array.from(Array(getWeekCount()), (_, index) => index + 1).map(week => 
+                                        Array.from(Array(getWeekCount()), (_, index) => index + 1).map(week =>
                                             <option value={week}>{week}주차</option>
                                         )
                                     }
                                 </select>
                             </div>
-                            <button 
+                            <button
                                 className="bg-[#4c6fff] h-[40px] text-white rounded-[10px] px-[20px]"
-                                onClick={()=>onNewBtnClick()}
+                                onClick={() => onNewBtnClick()}
                             >+  New</button>
                         </div>
                         {
@@ -104,7 +104,7 @@ export default function Retro({ }: Props) {
                                 </>
                         }
                         {
-                            retroCompleteModalOpen && <RetroCompleteModal/>
+                            retroCompleteModalOpen && <RetroCompleteModal />
                         }
                     </>
             }
