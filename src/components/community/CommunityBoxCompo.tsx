@@ -52,13 +52,14 @@ const CommunityBoxCompo = (prop: CommunityBoxCompoProps) => {
     []
   );
 
-  const Flex_END = ({ children }: { children: ReactNode }) => {
+  const Flex_END = useCallback(({ children }: { children: ReactNode }) => {
     return (
       <div className="flex justify-between items-center mb-[18px]">
         {children}
       </div>
     );
-  };
+  }, []);
+
   return (
     <>
       <CommunityBoxWrapper>
