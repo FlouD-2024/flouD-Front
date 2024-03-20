@@ -28,7 +28,8 @@ export default function DdayDate({date, onDDayDateChange}: Props) {
                 value={date ? new Date(date) : new Date()}
                 formatMonthYear={(locale, date) => dayjs(date).format("YYYY.MMM")}
                 formatDay={(locale, date) => dayjs(date).format("D")}
-                // tileContent={addContent}
+                className={'mypage-calendar'}
+                // tileClassName={'mypage-calendar'}
                 next2Label={null}
                 prev2Label={null}
             />

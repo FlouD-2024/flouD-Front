@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import "@/styles/calendarStyle.css";
+import "@/styles/myPageCalendarStyle.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";

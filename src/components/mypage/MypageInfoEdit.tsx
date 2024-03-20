@@ -57,7 +57,7 @@ export default function MypageInfoEdit({nickname, goallist, introduction, setNic
     }
 
     const onEditComplete = () => {
-        putUserInfo({nickname, introduction, goalList: goallist.concat(addedDDay)}).then(data => setIsEdit(false));
+        putUserInfo({nickname, introduction, goalList: goallist.concat(addedDDay.filter(dday => dday.content && dday.deadline))}).then(data => setIsEdit(false));
     }
 
     const onCheckNickName = () => {

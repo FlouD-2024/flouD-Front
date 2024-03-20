@@ -14,7 +14,7 @@ export default function Dday({title, date, goalId, isEdit, onDeleteClick}: Props
     const daydiff = dayjs().diff(date, "day");
     return (
         <>
-            <div className={`flex-col justify-between  bg-[${isEdit ? '#4C6FFF' : '#b5b5bd'}]/10 h-20px rounded-[10px] w-[32%] h-[124px] p-[15px]`}>
+            <div className={`flex-col justify-between  bg-[${isEdit ? '#4C6FFF' : '#b5b5bd'}]/10 h-20px rounded-[10px] w-[32%] h-[124px] p-[10px] px-[22px]`}>
                 <div className='flex justify-between '>
                     <div className='bg-[#4C6FFF]/0 w-[155px] mt-[10px] whitespace-nowrap overflow-hidden text-ellipsis'>{title}</div>
                     {

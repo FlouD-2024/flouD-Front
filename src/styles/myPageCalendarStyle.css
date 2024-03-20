@@ -1,0 +1,206 @@
+.mypage-calendar {
+  margin-top: 5px;
+  padding: 10px;
+  width: 320px;
+  height: 330px;
+  background: white;
+  border: transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+  border-radius: 0;
+  /* box-shadow: 0px 0px 20px #e0e0e0; */
+  z-index: 10;
+}
+
+.mypage-calendar .react-calendar--doubleView {
+  width: 700px;
+  background-color: red;
+}
+
+.mypage-calendar .react-calendar--doubleView .react-calendar__viewContainer {
+  display: flex;
+  margin: -0.5em;
+}
+
+.mypage-calendar .react-calendar--doubleView .react-calendar__viewContainer > * {
+  width: 50%;
+  margin: 0.5em;
+}
+
+.mypage-calendar,
+.mypage-calendar *,
+.mypage-calendar *:before,
+.mypage-calendar *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.mypage-calendar .react-calendar button {
+  margin: 0;
+  border: 0;
+  outline: none;
+}
+
+.mypage-calendar .react-calendar button:enabled:hover {
+  cursor: pointer;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  height: 44px;
+  font-size: 20px;
+  font-weight: 900px;
+  line-height: 23.34px;
+  letter-spacing: -5%;
+  justify-content: center;
+  align-items: center;
+  gap: 14.68px;
+}
+
+.mypage-calendar .react-calendar__navigation button {
+  min-width: 44px;
+  /* background: red; */
+}
+
+.mypage-calendar .react-calendar__navigation__label {
+  flex-grow: 0 !important;
+  /* 이거 하면 포인터 이벤트가 아예 안 통함 */
+  pointer-events: none;
+}
+
+.mypage-calendar .react-calendar__navigation button:disabled {
+  background-color: #f0f0f0;
+}
+
+.mypage-calendar .react-calendar__navigation button:enabled:hover,
+.mypage-calendar .react-calendar__navigation button:enabled:focus {
+  background-color: #e6e6e6;
+}
+
+.mypage-calendar .react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.41);
+  letter-spacing: -6%;
+  line-height: 23.34px;
+  margin-bottom: 5px;
+}
+
+.mypage-calendar .react-calendar__month-view__weekdays__weekday {
+  padding: 0.5em;
+}
+
+.mypage-calendar .react-calendar__month-view__weekdays abbr {
+  text-decoration: none;
+}
+
+.mypage-calendar .react-calendar__month-view__days {
+  display: grid !important;
+  /* 그리드로 나눈뒤에 아이템을 가운데 정렬 시키는 방법 */
+  grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;
+  place-items: center;
+}
+
+
+.mypage-calendar .react-calendar__month-view__weekNumbers .react-calendar__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 23px;
+  letter-spacing: -0.06em;
+  text-align: center;
+}
+
+.mypage-calendar .react-calendar__month-view__days__day--weekend {
+  /* 주말 날짜만 붉게 */
+  color: #d10000;
+}
+
+.mypage-calendar .react-calendar__month-view__days__day--neighboringMonth,
+.mypage-calendar .react-calendar__decade-view__years__year--neighboringDecade,
+.mypage-calendar .react-calendar__century-view__decades__decade--neighboringCentury {
+  color: rgba(217, 217, 217, 1);
+}
+
+.mypage-calendar .react-calendar__year-view .react-calendar__tile,
+.mypage-calendar .react-calendar__decade-view .react-calendar__tile,
+.mypage-calendar .react-calendar__century-view .react-calendar__tile {
+  padding: 2em 0.5em;
+}
+
+.mypage-calendar .react-calendar__tile {
+  background: none;
+  text-align: center;
+  line-height: 23.34px;
+  width: 45px;
+  height: 45px;
+  font: inherit;
+  font-size: 16px;
+  letter-spacing: -6%;
+  position: relative;
+}
+
+.mypage-calendar .react-calendar__tile:disabled {
+  background-color: #f0f0f0;
+  color: #ababab;
+}
+
+.mypage-calendar .react-calendar__month-view__days__day--neighboringMonth:disabled,
+.mypage-calendar .react-calendar__decade-view__years__year--neighboringDecade:disabled,
+.mypage-calendar .react-calendar__century-view__decades__decade--neighboringCentury:disabled {
+  color: #cdcdcd;
+}
+
+.mypage-calendar .react-calendar__tile:enabled:hover,
+.mypage-calendar .react-calendar__tile:enabled:focus {
+  background-color: #e6e6e6;
+}
+
+/* .react-calendar__tile--now {
+  border-radius: 8.305px;
+  background: #5d8cff;
+  color: #fafafa;
+} */
+
+.mypage-calendar .react-calendar__tile--now:enabled:hover,
+.mypage-calendar .react-calendar__tile--now:enabled:focus {
+  border-radius: 8.305px;
+  background: #5d8cff;
+  color: #fafafa;
+}
+
+.mypage-calendar .react-calendar__tile--hasActive {
+  background-color: rgba(93, 140, 255, 1);
+  border-radius: 7.62px;
+  color: white;
+}
+
+.mypage-calendar .react-calendar__tile--hasActive:enabled:hover,
+.mypage-calendar .react-calendar__tile--hasActive:enabled:focus {
+  background: #a9d4ff;
+}
+
+.mypage-calendar .react-calendar__tile--active {
+  /* 이게 실행된거 */
+  width: 45px;
+  height: 45px;
+  background-color: rgba(93, 140, 255, 1);
+  border-radius: 7.62px;
+  color: white;
+}
+.mypage-calendar .react-calendar__tile--active:enabled:hover,
+.mypage-calendar .react-calendar__tile--active:enabled:focus {
+  background: #5d8cff;
+  border-radius: 8.305px;
+}
+
+.mypage-calendar .react-calendar--selectRange .react-calendar__tile--hover {
+  background-color: #e6e6e6;
+}

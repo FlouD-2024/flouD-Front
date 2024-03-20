@@ -25,7 +25,7 @@ export default function RetroDetail({ }: Props) {
                 setRetroTry(data.try_memoir);
                 setRetroId(data.memoir_id);
             }) 
-    },[])
+    }, [retroDetailDate])
     return (
         <>
             <p className="text-[20px] text-[#4C6FFF]">2024 My FlouD Record</p>
