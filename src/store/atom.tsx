@@ -2,6 +2,7 @@ import { atom } from "recoil";
 import { AlarmCardProp } from "./testData";
 import { recoilPersist } from "recoil-persist";
 import dayjs from "dayjs";
+import { FriendPageInfo, UnFriendData } from "@/types/myPageType";
 
 //여기다가 메인에 필요한 날짜들은 다 담아둠
 export const mainDayAtom = atom({
@@ -44,9 +45,12 @@ export const friendModalOpenAtom = atom<boolean>({
   default: false,
 });
 
-export const friendModalFriendNameAtom = atom<string>({
+export const friendModalFriendAtom = atom<UnFriendData>({
   key: "friendModalFriendNameAtom",
-  default: "",
+  default: {
+    friendship_id: 0,
+    nickname: '',
+  },
 });
 
 export const retroDetailDateAtom = atom<string>({
@@ -67,4 +71,25 @@ export const retroTodayOpenAtom = atom<boolean>({
 export const retroCompleteModalOpenAtom = atom<boolean>({
   key: "retroCompleteModalOpenAtom",
   default: false,
+});
+
+export const myFriendPageNumAtom = atom<number>({
+  key: "friendPageNumAtom",
+  default: 0,
+});
+
+export const myFriendAddPageNumAtom = atom<number>({
+  key: "friendAddPageNumAtom",
+  default: 0,
+});
+
+export const myFriendPageInfoAtom = atom<FriendPageInfo>({
+  key: "friendPageInfoAtom",
+  default: {
+    nowPage: 0,
+    totalPages: 0,
+    totalElements: 0,
+    previous: false,
+    last: false,
+  },
 });

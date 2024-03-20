@@ -13,7 +13,7 @@ export interface getUserCommunityType {
 export interface getUserFriendType {
   waitingList: MyFriendList[],
   myFriendList: MyFriendList[],
-  frinedPageInfo: FriendPageInfo,
+  pageInfo: FriendPageInfo,
 }
 
 export interface getNameCheckType {
@@ -26,6 +26,14 @@ export interface putUserData {
   goalList: GoalListItem[]
 }
 
+export type FriendShipStatusType = 'ACCEPT' | 'REJECT';
+
+export interface putFriendData {
+  friendship_id: number,
+  nickname: string,
+  friendshipStatus: FriendShipStatusType
+}
+
 export interface CheckNameParam {
   nickname: string
 }
@@ -34,7 +42,7 @@ export interface FriendPageInfo {
   nowPage: number,
   totalPages: number,
   totalElements: number,
-  previous: number | null,
+  previous: boolean,
   last: boolean
 }
 
@@ -56,6 +64,11 @@ export interface MyFriendList{
   nickname: string,
   friendshipStatus: string,
   introduction: string
+}
+
+export interface UnFriendData {
+  friendship_id: number,
+  nickname: string,
 }
 
 export interface PageParam {

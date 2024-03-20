@@ -19,7 +19,6 @@ const MoveNext = (prop: prop) => {
   };
   return (
     <BtnWrapper>
-      <div className="mr-2">next</div>
       <div
         onClick={() => onPrev()}
         style={{
@@ -28,6 +27,7 @@ const MoveNext = (prop: prop) => {
       >
         {"<"}
       </div>
+      <div className="w-[2px] text-[#d9d9d9] text-[20px]">|</div>
       <div
         onClick={() => onNext()}
         style={{
@@ -43,8 +43,8 @@ const MoveNext = (prop: prop) => {
 export default MoveNext;
 
 const BtnWrapper = styled.div`
-  width: 162px;
-  height: 45px;
+  width: 100px;
+  height: 40px;
   background-color: white;
   border-radius: 15px;
   font-size: 23.14px;

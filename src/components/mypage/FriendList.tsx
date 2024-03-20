@@ -1,6 +1,10 @@
-import { getUserFriend, MyFriendList } from '@/apis/mypage/mypage';
+import { getUserFriend } from '@/apis/mypage/mypage';
+import { myFriendPageNumAtom, myFriendPageInfoAtom } from '@/store/atom';
+import { MyFriendList } from '@/types/myPageType';
 import React, { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil';
 import Typography from '../Typography'
+import MoveNext from '../util/MoveNext';
 import FriendProfile from './FriendProfile'
 
 type Props = {
@@ -8,6 +12,8 @@ type Props = {
 }
 
 export default function FriendList({friends}: Props) {
+  const [friendPageNum, setFriendPageNum] = useRecoilState(myFriendPageNumAtom);
+  const [friendPageInfo, setFriendPageInfo] = useRecoilState(myFriendPageInfoAtom);
 
 
   return (
@@ -16,9 +22,16 @@ export default function FriendList({friends}: Props) {
         <div className='flex justify-start flex-wrap gap-[2.5%] m-[10px]'>
         {
           friends.map((item)=>{
-            return(<FriendProfile nickname={item.nickname} introduction={item.introduction}/>)
+            return(<FriendProfile key={item.friendship_id} friendship_id={item.friendship_id} nickname={item.nickname} introduction={item.introduction}/>)
           })
         }
+        </div>
+        <div className='flex justify-end'>
+          <MoveNext
+            isLast={friendPageInfo.last}
+            currentPage={friendPageNum}
+            setCurrentPage={setFriendPageNum}
+          />
         </div>
         
     </>

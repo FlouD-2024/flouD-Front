@@ -1,4 +1,4 @@
-import { axiosInstance } from "../auth/auth";
+import axiosInstance from "../auth/auth";
 
 export const postFriendRequest = async (nickname: string) => {
   return await axiosInstance

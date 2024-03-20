@@ -27,6 +27,7 @@ export default function MypageInfoEdit({nickname, goallist, introduction, setNic
     const [addedDDay, setAddedDDay] = useState<GoalListItem[]>([]);
     const [isNickNameChanged, setIsNickNameChanged] = useState(false);
     const [isNickNameCheck, setIsNickNameCheck] = useState<boolean>(false);
+    const [isNickNameDuplicated, setIsNickNameDuplicated] = useState<boolean>(false);
 
     const onDDayDeleteClick = (i: number) => {
         setGoallist(goallist.filter((_, index) => i != index))
@@ -61,7 +62,10 @@ export default function MypageInfoEdit({nickname, goallist, introduction, setNic
     }
 
     const onCheckNickName = () => {
-        getNameCheck(nickname).then(data => setIsNickNameCheck(!data.isDuplicated));
+        getNameCheck(nickname).then(data => {
+            setIsNickNameCheck(true);
+            setIsNickNameDuplicated(data.isDuplicated);
+        });
     }
 
     return (
@@ -79,7 +83,10 @@ export default function MypageInfoEdit({nickname, goallist, introduction, setNic
                         setNickname(e.target.value)
                         setIsNickNameChanged(true)
                     }}></input>
-                    {isNickNameChanged && <button className='bg-[#4C6FFF] text-white px-[10px] py-[5px] rounded-[10px]' onClick={onCheckNickName}>중복확인</button>}
+                    {isNickNameChanged && <button className='bg-[#4C6FFF] text-white px-[10px] py-[5px] rounded-[10px]' onClick={onCheckNickName}>{'중복확인'}</button>}
+                    <div className='mt-[5px] ml-[10px]'>
+                        {isNickNameCheck && isNickNameChanged && (!isNickNameDuplicated ? '*사용가능한 닉네임입니다.' : '*중복된 닉네임입니다.')}
+                    </div>
                 </div>
                 <div className='mb-[30px]'>
                     <Typography title={'자기소개'} type={'bold20'} />
@@ -117,7 +124,13 @@ export default function MypageInfoEdit({nickname, goallist, introduction, setNic
                         }
                     </div>
                     <div className='flex'>
-                        <button disabled={isNickNameChanged && !isNickNameCheck} className='bg-[#9C9C9C] text-white px-[30px] py-[5px] rounded-[10px] my-[30px] mx-[auto]' onClick={onEditComplete}>변경완료</button>
+                        <button 
+                            disabled={isNickNameChanged && !(isNickNameCheck && !isNickNameDuplicated)} 
+                            className={`bg-[${isNickNameChanged && !(isNickNameCheck && !isNickNameDuplicated) ? '#9C9C9C' : '#4C6FFF'}] text-white px-[30px] py-[5px] rounded-[10px] my-[30px] mx-[auto]`} 
+                            onClick={onEditComplete}
+                        >
+                            변경완료
+                        </button>
                     </div>
                 </div>
             </div>
