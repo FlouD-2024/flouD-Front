@@ -18,10 +18,12 @@ function useGetUserInfo() {
 
     return response.data;
   };
+  const access_token = localStorage.getItem("access_token");
   const { data: userInfo = fallback } = useQuery({
     queryKey: ["get-userInfo"],
     queryFn: fetchUserInfo,
-    // enabled: !!access_token,
+    // 존재할 때까지는 실행되지 않음
+    enabled: !!access_token,
   });
 
   return { userInfo };

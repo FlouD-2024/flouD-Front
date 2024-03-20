@@ -1,5 +1,5 @@
 import { alarmAtom, mainDayAtom } from "@/store/atom";
-import React, { Suspense, useEffect, useMemo, useState } from "react";
+import React, { Suspense, memo, useEffect, useMemo, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic.js";
@@ -49,7 +49,7 @@ const MainComponents = () => {
           <CardStyle isWrite={false} />
         )}
         <DdayCard DdayList={mainData.goalList} />
-        <Memo />
+        <Memo memo={mainData.memo} yesterday_try={mainData.yeesterday_try} />
       </div>
       <div className="pt-[55px] flex flex-col gap-[40px]">
         <FloudCalendar dayList={mainData.dateList} />

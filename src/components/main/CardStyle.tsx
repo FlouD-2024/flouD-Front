@@ -32,7 +32,7 @@ export const CardStyle = ({ isWrite }: { isWrite: boolean }) => {
         My FlouD
       </div>
       <div className="flex items-center z-10 text-black font-medium gap-1 tracking-[-6%] text-[23.34px]">
-        <div>{isWrite ? "오늘의 회고 확인하기" : "없어용"}</div>
+        <div>{isWrite ? "오늘의 회고 확인하기" : "회고 확인 불가"}</div>
         <Image src={btnImgsrc} alt="버튼이미지" />
       </div>
       <div className="text-[79px] leading-[114.51px] font-bold z-10 tracking-[-6%] text-white">

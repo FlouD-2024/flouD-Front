@@ -2,6 +2,7 @@ import React from "react";
 import { ModalLayout } from "../main/AlarmSideBar";
 import { styled } from "twin.macro";
 import dayjs from "dayjs";
+import useGetMyRetro from "@/query/get/useGetMyRetro";
 
 type prop = {
   open: boolean;
@@ -15,6 +16,7 @@ const ShowKPTModal = (prop: prop) => {
   const onClose = () => {
     prop.setOpen(!prop.open);
   };
+  const { mainData } = useGetMyRetro(dayjs(prop.date).format("YYYY-MM-DD"));
   // 여기서 api를 불러와야 되는데 되려나?
   return (
     <ModalLayout>
@@ -27,20 +29,20 @@ const ShowKPTModal = (prop: prop) => {
             {dayjs(prop.date).format("YYYY-MM-DD")} 하루 요약
           </ModalTitleText>
           <TextBox className="title" disabled>
-            여기다가 쓸 예정!
+            {mainData.title}
           </TextBox>
         </div>
         <div className="mb-[52px]">
           <ModalTitleText>Keep</ModalTitleText>
-          <TextBox disabled>여기다가 쓸 예정!</TextBox>
+          <TextBox disabled>{mainData.keep_memoir}</TextBox>
         </div>
         <div className="mb-[52px]">
           <ModalTitleText>Problem</ModalTitleText>
-          <TextBox disabled>여기다가 쓸 예정!</TextBox>
+          <TextBox disabled>{mainData.problem_memoir}</TextBox>
         </div>
         <div className="mb-[52px]">
           <ModalTitleText>Try</ModalTitleText>
-          <TextBox disabled>여기다가 쓸 예정!</TextBox>
+          <TextBox disabled>{mainData.try_memoir}</TextBox>
         </div>
         <div className="flex justify-center">
           <ModalConfirmBtn

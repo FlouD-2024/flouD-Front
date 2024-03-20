@@ -1,8 +1,12 @@
-import { keyframes } from "@emotion/react";
 import React, { useState } from "react";
 import { css, styled } from "twin.macro";
 
-const Memo = () => {
+type IMemo = {
+  memo: string;
+  yesterday_try: string;
+};
+
+const Memo = (prop: IMemo) => {
   const [showPart, setShowPart] = useState("MEMO");
   return (
     <MemoWrapper>
@@ -22,10 +26,10 @@ const Memo = () => {
       </ToggleButtonWrapper>
       <div>
         {showPart === "MEMO" ? (
-          <ContentBox>메모파트</ContentBox>
+          <ContentBox>{prop.memo}</ContentBox>
         ) : (
           //이거 글자수 제한만 두면 될 듯...
-          <ContentBox>그 뭐더냐 이거 뭐라하지 트라이 파트</ContentBox>
+          <ContentBox>{prop.yesterday_try}</ContentBox>
         )}
       </div>
     </MemoWrapper>
