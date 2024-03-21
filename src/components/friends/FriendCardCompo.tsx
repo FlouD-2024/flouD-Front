@@ -11,9 +11,6 @@ import MoveNext from "../util/MoveNext";
 import useGetFriendList from "@/query/get/useGetFriendList";
 
 const FriendCardCompo = () => {
-  // 여기서 그 신청창 팝업 만들고 그러면 될 듯?
-  // next는 일단 나중으로 생각해보고... 얘네 백엔드가 어떻게 오는지
-  // 없는거 눌렀을 때는 없다는 팝업창만 일단 띄우자..!
   const [page, setPage] = useState(0);
   const [day, setDay] = useState(dayjs());
   const [searchValue, setSearchValue] = useState<string>("");

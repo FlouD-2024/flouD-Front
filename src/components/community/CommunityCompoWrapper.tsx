@@ -1,14 +1,9 @@
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { styled } from "twin.macro";
 import Story from "../mypage/Story";
 import MoveNext from "../util/MoveNext";
-import CommunityWrite from "./CommunityWrite";
 import useGetCommunity from "@/query/get/useGetCommunity";
-
-interface CommunityCompoWrapperProps {
-  setIsWrite: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 const CommunityCompoWrapper = () => {
   const router = useRouter();

@@ -1,11 +1,9 @@
-import { DdayProp, DdayTestData } from "@/store/testData";
 import { goalListType } from "@/types/mainType";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import tw, { css, styled } from "twin.macro";
 
 const DdayCard = ({ DdayList }: { DdayList: Array<goalListType> }) => {
-  // const DdayTest: DdayProp[] = [];
   const [click, setClick] = useState(1);
   const onClick = (clickNum: number) => {
     setClick(clickNum);

@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import { Noto_Sans_KR } from "next/font/google";
 import { ScreenBox } from "..";
 import ErrorBoundary from "@/components/util/ErrorBoundary";

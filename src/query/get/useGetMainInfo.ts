@@ -1,7 +1,6 @@
 import { Maindata } from "@/types/mainType";
 import request from "@/utils/request";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import React from "react";
 
 interface MainParam {
   date: string;

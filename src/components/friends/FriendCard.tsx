@@ -5,7 +5,6 @@ import friendCloud from "@/img/friends/friendCloud.png";
 import DoNotWrite from "@/img/svg/friends/friendNotCloud.svg";
 import Image from "next/image";
 import dayjs from "dayjs";
-import ShowKPTModal from "../util/ShowKPTModal";
 import FriendNotWrite from "./FriendNotWrite";
 import ShowKPTFriendModal from "../util/ShowKPTFriendModal";
 
