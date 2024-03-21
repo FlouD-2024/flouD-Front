@@ -1,4 +1,3 @@
-import { getUserFriend } from '@/apis/mypage/mypage';
 import { myFriendPageNumAtom, myFriendPageInfoAtom } from '@/store/atom';
 import { MyFriendList } from '@/types/myPageType';
 import React, { useEffect, useState } from 'react'

@@ -1,6 +1,5 @@
 import dayjs from 'dayjs'
 import React from 'react'
-import DdayDate from './DdayDate'
 
 type Props = {
     title: string,

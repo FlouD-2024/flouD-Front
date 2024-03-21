@@ -2,7 +2,6 @@ import { getRetroDetail, putRetroDetail } from '@/apis/retro/retro'
 import { retroDetailDateAtom, retroDetailOpenAtom } from '@/store/atom'
 import React, { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import RetroList from './RetroList'
 
 type Props = {}
 

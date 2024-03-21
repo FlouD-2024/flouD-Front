@@ -1,6 +1,5 @@
 import React from "react";
 import { Noto_Sans_KR } from "next/font/google";
-import Mypage from "@/components/mypage/Mypage";
 import Contact from "@/components/mypage/Contact";
 import { ScreenBox } from "@/pages/index";
 

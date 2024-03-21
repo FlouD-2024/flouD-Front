@@ -1,5 +1,4 @@
 import React from 'react'
-import Typography from '../Typography'
 import Image from "next/image";
 import ProfileImg from '@/img/mypage/ProfileImg.png'
 import RedID from '@/img/mypage/RedID.png'

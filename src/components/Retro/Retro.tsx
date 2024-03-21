@@ -8,8 +8,6 @@ import RetroToday from './RetroToday'
 import RetroCompleteModal from './RetroCompleteModal'
 import { getRetroDetail, getRetroList, getTest } from '@/apis/retro/retro'
 import dayjs from 'dayjs'
-import duration from 'dayjs/plugin/duration'
-import isoWeek from 'dayjs/plugin/isoWeek'
 import { RetroListItem } from '@/types/retroType'
 
 type Props = {}

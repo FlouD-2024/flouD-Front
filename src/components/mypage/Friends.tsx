@@ -1,6 +1,6 @@
 import { getUserFriend } from '@/apis/mypage/mypage'
 import { friendModalOpenAtom, myFriendPageInfoAtom, myFriendPageNumAtom } from '@/store/atom'
-import { FriendPageInfo, MyFriendList } from '@/types/myPageType'
+import { MyFriendList } from '@/types/myPageType'
 import React, { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import FriendList from './FriendList'

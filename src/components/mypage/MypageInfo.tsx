@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Typography from '../Typography'
 import Dday from './Dday'
-import DdayAdd from './DdayAdd'
 import Image from "next/image";
 import Blue from "@/img/Mypage/BlueEllipse.png"
-import { getUserInfo } from '@/apis/mypage/mypage';
 import { GoalListItem } from '@/types/myPageType';
 
 type Props = {
