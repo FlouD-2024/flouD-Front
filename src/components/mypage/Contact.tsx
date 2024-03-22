@@ -1,9 +1,9 @@
 import React from "react";
 import Typography from "../Typography";
 import Image from "next/image";
-import Instagram from "@/img/Mypage/Instagram.png";
-import Email from "@/img/Mypage/Email.png";
-import Blue from "@/img/Mypage/BlueEllipse.png";
+import Instagram from "@/img/mypage/Instagram.png";
+import Email from "@/img/mypage/Email.png";
+import Blue from "@/img/mypage/BlueEllipse.png";
 
 type Props = {};
 

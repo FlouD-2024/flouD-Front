@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import { styled } from "twin.macro";
-import MoreSvg from "@/img/svg/더보기 버튼.svg";
+import MoreSvg from "@/img/svg/more.svg";
 import pencil from "@/img/community/clarity_pencil-solid.png";
 import trash from "@/img/community/tabler_trash-filled.png";
 import Image from "next/image";

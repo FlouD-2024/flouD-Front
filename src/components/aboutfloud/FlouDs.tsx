@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Profile from "@/img/Mypage/min.png";
+import Profile from "../../img/mypage/min.png";
 import Typography from "../Typography";
 
 type Props = {
