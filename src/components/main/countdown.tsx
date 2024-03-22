@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import tw from "twin.macro";
 import cardImg from "@/img/main/TodayCard.png";
 import btnImgsrc from "@/img/main/Group 492.png";
+import { useRouter } from "next/router";
 
 const getRemainTime = (countDown: number) => {
   const hours = Math.floor(
@@ -31,9 +32,10 @@ const Countdown = ({ deadline }: { deadline: string }) => {
     return () => clearInterval(interval);
   }, []);
   const [hours, minutes, seconds] = getRemainTime(countDown);
+  const router = useRouter();
   return (
     <>
-      <CardWrapper>
+      <CardWrapper onClick={() => router.push("retro")}>
         <Image
           src={cardImg}
           alt="이미지"

@@ -8,18 +8,18 @@ import { getUserInfo } from "@/apis/mypage/mypage";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
-const index = () => {
+const Index = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [nickname, setNickname] = useState<string>("");
   const [goallist, setGoallist] = useState<GoalListItem[]>([]);
   const [introduction, setIntroduction] = useState<string>("");
-  useEffect(()=>{
-      getUserInfo().then(data=>{
-          setNickname(data.nickname);
-          setGoallist(data.goalList);
-          setIntroduction(data.introduction);
-      })
-  },[isEdit])
+  useEffect(() => {
+    getUserInfo().then((data) => {
+      setNickname(data.nickname);
+      setGoallist(data.goalList);
+      setIntroduction(data.introduction);
+    });
+  }, [isEdit]);
 
   return (
     <main
@@ -27,25 +27,28 @@ const index = () => {
     >
       <ScreenBox>
         <div>
-          {
-            isEdit 
-            ? 
-            <MypageInfoEdit 
-              setIsEdit={setIsEdit} 
-              nickname={nickname} 
-              goallist={goallist} 
-              introduction={introduction} 
-              setGoallist={setGoallist} 
-              setNickname={setNickname} 
+          {isEdit ? (
+            <MypageInfoEdit
+              setIsEdit={setIsEdit}
+              nickname={nickname}
+              goallist={goallist}
+              introduction={introduction}
+              setGoallist={setGoallist}
+              setNickname={setNickname}
               setIntroduction={setIntroduction}
-            /> 
-            : 
-            <MypageInfo setIsEdit={setIsEdit} nickname={nickname} goallist={goallist} introduction={introduction}/>
-          }
+            />
+          ) : (
+            <MypageInfo
+              setIsEdit={setIsEdit}
+              nickname={nickname}
+              goallist={goallist}
+              introduction={introduction}
+            />
+          )}
         </div>
       </ScreenBox>
     </main>
   );
 };
 
-export default index;
+export default Index;
