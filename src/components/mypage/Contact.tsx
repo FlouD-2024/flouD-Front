@@ -29,7 +29,7 @@ export default function Contact({}: Props) {
             <Image src={Instagram} className="m-[auto]" alt="insta" />
             <Typography title={"인스타그램"} type={"bold25"} />
             <Typography
-              title={"@DFKDJFKDJF로 연락주시면 확인 후 답변드리겠습니다."}
+              title={"@floud_2024 로 연락주시면 확인 후 답변드리겠습니다."}
               type={"regular25"}
             />
           </div>
@@ -40,7 +40,7 @@ export default function Contact({}: Props) {
             <Typography title={"이메일"} type={"bold25"} />
             <Typography
               title={
-                "djghasdghk@naver.com로 연락주시면 확인 후 답변드리겠습니다."
+                "jobcho0320@gmail.com 로 연락주시면 확인 후 답변드리겠습니다."
               }
               type={"regular25"}
             />
