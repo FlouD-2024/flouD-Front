@@ -4,6 +4,8 @@ import tw from "twin.macro";
 import cardImg from "@/img/main/TodayCard.png";
 import btnImgsrc from "@/img/main/Group 492.png";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { retroTodayOpenAtom } from "@/store/atom";
 
 const getRemainTime = (countDown: number) => {
   const hours = Math.floor(
@@ -24,6 +26,14 @@ const Countdown = ({ deadline }: { deadline: string }) => {
   const [countDown, setCountDown] = useState(
     new Date(targetDate).getTime() - new Date().getTime()
   );
+  const [retroTodayOpen, setRetroTodayOpend] =
+    useRecoilState(retroTodayOpenAtom);
+
+  const onRetroButtonClick = () => {
+    setRetroTodayOpend(true);
+    router.push('/retro');
+  };
+
   useEffect(() => {
     // console.log(timelineDate);
     const interval = setInterval(() => {
@@ -48,7 +58,7 @@ const Countdown = ({ deadline }: { deadline: string }) => {
         <div className="z-10 text-white tracking-[-6%] text-xl font-black">
           My FlouD
         </div>
-        <div className="flex items-center z-10 text-black font-medium gap-1 tracking-[-6%] text-[23.34px]">
+        <div className="flex items-center z-10 text-black font-medium gap-1 tracking-[-6%] text-[23.34px] cursor-pointer" onClick={onRetroButtonClick}>
           <div>오늘의 회고 작성하기</div>
           <Image src={btnImgsrc} alt="버튼이미지" />
         </div>

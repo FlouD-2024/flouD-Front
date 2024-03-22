@@ -87,6 +87,7 @@ const CommunityBoxCompo = (prop: CommunityBoxCompoProps) => {
           e.stopPropagation();
           onClick();
         }}
+        disabled={title === "" || data === "" ? true : false}
       >
         게시하기
       </CommunitySubmitBtn>

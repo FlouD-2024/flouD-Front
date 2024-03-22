@@ -1,7 +1,7 @@
 import useGetCommunityDetail from "@/query/get/useGetCommunityDetail";
 import useGetUserInfo from "@/query/get/useGetUserInfo";
 import router from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import tw, { css, styled } from "twin.macro";
 import CommunityBoxCompo from "./CommunityBoxCompo";
 
@@ -13,6 +13,12 @@ const CommunityBox = () => {
     const { mainData } = useGetCommunityDetail({
       community_id: parseInt(id),
     });
+    useEffect(() => {
+      if (mainData.my_nickname !== mainData.writer_nickname) {
+        alert("남이 작성한 글에는 수정할 수 없습니다.");
+        router.replace("/community");
+      }
+    }, []);
     return (
       <div className=" w-full flex flex-col items-center tracking-[-6%]">
         <CommunityBoxCompo
@@ -56,6 +62,9 @@ export const CommunitySubmitBtn = styled.button`
   background-color: #141416;
   font-weight: 700;
   font-size: 20px;
+  :disabled {
+    background-color: #cccccc;
+  }
 `;
 
 export const CommunityTextArea = styled.textarea`
