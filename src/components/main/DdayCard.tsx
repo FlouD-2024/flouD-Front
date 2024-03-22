@@ -30,13 +30,15 @@ const DdayCard = ({ DdayList }: { DdayList: Array<goalListType> }) => {
           <div className="text-[#014472] font-[900] text-[22.33px] leading-[23.34px] tracking-[-6%] h-6 w-full flex justify-center">
             {DdayList[click - 1].goal}
           </div>
-          {today.diff(DdayList[click - 1].deadline, "day") < 0 ? (
+          {today.diff(DdayList[click - 1].deadline, "day") - 1 < 0 ? (
             <DdayFont>
-              D{today.diff(DdayList[click - 1].deadline, "day")}
+              D{today.diff(DdayList[click - 1].deadline, "day") - 1}
             </DdayFont>
+          ) : today.diff(DdayList[click - 1].deadline, "day") - 1 == 0 ? (
+            <DdayFont>D-Day</DdayFont>
           ) : (
             <DdayFont>
-              D+{today.diff(DdayList[click - 1].deadline, "day")}
+              D+{today.diff(DdayList[click - 1].deadline, "day") - 1}
             </DdayFont>
           )}
           <DotSlide>
@@ -44,8 +46,8 @@ const DdayCard = ({ DdayList }: { DdayList: Array<goalListType> }) => {
               return (
                 <Dot
                   key={i}
-                  hasClick={click === i}
-                  onClick={() => onClick(i)}
+                  hasClick={click === i + 1}
+                  onClick={() => onClick(i + 1)}
                 />
               );
             })}
