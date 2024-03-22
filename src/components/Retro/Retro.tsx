@@ -16,7 +16,6 @@ export default function Retro({ }: Props) {
     const [retroList, setRetroList] = useState<RetroListItem[]>([]);
     const [month, setMonth] = useState(dayjs().month());
     const [week, setWeek] = useState(Math.ceil((dayjs().diff(dayjs().month(month).startOf("month").startOf("week"), "day") + 1) / 7));
-    // const [month, setMonth] = useState(2);
 
     const [retroDetailOpen, setRetroDetailOpend] = useRecoilState(retroDetailOpenAtom)
     const [retroTodayOpen, setRetroTodayOpend] = useRecoilState(retroTodayOpenAtom)
@@ -29,7 +28,6 @@ export default function Retro({ }: Props) {
     const onNewBtnClick = () => {
         getRetroDetail(dayjs().format('YYYY-MM-DD'))
             .then(data => {
-                console.warn("회고 데이터 : ", data);
                 if (data) {
                     setRetroCompleteModalOpen(true)
                 } else {
@@ -47,10 +45,6 @@ export default function Retro({ }: Props) {
         }
     }, [month, week, retroTodayOpen])
 
-    useEffect(() => {
-        console.log(Math.ceil((dayjs().diff(dayjs().month(month).startOf("month").startOf("week"), "day") + 1) / 7));
-    }, [])
-
     return (
         <>
             {
@@ -66,14 +60,14 @@ export default function Retro({ }: Props) {
                                 <select className="px-[30px] py-[5px] mr-[20px] rounded-[10px]" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
                                     {
                                         Array.from(Array(dayjs().month() + 1), (_, index) => index).map(month =>
-                                            <option value={month}>{month + 1}월</option>
+                                            <option key={month} value={month}>{month + 1}월</option>
                                         )
                                     }
                                 </select>
                                 <select className="px-[30px] py-[5px] mr-[20px] rounded-[10px]" value={week} onChange={(e) => setWeek(Number(e.target.value))}>
                                     {
                                         Array.from(Array(getWeekCount()), (_, index) => index + 1).map(week =>
-                                            <option value={week}>{week}주차</option>
+                                            <option key={week} value={week}>{week}주차</option>
                                         )
                                     }
                                 </select>
