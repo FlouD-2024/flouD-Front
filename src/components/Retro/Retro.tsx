@@ -6,7 +6,7 @@ import RetroEmpty from './RetroEmpty'
 import RetroList from './RetroList'
 import RetroToday from './RetroToday'
 import RetroCompleteModal from './RetroCompleteModal'
-import { getRetroDetail, getRetroList, getTest } from '@/apis/retro/retro'
+import { getRetroDetail, getRetroList } from '@/apis/retro/retro'
 import dayjs from 'dayjs'
 import { RetroListItem } from '@/types/retroType'
 

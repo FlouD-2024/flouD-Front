@@ -12,7 +12,7 @@ export default function FlouDs({ part, name }: Props) {
     return (
         <div className='flex flex-col items-center'>
             <div className='w-[223px]'>
-                <Image src={Profile} className='rounded-[500px]'></Image>
+                <Image alt='' src={Profile} className='rounded-[500px]'></Image>
             </div>
             <Typography title={part} type={"bold30"} mt={0}/>
             <Typography title={name} type={"bold30"} />
