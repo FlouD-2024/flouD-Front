@@ -1,6 +1,4 @@
 import { atom } from "recoil";
-import { AlarmCardProp } from "./testData";
-import { recoilPersist } from "recoil-persist";
 import dayjs from "dayjs";
 import { FriendPageInfo, UnFriendData } from "@/types/myPageType";
 
@@ -8,13 +6,6 @@ import { FriendPageInfo, UnFriendData } from "@/types/myPageType";
 export const mainDayAtom = atom({
   key: "weeklyDayAtom",
   default: dayjs().format("YYYY-MM-DD"),
-});
-
-//여기에 알림에 관한 테스트를 담는 상태관리
-
-export const alarmAtom = atom<Array<AlarmCardProp>>({
-  key: "alarmDataAtom",
-  default: [],
 });
 
 export interface IUserInfo {
@@ -49,7 +40,7 @@ export const friendModalFriendAtom = atom<UnFriendData>({
   key: "friendModalFriendNameAtom",
   default: {
     friendship_id: 0,
-    nickname: '',
+    nickname: "",
   },
 });
 

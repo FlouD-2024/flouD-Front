@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import AlarmMainBox from "./AlarmMainBox";
-import { useRecoilValue } from "recoil";
-import { alarmAtom } from "@/store/atom";
 import AlarmSideBar from "./AlarmSideBar";
 import { alarmListType } from "@/types/mainType";
 

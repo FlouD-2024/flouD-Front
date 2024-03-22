@@ -1,6 +1,6 @@
 import Image from "next/image";
-import React, { ReactNode, useEffect, useState } from "react";
-import tw, { styled } from "twin.macro";
+import React, { useEffect, useState } from "react";
+import tw from "twin.macro";
 import cardImg from "@/img/main/TodayCard.png";
 import btnImgsrc from "@/img/main/Group 492.png";
 

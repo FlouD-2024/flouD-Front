@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import tw, { css, styled } from "twin.macro";
 import aside from "@/img/aside/목록 로고.png";
 import Image from "next/image";

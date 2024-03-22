@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  // 개발 서버로 api 호출하려면 아래 코드 제거
   const router = useRouter();
   const queryClient = new QueryClient({
     defaultOptions: {

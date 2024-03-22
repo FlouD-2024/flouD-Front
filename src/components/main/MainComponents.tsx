@@ -1,20 +1,18 @@
-import { alarmAtom, mainDayAtom } from "@/store/atom";
-import React, { Suspense, memo, useEffect, useMemo, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { mainDayAtom } from "@/store/atom";
+import React, { useEffect, useMemo, useState } from "react";
+import { useRecoilState } from "recoil";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic.js";
 import FloudCalendar from "./FloudCalendar";
 import DdayCard from "./DdayCard";
 import Memo from "./Memo";
 import AlarmMainBoxWrapper from "./AlarmMainBoxWrapper";
-import { AlarmTestData } from "@/store/testData";
 import useCheckRetroTime from "./useCheckRetroTime";
 import { CardStyle } from "./CardStyle";
 import useGetMainInfo from "@/query/get/useGetMainInfo";
 
 const MainComponents = () => {
   const date = useMemo(() => dayjs().format("YYYY-MM-01"), []);
-  //   const dayInfo = useRecoilValue(weeklyDayAtom);
   const [tomorrowDay, setTomorrowDay] = useState(
     `${dayjs().add(1, "day").format("YYYY-MM-DD")} 06:00:00`
   );
@@ -29,9 +27,7 @@ const MainComponents = () => {
         : `${dayjs().format("YYYY-MM-DD")} 06:00:00`
     );
   }, [dayAtom]);
-  const setAlarmData = useSetRecoilState(alarmAtom);
   useEffect(() => {
-    setAlarmData(AlarmTestData);
     setDayAtom(dayjs().format("YYYY-MM-DD"));
   }, []);
 

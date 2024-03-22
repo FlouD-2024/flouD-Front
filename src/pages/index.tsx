@@ -82,7 +82,6 @@ export const ScreenBox = styled.div(() => [
     height: 850px;
     background-color: transparent;
     position: relative;
-    border: 1px solid black;
     margin: auto;
   `,
 ]);
