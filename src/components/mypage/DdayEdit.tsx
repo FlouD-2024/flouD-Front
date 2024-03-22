@@ -4,7 +4,7 @@ import DdayDate from "./DdayDate";
 type Props = {
   dDayName?: string;
   date: string;
-  onDDayNameChange?: ChangeEventHandler<HTMLInputElement>;
+  onDDayNameChange?: ChangeEventHandler<HTMLTextAreaElement>;
   onDDayDateChange: (date: string) => void;
   onDeleteClick?: () => void;
 };
