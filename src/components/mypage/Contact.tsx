@@ -40,7 +40,7 @@ export default function Contact({}: Props) {
             <Typography title={"이메일"} type={"bold25"} />
             <Typography
               title={
-                "jobcho0320@gmail.com 로 연락주시면 확인 후 답변드리겠습니다."
+                "floud2024@gmail.com 로 연락주시면 확인 후 답변드리겠습니다."
               }
               type={"regular25"}
             />
