@@ -1,3 +1,4 @@
+import { getDdayString } from '@/utils/date';
 import dayjs from 'dayjs'
 import React from 'react'
 
@@ -10,7 +11,8 @@ type Props = {
 }
 
 export default function Dday({title, date, goalId, isEdit, onDeleteClick}: Props) {
-    const daydiff = dayjs().diff(date, "day");
+    const daydiff = dayjs().startOf("date").diff(date, "day");
+
     return (
         <>
             <div className={`flex-col justify-between  bg-[${isEdit ? '#4C6FFF' : '#b5b5bd'}]/10 h-20px rounded-[10px] w-[32%] h-[124px] p-[10px] px-[22px]`}>
@@ -22,7 +24,7 @@ export default function Dday({title, date, goalId, isEdit, onDeleteClick}: Props
                         <button className='text-[10px] bg-[#4C6FFF] text-white w-[18px] h-[18px] rounded-[5px]' onClick={onDeleteClick}>X</button>
                     }
                 </div>
-                <div className='bg-white rounded-[15px] mt-[20px] h-[36px] px-[15px] py-[5px]'>{date} (D{daydiff < 0 ? daydiff : `+${daydiff}`})</div>
+                <div className='bg-white rounded-[15px] mt-[20px] h-[36px] px-[15px] py-[5px]'>{date} ({getDdayString(date)})</div>
             </div>
         </>
     )
