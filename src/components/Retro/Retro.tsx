@@ -73,6 +73,13 @@ export default function Retro({}: Props) {
     }
   }, [month, week, retroTodayOpen]);
 
+  useEffect(() => {
+    return (() => {
+        setRetroDetailOpend(false);
+        setRetroTodayOpend(false);
+    });
+  }, [])
+
   return (
     <>
       {retroTodayOpen ? (
