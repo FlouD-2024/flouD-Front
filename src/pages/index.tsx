@@ -1,10 +1,10 @@
 import { Inter } from "next/font/google";
 import React, { useEffect } from "react";
 import Image from "next/image";
-import logoFloud from "@/img/login/큰 플라우디 로고.png";
-import googleBtn from "@/img/login/구글로 시작하기.png";
-import kakaoBtn from "@/img/login/카카오톡으로 시작하기.png";
-import loginInfo from "@/img/login/로그인 관련 사항.png";
+import logoFloud from "@/img/login/bigFlouDLogo.png";
+import googleBtn from "@/img/login/googleStart.png";
+import kakaoBtn from "@/img/login/kakaoStart.png";
+import loginInfo from "@/img/login/aboutLogin.png";
 import { css, styled } from "twin.macro";
 import { useRouter } from "next/router";
 

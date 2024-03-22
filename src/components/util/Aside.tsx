@@ -1,6 +1,6 @@
 import React from "react";
 import tw, { css, styled } from "twin.macro";
-import aside from "@/img/aside/목록 로고.png";
+import aside from "@/img/aside/listLogo.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Main from "@/img/svg/aside/Main.svg";
@@ -16,7 +16,7 @@ import CommunityUnclick from "@/img/svg/aside/CommunityUnclick.svg";
 import AboutClick from "@/img/svg/aside/AboutClick.svg";
 import MypageUnClick from "@/img/svg/aside/MypageUnclick.svg";
 import MypageToggle from "@/img/svg/aside/MypageToggle.svg";
-import mainCloud from "@/img/aside/목록 - 플라우디로고.png";
+import mainCloud from "@/img/aside/list_floudLogo.png";
 
 const Aside = () => {
   const router = useRouter();

@@ -3,7 +3,7 @@ import Typography from "../Typography";
 import Dday from "./Dday";
 import DdayAdd from "./DdayAdd";
 import Image from "next/image";
-import Blue from "@/img/Mypage/BlueEllipse.png";
+import Blue from "@/img/mypage/BlueEllipse.png";
 import DdayEdit from "./DdayEdit";
 import { GoalListItem } from "@/types/myPageType";
 import { getNameCheck, putUserInfo } from "@/apis/mypage/mypage";

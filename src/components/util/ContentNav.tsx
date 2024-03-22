@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import alarm from "@/img/friends/알림창.png";
+import alarm from "@/img/friends/alert.png";
 import friendCloud from "@/img/friends/friendCloud.png";
 import AlarmSideBar from "../main/AlarmSideBar";
 import useGetUserInfo from "@/query/get/useGetUserInfo";

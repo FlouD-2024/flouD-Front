@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "../Typography";
 import Dday from "./Dday";
 import Image from "next/image";
-import Blue from "@/img/Mypage/BlueEllipse.png";
+import Blue from "@/img/mypage/BlueEllipse.png";
 import { GoalListItem } from "@/types/myPageType";
 
 type Props = {
