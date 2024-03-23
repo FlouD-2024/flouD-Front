@@ -40,8 +40,13 @@ const FollowModal = (prop: prop) => {
       alert("친구 신청이 되었어요!");
       onClose();
     } else {
-      alert("에러가 났습니다. 다시 시도해주세요");
-      onClose();
+      if (data.message === "이미 친구 관계가 존재합니다.") {
+        alert("이미 친구관계입니다!");
+        onClose();
+      } else {
+        alert("에러가 났습니다. 다시 시도해주세요");
+        onClose();
+      }
     }
   };
   return (
