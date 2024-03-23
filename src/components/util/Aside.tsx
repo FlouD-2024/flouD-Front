@@ -186,6 +186,7 @@ const MypageDiv = styled.div`
   flex-direction: column;
   gap: 18px;
   padding: 10px 26px 10px 0px;
+  cursor: pointer;
 `;
 
 const MypageText = styled.div(({ name }: { name: boolean }) => [
